@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Submit Grievance</title>
+</head>
+
+<body>
+
+    <h1>Submit Grievance</h1>
+
+    <form action="/submit" method="post">
+
+        <!-- Name -->
+        <label>Name:</label>
+        <input type="text" name="name" required>
+        <br><br>
+
+        <!-- Email -->
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <br><br>
+
+        <!-- Grievance -->
+        <label>Grievance:</label>
+        <br>
+        <textarea name="grievance" rows="6" cols="40" required></textarea>
+        <br><br>
+
+        <!-- Location -->
+        <label>Location:</label>
+        <input type="text" name="location" required>
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Grievance</button>
+
+    </form>
+
+    <br>
+
+    <!-- Back to Home -->
+    <button onclick="location.href='index.html'">
+        Back to Home
+    </button>
+
+</body>
+
+</html>
