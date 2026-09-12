@@ -26,6 +26,7 @@ public class HomeController {
         g.setEmail(email);
         g.setGrievance(grievance);
         g.setLocation(location);
+        g.setStatus("Pending");
 
         grievanceRepository.save(g);
 
@@ -33,6 +34,7 @@ public class HomeController {
                 + "Name: " + name + "<br>"
                 + "Email: " + email + "<br>"
                 + "Grievance: " + grievance + "<br>"
-                + "Location: " + location;
+                + "Location: " + location
+                + "<br>Status: Pending";
     }
 }
