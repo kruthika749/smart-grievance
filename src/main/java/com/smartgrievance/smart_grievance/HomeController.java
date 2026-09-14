@@ -1,15 +1,14 @@
 package com.smartgrievance.smart_grievance;
 
 import java.time.LocalDateTime;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
@@ -43,29 +42,47 @@ public class HomeController {
                 + "Grievance: " + grievance + "<br>"
                 + "Location: " + location;
     }
+
     @GetMapping("/grievances")
-public List<Grievance> getGrievances() {
-    return grievanceRepository.findAll();
-}
+    public List<Grievance> getGrievances() {
+        return grievanceRepository.findAll();
+    }
 
-@PutMapping("/grievances/{id}/status")
-public String updateStatus(
-        @PathVariable int id,
-        @RequestParam String status) {
+    @PutMapping("/grievances/{id}/status")
+    public String updateStatus(
+            @PathVariable int id,
+            @RequestParam String status) {
 
-    Grievance grievance = grievanceRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Grievance not found"));
+        Grievance grievance = grievanceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Grievance not found"));
 
-if ("Resolved".equalsIgnoreCase(status)) {
-    grievance.setResolvedAt(LocalDateTime.now());
-} else {
-    grievance.setResolvedAt(null);
-}
-
-grievance.setStatus(status);
-grievanceRepository.save(grievance);
-
-return "Status updated successfully";
-
+        if ("Resolved".equalsIgnoreCase(status)) {
+            grievance.setResolvedAt(LocalDateTime.now());
+        } else {
+            grievance.setResolvedAt(null);
         }
+
+        grievance.setStatus(status);
+        grievanceRepository.save(grievance);
+
+        return "Status updated successfully";
+    }
+
+    @PutMapping("/grievances/{id}/verify")
+    public String verifyGrievance(
+            @PathVariable int id,
+            @RequestParam String verificationStatus,
+            @RequestParam(required = false) String verificationComment) {
+
+        Grievance grievance = grievanceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Grievance not found"));
+
+        grievance.setVerificationStatus(verificationStatus);
+        grievance.setVerificationComment(verificationComment);
+        grievance.setVerifiedAt(LocalDateTime.now());
+
+        grievanceRepository.save(grievance);
+
+        return "Grievance verification recorded successfully";
+    }
 }
