@@ -1,5 +1,7 @@
 package com.smartgrievance.smart_grievance;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +33,8 @@ public class Grievance {
     private String category;
 
     private String priority;
+
+    private LocalDateTime deadline;
 
     public int getId() {
         return id;
@@ -110,5 +114,13 @@ public class Grievance {
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
     }
 }
