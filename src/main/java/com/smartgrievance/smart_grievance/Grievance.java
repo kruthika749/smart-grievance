@@ -1,7 +1,7 @@
 package com.smartgrievance.smart_grievance;
 
 import java.time.LocalDateTime;
-
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,6 +35,8 @@ public class Grievance {
     private String priority;
 
     private LocalDateTime deadline;
+
+    private LocalDateTime createdAt;
 
     public int getId() {
         return id;
@@ -122,5 +124,18 @@ public class Grievance {
 
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
     }
 }
