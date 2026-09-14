@@ -24,7 +24,8 @@ public class HomeController {
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String grievance,
-            @RequestParam String location) {
+            @RequestParam String location,
+            @RequestParam(defaultValue = "Medium") String priority) {
 
         Grievance g = new Grievance();
 
@@ -34,8 +35,15 @@ public class HomeController {
         g.setLocation(location);
         g.setStatus("Pending");
 
-        g.setPriority("Medium");
-        g.setDeadline(LocalDateTime.now().plusHours(48));
+        g.setPriority(priority);
+
+        if ("High".equalsIgnoreCase(g.getPriority())) {
+            g.setDeadline(LocalDateTime.now().plusHours(24));
+        } else if ("Low".equalsIgnoreCase(g.getPriority())) {
+            g.setDeadline(LocalDateTime.now().plusHours(72));
+        } else {
+            g.setDeadline(LocalDateTime.now().plusHours(48));
+        }
 
         grievanceRepository.save(g);
 
