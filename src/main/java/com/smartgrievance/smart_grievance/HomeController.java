@@ -34,6 +34,9 @@ public class HomeController {
         g.setLocation(location);
         g.setStatus("Pending");
 
+        g.setPriority("Medium");
+        g.setDeadline(LocalDateTime.now().plusHours(48));
+
         grievanceRepository.save(g);
 
         return "Grievance submitted successfully!<br><br>"
