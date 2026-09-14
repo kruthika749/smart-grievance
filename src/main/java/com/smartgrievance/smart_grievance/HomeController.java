@@ -92,6 +92,11 @@ public class HomeController {
         grievance.setVerificationComment(verificationComment);
         grievance.setVerifiedAt(LocalDateTime.now());
 
+        if ("Rejected".equalsIgnoreCase(verificationStatus)) {
+            grievance.setStatus("In Progress");
+            grievance.setResolvedAt(null);
+        }
+
         grievanceRepository.save(grievance);
 
         return "Grievance verification recorded successfully";
