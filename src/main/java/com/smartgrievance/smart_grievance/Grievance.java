@@ -24,6 +24,8 @@ public class Grievance {
 
     private String location;
 
+    private String evidence;
+
     public int getId() {
         return id;
     }
@@ -70,5 +72,13 @@ public class Grievance {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getEvidence() {
+        return evidence;
+    }
+
+    public void setEvidence(String evidence) {
+        this.evidence = evidence;
     }
 }
