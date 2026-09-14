@@ -42,6 +42,8 @@ public class Grievance {
 
     private String verificationStatus;
 
+    private String verificationComment;
+
     public int getId() {
         return id;
     }
@@ -152,6 +154,14 @@ public class Grievance {
 
     public void setVerificationStatus(String verificationStatus) {
         this.verificationStatus = verificationStatus;
+    }
+
+    public String getVerificationComment() {
+        return verificationComment;
+    }
+
+    public void setVerificationComment(String verificationComment) {
+        this.verificationComment = verificationComment;
     }
 
     @PrePersist
