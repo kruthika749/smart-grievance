@@ -30,6 +30,8 @@ public class Grievance {
 
     private String category;
 
+    private String priority;
+
     public int getId() {
         return id;
     }
@@ -100,5 +102,13 @@ public class Grievance {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 }
