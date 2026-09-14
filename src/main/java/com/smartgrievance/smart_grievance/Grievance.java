@@ -44,6 +44,8 @@ public class Grievance {
 
     private String verificationComment;
 
+    private LocalDateTime verifiedAt;
+
     public int getId() {
         return id;
     }
@@ -162,6 +164,14 @@ public class Grievance {
 
     public void setVerificationComment(String verificationComment) {
         this.verificationComment = verificationComment;
+    }
+
+    public LocalDateTime getVerifiedAt() {
+        return verifiedAt;
+    }
+
+    public void setVerifiedAt(LocalDateTime verifiedAt) {
+        this.verifiedAt = verifiedAt;
     }
 
     @PrePersist
