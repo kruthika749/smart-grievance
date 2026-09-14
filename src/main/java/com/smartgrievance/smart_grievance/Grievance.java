@@ -38,6 +38,8 @@ public class Grievance {
 
     private LocalDateTime createdAt;
 
+    private LocalDateTime resolvedAt;
+
     public int getId() {
         return id;
     }
@@ -132,6 +134,14 @@ public class Grievance {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getResolvedAt() {
+        return resolvedAt;
+    }
+
+    public void setResolvedAt(LocalDateTime resolvedAt) {
+        this.resolvedAt = resolvedAt;
     }
 
     @PrePersist
