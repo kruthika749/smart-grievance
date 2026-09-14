@@ -28,6 +28,8 @@ public class Grievance {
 
     private String afterEvidence;
 
+    private String category;
+
     public int getId() {
         return id;
     }
@@ -90,5 +92,13 @@ public class Grievance {
 
     public void setAfterEvidence(String afterEvidence) {
         this.afterEvidence = afterEvidence;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
