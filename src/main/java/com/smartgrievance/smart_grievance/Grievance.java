@@ -40,6 +40,8 @@ public class Grievance {
 
     private LocalDateTime resolvedAt;
 
+    private String verificationStatus;
+
     public int getId() {
         return id;
     }
@@ -142,6 +144,14 @@ public class Grievance {
 
     public void setResolvedAt(LocalDateTime resolvedAt) {
         this.resolvedAt = resolvedAt;
+    }
+
+    public String getVerificationStatus() {
+        return verificationStatus;
+    }
+
+    public void setVerificationStatus(String verificationStatus) {
+        this.verificationStatus = verificationStatus;
     }
 
     @PrePersist
