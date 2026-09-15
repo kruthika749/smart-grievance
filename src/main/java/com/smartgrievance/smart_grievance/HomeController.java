@@ -2,6 +2,7 @@ package com.smartgrievance.smart_grievance;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ public class HomeController {
         this.grievanceRepository = grievanceRepository;
     }
 
+    // Submit a new grievance
     @PostMapping("/submit")
     public String submitGrievance(
             @RequestParam String name,
@@ -34,7 +36,6 @@ public class HomeController {
         g.setGrievance(grievance);
         g.setLocation(location);
         g.setStatus("Pending");
-
         g.setPriority(priority);
 
         if ("High".equalsIgnoreCase(g.getPriority())) {
@@ -51,21 +52,53 @@ public class HomeController {
                 + "Name: " + name + "<br>"
                 + "Email: " + email + "<br>"
                 + "Grievance: " + grievance + "<br>"
-                + "Location: " + location;
+                + "Location: " + location
+                + "<br>Status: Pending"
+                + "<br>Priority: " + priority;
     }
 
+    // View all grievances
     @GetMapping("/grievances")
-    public List<Grievance> getGrievances() {
+    public List<Grievance> getAllGrievances() {
         return grievanceRepository.findAll();
     }
 
+    // View one grievance by ID
+    @GetMapping("/grievances/{id}")
+    public Optional<Grievance> getGrievanceById(@PathVariable int id) {
+        return grievanceRepository.findById(id);
+    }
+
+    // Search grievances by location
+    @GetMapping("/grievances/location/{location}")
+    public List<Grievance> getGrievancesByLocation(
+            @PathVariable String location) {
+
+        return grievanceRepository.findByLocationIgnoreCase(location);
+    }
+
+    // Filter grievances by status
+    @GetMapping("/grievances/status/{status}")
+    public List<Grievance> getGrievancesByStatus(
+            @PathVariable String status) {
+
+        return grievanceRepository.findByStatusIgnoreCase(status);
+    }
+
+    // Update grievance status
     @PutMapping("/grievances/{id}/status")
     public String updateStatus(
             @PathVariable int id,
             @RequestParam String status) {
 
-        Grievance grievance = grievanceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Grievance not found"));
+        Optional<Grievance> optionalGrievance =
+                grievanceRepository.findById(id);
+
+        if (optionalGrievance.isEmpty()) {
+            return "Grievance not found with ID: " + id;
+        }
+
+        Grievance grievance = optionalGrievance.get();
 
         if ("Resolved".equalsIgnoreCase(status)) {
             grievance.setResolvedAt(LocalDateTime.now());
@@ -76,9 +109,11 @@ public class HomeController {
         grievance.setStatus(status);
         grievanceRepository.save(grievance);
 
-        return "Status updated successfully";
+        return "Grievance status updated successfully to: "
+                + status;
     }
 
+    // Citizen verification
     @PutMapping("/grievances/{id}/verify")
     public String verifyGrievance(
             @PathVariable int id,
