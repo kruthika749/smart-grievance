@@ -1,48 +1,293 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Submit Grievance</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Submit Grievance | Smart Grievance</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        /* Header */
+        header {
+            background: #1f4e79;
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Section */
+        .page {
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #1f4e79;
+            margin-bottom: 10px;
+        }
+
+        .form-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #1f4e79;
+            box-shadow: 0 0 4px rgba(31, 78, 121, 0.25);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        button,
+        .back-btn {
+            padding: 13px 25px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .submit-btn {
+            background: #1f4e79;
+            color: white;
+            border: 2px solid #1f4e79;
+        }
+
+        .submit-btn:hover {
+            background: #163a5c;
+        }
+
+        .back-btn {
+            background: white;
+            color: #1f4e79;
+            border: 2px solid #1f4e79;
+        }
+
+        .back-btn:hover {
+            background: #eaf2f8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background: #1f4e79;
+            color: white;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .form-container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Submit Grievance</h1>
+    <!-- Header -->
+    <header>
 
-    <form action="/submit" method="post">
+        <h1>Smart Grievance</h1>
 
-        <!-- Name -->
-        <label>Name:</label>
-        <input type="text" name="name" required>
-        <br><br>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="submit.html">Submit Grievance</a>
+            <a href="view-grievances.html">View Grievances</a>
+        </nav>
 
-        <!-- Email -->
-        <label>Email:</label>
-        <input type="email" name="email" required>
-        <br><br>
+    </header>
 
-        <!-- Grievance -->
-        <label>Grievance:</label>
-        <br>
-        <textarea name="grievance" rows="6" cols="40" required></textarea>
-        <br><br>
 
-        <!-- Location -->
-        <label>Location:</label>
-        <input type="text" name="location" required>
-        <br><br>
+    <!-- Form Section -->
+    <main class="page">
 
-        <!-- Submit Button -->
-        <button type="submit">Submit Grievance</button>
+        <div class="form-container">
 
-    </form>
+            <h2>Submit Your Grievance</h2>
 
-    <br>
+            <p class="form-description">
+                Please provide the details below so your grievance
+                can be submitted and managed effectively.
+            </p>
 
-    <!-- Back to Home -->
-    <button onclick="location.href='index.html'">
-        Back to Home
-    </button>
+
+            <form action="/submit" method="post">
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+                </div>
+
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+
+
+                <!-- Location -->
+                <div class="form-group">
+                    <label for="location">Location</label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Enter the location"
+                        required>
+                </div>
+
+
+                <!-- Grievance -->
+                <div class="form-group">
+                    <label for="grievance">Grievance</label>
+
+                    <textarea
+                        id="grievance"
+                        name="grievance"
+                        placeholder="Describe your grievance..."
+                        required></textarea>
+                </div>
+
+
+                <!-- Buttons -->
+                <div class="buttons">
+
+                    <button type="submit" class="submit-btn">
+                        Submit Grievance
+                    </button>
+
+                    <a href="index.html" class="back-btn">
+                        Back to Home
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            &copy; 2026 Smart Grievance. All rights reserved.
+        </p>
+
+    </footer>
 
 </body>
 

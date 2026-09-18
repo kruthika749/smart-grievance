@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Smart Grievance</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #1f4e79;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            color: #1f4e79;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #666;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: white;
+            width: 220px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: #1f4e79;
+            margin-bottom: 12px;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .grievances {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .grievances h2 {
+            color: #1f4e79;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            text-align: center;
+            color: #666;
+            padding: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 22px;
+            background: #1f4e79;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #163a5c;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #1f4e79;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 14px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Smart Grievance</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="submit.html">Submit Grievance</a>
+            <a href="view-grievances.html">View Grievances</a>
+        </nav>
+
+    </header>
+
+
+    <div class="container">
+
+        <div class="welcome">
+
+            <h2>Admin Dashboard</h2>
+
+            <p>
+                Manage and monitor submitted grievances.
+            </p>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="card">
+
+                <h3>Total Grievances</h3>
+
+                <div class="number">0</div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Pending</h3>
+
+                <div class="number">0</div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Resolved</h3>
+
+                <div class="number">0</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="grievances">
+
+            <h2>Grievance Management</h2>
+
+            <div class="message">
+                Grievances submitted by users will appear here.
+            </div>
+
+        </div>
+
+
+        <a href="index.html" class="back-btn">
+            Back to Home
+        </a>
+
+    </div>
+
+
+    <footer>
+
+        <p>&copy; 2026 Smart Grievance. All rights reserved.</p>
+
+    </footer>
+
+</body>
+
+</html>

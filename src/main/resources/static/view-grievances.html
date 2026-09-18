@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Grievances - Smart Grievance</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: #1f4e79;
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #1f4e79;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Search */
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #1f4e79;
+        }
+
+        /* Grievance Cards */
+        .grievance-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .grievance-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .grievance-card h3 {
+            color: #1f4e79;
+            margin-bottom: 15px;
+        }
+
+        .grievance-card p {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .grievance-card strong {
+            color: #222;
+        }
+
+        /* Status */
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .resolved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .progress {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        /* Back Button */
+        .back-button {
+            text-align: center;
+            margin: 35px 0;
+        }
+
+        .back-button a {
+            display: inline-block;
+            background: #1f4e79;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-button a:hover {
+            background: #163a5c;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f4e79;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <h1>Smart Grievance</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="submit.html">Submit Grievance</a>
+            <a href="view-grievances.html">View Grievances</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <h2>View Grievances</h2>
+
+        <p class="description">
+            Search and view submitted grievances and their current status.
+        </p>
+
+
+        <!-- Search Box -->
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by name, location or grievance..."
+                onkeyup="searchGrievances()">
+
+        </div>
+
+
+        <!-- Grievance List -->
+        <div class="grievance-list" id="grievanceList">
+
+            <div class="grievance-card">
+
+                <h3>Street Light Issue</h3>
+
+                <p>
+                    <strong>Name:</strong> Example User
+                </p>
+
+                <p>
+                    <strong>Location:</strong> Bengaluru
+                </p>
+
+                <p>
+                    <strong>Grievance:</strong>
+                    Street light is not working in our area.
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    <span class="status pending">Pending</span>
+                </p>
+
+            </div>
+
+
+            <div class="grievance-card">
+
+                <h3>Garbage Collection Issue</h3>
+
+                <p>
+                    <strong>Name:</strong> Sample User
+                </p>
+
+                <p>
+                    <strong>Location:</strong> Mysuru
+                </p>
+
+                <p>
+                    <strong>Grievance:</strong>
+                    Garbage has not been collected for several days.
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    <span class="status progress">In Progress</span>
+                </p>
+
+            </div>
+
+
+            <div class="grievance-card">
+
+                <h3>Water Supply Problem</h3>
+
+                <p>
+                    <strong>Name:</strong> Demo User
+                </p>
+
+                <p>
+                    <strong>Location:</strong> Hubballi
+                </p>
+
+                <p>
+                    <strong>Grievance:</strong>
+                    Water supply is irregular in our locality.
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    <span class="status resolved">Resolved</span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Back Button -->
+        <div class="back-button">
+
+            <a href="index.html">
+                Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            &copy; 2026 Smart Grievance Portal
+        </p>
+
+    </footer>
+
+
+    <!-- Search Script -->
+    <script>
+
+        function searchGrievances() {
+
+            let input = document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+            let cards = document
+                .getElementById("grievanceList")
+                .getElementsByClassName("grievance-card");
+
+            for (let i = 0; i < cards.length; i++) {
+
+                let text = cards[i].innerText.toLowerCase();
+
+                if (text.includes(input)) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
