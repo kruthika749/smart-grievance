@@ -19,6 +19,7 @@
         body {
             background: #f4f7fb;
             color: #1f2937;
+            min-height: 100vh;
         }
         /* Navigation */
         
@@ -36,10 +37,14 @@
             font-weight: bold;
         }
         
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
         .nav-links a {
             color: white;
             text-decoration: none;
-            margin-left: 25px;
             font-size: 15px;
         }
         
@@ -96,17 +101,20 @@
         }
         
         input,
-        textarea {
+        textarea,
+        select {
             width: 100%;
             padding: 13px;
             border: 1px solid #d1d5db;
             border-radius: 7px;
             font-size: 15px;
             outline: none;
+            background: white;
         }
         
         input:focus,
-        textarea:focus {
+        textarea:focus,
+        select:focus {
             border-color: #1d6fa5;
             box-shadow: 0 0 0 2px rgba(29, 111, 165, 0.12);
         }
@@ -131,7 +139,7 @@
         .location-box input {
             flex: 1;
         }
-        /* Evidence Preview Section */
+        /* Evidence */
         
         .evidence-box {
             background: #f8fafc;
@@ -146,7 +154,7 @@
             font-size: 40px;
             margin-bottom: 10px;
         }
-        /* Smart Processing Info */
+        /* Smart Processing */
         
         .smart-box {
             background: #eef6ff;
@@ -200,6 +208,8 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            text-align: center;
+            text-decoration: none;
         }
         
         .back-btn:hover {
@@ -221,8 +231,10 @@
                 flex-direction: column;
                 gap: 12px;
             }
-            .nav-links a {
-                margin-left: 10px;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
             }
             .form-container {
                 padding: 22px;
@@ -232,6 +244,9 @@
             }
             .location-box {
                 flex-direction: column;
+            }
+            .header h1 {
+                font-size: 30px;
             }
         }
     </style>
@@ -256,8 +271,16 @@
                 Home
             </a>
 
+            <a href="submit.html">
+                Submit Grievance
+            </a>
+
             <a href="grievances.html">
                 View Grievances
+            </a>
+
+            <a href="view-grievances.html">
+                Manage Grievances
             </a>
 
         </div>
@@ -323,6 +346,8 @@
             </div>
 
 
+            <!-- Grievance Details -->
+
             <h2 class="section-title">
                 Grievance Details
             </h2>
@@ -362,6 +387,41 @@
             </div>
 
 
+            <!-- Priority -->
+
+            <div class="form-group">
+
+                <label for="priority">
+                    Priority
+                </label>
+
+                <select id="priority" name="priority">
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                    <option value="Medium" selected>
+                        Medium
+                    </option>
+
+                    <option value="High">
+                        High
+                    </option>
+
+                    <option value="Critical">
+                        Critical
+                    </option>
+
+                </select>
+
+                <div class="hint">
+                    AI will determine the final priority based on the grievance details.
+                </div>
+
+            </div>
+
+
             <!-- Evidence -->
 
             <h2 class="section-title">
@@ -395,7 +455,7 @@
                 </h3>
 
                 <p>
-                    After submission, Smart Grievance will help analyze the complaint and determine its category and priority. High-impact issues can be given higher attention.
+                    After submission, Smart Grievance will automatically analyze the complaint, identify its category, determine its priority, detect possible duplicate grievances, route it to the appropriate department and calculate the applicable SLA.
                 </p>
 
             </div>

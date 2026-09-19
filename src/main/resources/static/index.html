@@ -18,6 +18,7 @@
         body {
             background: #f4f7fb;
             color: #1f2937;
+            min-height: 100vh;
         }
         /* Navigation Bar */
         
@@ -254,6 +255,7 @@
 <body>
 
     <!-- Navigation -->
+
     <nav>
 
         <div class="logo">
@@ -261,18 +263,33 @@
         </div>
 
         <div class="nav-links">
+
             <a href="index.html">Home</a>
-            <a href="submit.html">Submit Grievance</a>
-            <a href="grievances.html">View Grievances</a>
+
+            <a href="submit.html">
+                Submit Grievance
+            </a>
+
+            <a href="grievances.html">
+                View Grievances
+            </a>
+
+            <a href="view-grievances.html">
+                Manage Grievances
+            </a>
+
         </div>
 
     </nav>
 
 
     <!-- Hero Section -->
+
     <section class="hero">
 
-        <h1>Smart Grievance Portal</h1>
+        <h1>
+            Smart Grievance Portal
+        </h1>
 
         <p>
             A smarter way for citizens to report civic problems, track grievances and help build better communities.
@@ -294,9 +311,12 @@
 
 
     <!-- Location Search -->
+
     <section class="search-section">
 
-        <h2>🔎 Find Grievances by Location</h2>
+        <h2>
+            🔎 Find Grievances by Location
+        </h2>
 
         <p>
             Search for reported grievances in your area.
@@ -318,9 +338,12 @@
 
 
     <!-- Features -->
+
     <section class="features">
 
-        <h2>How Smart Grievance Helps</h2>
+        <h2>
+            How Smart Grievance Helps
+        </h2>
 
         <div class="feature-container">
 
@@ -330,7 +353,9 @@
                     📝
                 </div>
 
-                <h3>Easy Reporting</h3>
+                <h3>
+                    Easy Reporting
+                </h3>
 
                 <p>
                     Citizens can quickly submit civic complaints with important details about the issue.
@@ -345,7 +370,9 @@
                     📍
                 </div>
 
-                <h3>Location Based</h3>
+                <h3>
+                    Location Based
+                </h3>
 
                 <p>
                     Find grievances reported in a particular location and understand local problems.
@@ -360,7 +387,9 @@
                     🔍
                 </div>
 
-                <h3>Transparent Tracking</h3>
+                <h3>
+                    Transparent Tracking
+                </h3>
 
                 <p>
                     Track grievances and understand their current status.
@@ -374,6 +403,7 @@
 
 
     <!-- Footer -->
+
     <footer>
 
         <p>
@@ -384,6 +414,7 @@
 
 
     <!-- JavaScript -->
+
     <script>
         function searchLocation() {
 
@@ -440,31 +471,35 @@
 
                     card.innerHTML = `
 
-                            <h3>Grievance #${grievance.id}</h3>
+                        <h3>
+                            Grievance #${grievance.id}
+                        </h3>
 
-                            <p>
-                                <strong>Location:</strong>
-                                ${grievance.location}
-                            </p>
+                        <p>
+                            <strong>Location:</strong>
+                            ${grievance.location}
+                        </p>
 
-                            <p>
-                                <strong>Grievance:</strong>
-                                ${grievance.grievance}
-                            </p>
+                        <p>
+                            <strong>Grievance:</strong>
+                            ${grievance.grievance}
+                        </p>
 
-                            <p>
-                                <strong>Reported by:</strong>
-                                ${grievance.name}
-                            </p>
+                        <p>
+                            <strong>Reported by:</strong>
+                            ${grievance.name}
+                        </p>
 
-                            <p>
-                                <strong>Status:</strong>
-                                <span class="status">
-                                    ${grievance.status || "Pending"}
-                                </span>
-                            </p>
+                        <p>
+                            <strong>Status:</strong>
 
-                        `;
+                            <span class="status">
+                                ${grievance.status || "Pending"}
+                            </span>
+
+                        </p>
+
+                    `;
 
                     results.appendChild(card);
 
@@ -485,6 +520,7 @@
 
 
         // Allow pressing Enter in the search box
+
         document
             .getElementById("locationInput")
             .addEventListener("keypress", function(event) {

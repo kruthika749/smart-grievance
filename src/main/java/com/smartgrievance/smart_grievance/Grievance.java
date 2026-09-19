@@ -1,12 +1,13 @@
 package com.smartgrievance.smart_grievance;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "grievances")
@@ -26,6 +27,10 @@ public class Grievance {
 
     private String location;
 
+    private String evidence;
+
+    private String afterEvidence;
+
     private String category;
 
     private String priority;
@@ -37,6 +42,18 @@ public class Grievance {
     private LocalDateTime slaDeadline;
 
     private String escalationStatus;
+
+    private LocalDateTime deadline;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime resolvedAt;
+
+    private String verificationStatus;
+
+    private String verificationComment;
+
+    private LocalDateTime verifiedAt;
 
     public int getId() {
         return id;
@@ -86,6 +103,22 @@ public class Grievance {
         this.location = location;
     }
 
+    public String getEvidence() {
+        return evidence;
+    }
+
+    public void setEvidence(String evidence) {
+        this.evidence = evidence;
+    }
+
+    public String getAfterEvidence() {
+        return afterEvidence;
+    }
+
+    public void setAfterEvidence(String afterEvidence) {
+        this.afterEvidence = afterEvidence;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -132,5 +165,58 @@ public class Grievance {
 
     public void setEscalationStatus(String escalationStatus) {
         this.escalationStatus = escalationStatus;
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getResolvedAt() {
+        return resolvedAt;
+    }
+
+    public void setResolvedAt(LocalDateTime resolvedAt) {
+        this.resolvedAt = resolvedAt;
+    }
+
+    public String getVerificationStatus() {
+        return verificationStatus;
+    }
+
+    public void setVerificationStatus(String verificationStatus) {
+        this.verificationStatus = verificationStatus;
+    }
+
+    public String getVerificationComment() {
+        return verificationComment;
+    }
+
+    public void setVerificationComment(String verificationComment) {
+        this.verificationComment = verificationComment;
+    }
+
+    public LocalDateTime getVerifiedAt() {
+        return verifiedAt;
+    }
+
+    public void setVerifiedAt(LocalDateTime verifiedAt) {
+        this.verifiedAt = verifiedAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
     }
 }

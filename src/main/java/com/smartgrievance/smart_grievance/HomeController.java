@@ -4,8 +4,13 @@ import com.smartgrievance.smart_grievance.ml.CategoryService;
 import com.smartgrievance.smart_grievance.ml.PriorityPredictor;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,12 +31,14 @@ public class HomeController {
         this.duplicateGrievanceService = duplicateGrievanceService;
     }
 
+    // Submit a new grievance
     @PostMapping("/submit")
     public String submitGrievance(
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String grievance,
-            @RequestParam String location) {
+            @RequestParam String location,
+            @RequestParam(defaultValue = "Medium") String priority) {
 
         // AI Category Prediction
         String category =
@@ -46,16 +53,16 @@ public class HomeController {
                 );
 
         // AI Priority Prediction
-        String priority =
+        String predictedPriority =
                 PriorityPredictor.predictPriority(grievance);
 
         // Automatic Department Routing
         String department =
                 getDepartment(category);
 
-        // Calculate SLA hours based on priority
+        // Calculate SLA hours based on AI priority
         int slaHours =
-                getSlaHours(priority);
+                getSlaHours(predictedPriority);
 
         // Calculate SLA deadline
         LocalDateTime slaDeadline =
@@ -70,17 +77,23 @@ public class HomeController {
         g.setLocation(location);
         g.setStatus("Pending");
 
-        // Save AI and routing results
+        // AI and routing results
         g.setCategory(category);
-        g.setPriority(priority);
+        g.setPriority(predictedPriority);
         g.setDepartment(department);
 
-        // Save SLA information
+        // SLA information
         g.setSlaHours(slaHours);
         g.setSlaDeadline(slaDeadline);
 
-        // Initialize escalation status
+        // Database branch deadline field
+        g.setDeadline(slaDeadline);
+
+        // Initialize escalation
         g.setEscalationStatus("Not Escalated");
+
+        // Verification starts as pending
+        g.setVerificationStatus("Pending");
 
         // Save to MySQL
         grievanceRepository.save(g);
@@ -122,7 +135,7 @@ public class HomeController {
                 + "Grievance: " + grievance + "<br>"
                 + "Location: " + location + "<br>"
                 + "AI Category: " + category + "<br>"
-                + "AI Priority: " + priority + "<br>"
+                + "AI Priority: " + predictedPriority + "<br>"
                 + "Department: " + department + "<br>"
                 + "SLA: " + slaHours + " hours<br>"
                 + "SLA Deadline: " + slaDeadline + "<br>"
@@ -218,5 +231,95 @@ public class HomeController {
             default:
                 return "General Grievance Cell";
         }
+    }
+
+    // View all grievances
+    @GetMapping("/grievances")
+    public List<Grievance> getAllGrievances() {
+
+        return grievanceRepository.findAll();
+    }
+
+    // View one grievance by ID
+    @GetMapping("/grievances/{id}")
+    public Optional<Grievance> getGrievanceById(
+            @PathVariable int id) {
+
+        return grievanceRepository.findById(id);
+    }
+
+    // Search grievances by location
+    @GetMapping("/grievances/location/{location}")
+    public List<Grievance> getGrievancesByLocation(
+            @PathVariable String location) {
+
+        return grievanceRepository.findByLocationIgnoreCase(location);
+    }
+
+    // Filter grievances by status
+    @GetMapping("/grievances/status/{status}")
+    public List<Grievance> getGrievancesByStatus(
+            @PathVariable String status) {
+
+        return grievanceRepository.findByStatusIgnoreCase(status);
+    }
+
+    // Update grievance status
+    @PutMapping("/grievances/{id}/status")
+    public String updateStatus(
+            @PathVariable int id,
+            @RequestParam String status) {
+
+        Optional<Grievance> optionalGrievance =
+                grievanceRepository.findById(id);
+
+        if (optionalGrievance.isEmpty()) {
+            return "Grievance not found with ID: " + id;
+        }
+
+        Grievance grievance = optionalGrievance.get();
+
+        if ("Resolved".equalsIgnoreCase(status)) {
+            grievance.setResolvedAt(LocalDateTime.now());
+        } else {
+            grievance.setResolvedAt(null);
+        }
+
+        grievance.setStatus(status);
+
+        grievanceRepository.save(grievance);
+
+        return "Grievance status updated successfully to: "
+                + status;
+    }
+
+    // Citizen verification
+    @PutMapping("/grievances/{id}/verify")
+    public String verifyGrievance(
+            @PathVariable int id,
+            @RequestParam String verificationStatus,
+            @RequestParam(required = false) String verificationComment) {
+
+        Grievance grievance =
+                grievanceRepository.findById(id)
+                        .orElseThrow(
+                                () -> new RuntimeException(
+                                        "Grievance not found"
+                                )
+                        );
+
+        grievance.setVerificationStatus(verificationStatus);
+        grievance.setVerificationComment(verificationComment);
+        grievance.setVerifiedAt(LocalDateTime.now());
+
+        if ("Rejected".equalsIgnoreCase(verificationStatus)) {
+
+            grievance.setStatus("In Progress");
+            grievance.setResolvedAt(null);
+        }
+
+        grievanceRepository.save(grievance);
+
+        return "Grievance verification recorded successfully";
     }
 }
