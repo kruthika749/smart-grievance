@@ -1,48 +1,441 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Submit Grievance</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Submit Grievance - Smart Grievance</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+        /* Navigation */
+        
+        nav {
+            background: #123b6d;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        /* Header */
+        
+        .header {
+            background: linear-gradient(135deg, #123b6d, #1d6fa5);
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        
+        .header p {
+            font-size: 17px;
+        }
+        /* Form Container */
+        
+        .form-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
+        }
+        /* Form Sections */
+        
+        .section-title {
+            color: #123b6d;
+            font-size: 21px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+        
+        input:focus,
+        textarea:focus {
+            border-color: #1d6fa5;
+            box-shadow: 0 0 0 2px rgba(29, 111, 165, 0.12);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .hint {
+            color: #6b7280;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+        /* Location */
+        
+        .location-box {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .location-box input {
+            flex: 1;
+        }
+        /* Evidence Preview Section */
+        
+        .evidence-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            color: #6b7280;
+        }
+        
+        .evidence-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        /* Smart Processing Info */
+        
+        .smart-box {
+            background: #eef6ff;
+            border-left: 5px solid #1d6fa5;
+            padding: 18px;
+            border-radius: 6px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .smart-box h3 {
+            color: #123b6d;
+            margin-bottom: 8px;
+        }
+        
+        .smart-box p {
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        /* Buttons */
+        
+        .button-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        
+        .submit-btn {
+            flex: 1;
+            background: #123b6d;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .submit-btn:hover {
+            background: #0d2d52;
+        }
+        
+        .back-btn {
+            flex: 1;
+            background: white;
+            color: #123b6d;
+            border: 2px solid #123b6d;
+            padding: 12px;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .back-btn:hover {
+            background: #f1f5f9;
+        }
+        /* Footer */
+        
+        footer {
+            background: #123b6d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        /* Mobile */
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-links a {
+                margin-left: 10px;
+            }
+            .form-container {
+                padding: 22px;
+            }
+            .button-container {
+                flex-direction: column;
+            }
+            .location-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+
 </head>
+
 
 <body>
 
-    <h1>Submit Grievance</h1>
 
-    <form action="/submit" method="post">
+    <!-- Navigation -->
 
-        <!-- Name -->
-        <label>Name:</label>
-        <input type="text" name="name" required>
-        <br><br>
+    <nav>
 
-        <!-- Email -->
-        <label>Email:</label>
-        <input type="email" name="email" required>
-        <br><br>
+        <div class="logo">
+            🏛️ Smart Grievance
+        </div>
 
-        <!-- Grievance -->
-        <label>Grievance:</label>
-        <br>
-        <textarea name="grievance" rows="6" cols="40" required></textarea>
-        <br><br>
+        <div class="nav-links">
 
-        <!-- Location -->
-        <label>Location:</label>
-        <input type="text" name="location" required>
-        <br><br>
+            <a href="index.html">
+                Home
+            </a>
 
-        <!-- Submit Button -->
-        <button type="submit">Submit Grievance</button>
+            <a href="grievances.html">
+                View Grievances
+            </a>
 
-    </form>
+        </div>
 
-    <br>
+    </nav>
 
-    <!-- Back to Home -->
-    <button onclick="location.href='index.html'">
-        Back to Home
-    </button>
+
+    <!-- Header -->
+
+    <section class="header">
+
+        <h1>
+            📝 Submit a Grievance
+        </h1>
+
+        <p>
+            Report a civic issue and help improve your community.
+        </p>
+
+    </section>
+
+
+    <!-- Form -->
+
+    <div class="form-container">
+
+
+        <h2 class="section-title">
+            Citizen Information
+        </h2>
+
+
+        <form action="/submit" method="post">
+
+
+            <!-- Name -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            </div>
+
+
+            <!-- Email -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+                <div class="hint">
+                    We may use this to provide grievance updates.
+                </div>
+
+            </div>
+
+
+            <h2 class="section-title">
+                Grievance Details
+            </h2>
+
+
+            <!-- Grievance -->
+
+            <div class="form-group">
+
+                <label for="grievance">
+                    Describe the Problem
+                </label>
+
+                <textarea id="grievance" name="grievance" placeholder="Describe the civic problem clearly..." required></textarea>
+
+                <div class="hint">
+                    Please include important details such as what happened, how long the problem has existed, and who may be affected.
+                </div>
+
+            </div>
+
+
+            <!-- Location -->
+
+            <div class="form-group">
+
+                <label for="location">
+                    📍 Location
+                </label>
+
+                <input type="text" id="location" name="location" placeholder="Enter the location of the problem" required>
+
+                <div class="hint">
+                    Example: Kumbalagudu, Bengaluru
+                </div>
+
+            </div>
+
+
+            <!-- Evidence -->
+
+            <h2 class="section-title">
+                📷 Evidence
+            </h2>
+
+
+            <div class="evidence-box">
+
+                <div class="evidence-icon">
+                    📷
+                </div>
+
+                <strong>
+                    Evidence upload coming next
+                </strong>
+
+                <p style="margin-top: 8px;">
+                    You will be able to upload a photo or video showing the problem.
+                </p>
+
+            </div>
+
+
+            <!-- Smart Processing -->
+
+            <div class="smart-box">
+
+                <h3>
+                    🤖 Smart Processing
+                </h3>
+
+                <p>
+                    After submission, Smart Grievance will help analyze the complaint and determine its category and priority. High-impact issues can be given higher attention.
+                </p>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="button-container">
+
+                <button type="submit" class="submit-btn">
+
+                    🚀 Submit Grievance
+
+                </button>
+
+
+                <button type="button" class="back-btn" onclick="location.href='index.html'">
+
+                    ← Back to Home
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Smart Grievance Portal | Making Communities Better
+        </p>
+
+    </footer>
+
 
 </body>
 

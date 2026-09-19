@@ -1,20 +1,502 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Smart Grievance</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Grievance Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+        /* Navigation Bar */
+        
+        nav {
+            background: #123b6d;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        /* Hero Section */
+        
+        .hero {
+            background: linear-gradient(135deg, #123b6d, #1d6fa5);
+            color: white;
+            padding: 70px 8%;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            margin: 8px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .primary-btn {
+            background: white;
+            color: #123b6d;
+        }
+        
+        .secondary-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            opacity: 0.85;
+        }
+        /* Location Search */
+        
+        .search-section {
+            width: 85%;
+            max-width: 1000px;
+            margin: -35px auto 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .search-section h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #123b6d;
+        }
+        
+        .search-section p {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+        
+        .search-box button {
+            padding: 14px 25px;
+            background: #123b6d;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .search-box button:hover {
+            background: #0d2d52;
+        }
+        /* Results */
+        
+        #results {
+            margin-top: 25px;
+        }
+        
+        .result-card {
+            background: #f8fafc;
+            border-left: 5px solid #1d6fa5;
+            padding: 18px;
+            margin-top: 12px;
+            border-radius: 6px;
+        }
+        
+        .result-card h3 {
+            color: #123b6d;
+            margin-bottom: 8px;
+        }
+        
+        .result-card p {
+            text-align: left;
+            margin: 5px 0;
+            color: #374151;
+        }
+        
+        .status {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        /* Features */
+        
+        .features {
+            padding: 20px 8% 60px;
+            text-align: center;
+        }
+        
+        .features h2 {
+            color: #123b6d;
+            margin-bottom: 30px;
+            font-size: 30px;
+        }
+        
+        .feature-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            color: #123b6d;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        /* Footer */
+        
+        footer {
+            background: #123b6d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        /* Mobile */
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .search-box {
+                flex-direction: column;
+            }
+            .feature-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Smart Grievance Portal</h1>
+    <!-- Navigation -->
+    <nav>
 
-    <h2>Welcome!</h2>
+        <div class="logo">
+            🏛️ Smart Grievance
+        </div>
 
-    <p>Submit and track your grievances easily.</p>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="submit.html">Submit Grievance</a>
+            <a href="grievances.html">View Grievances</a>
+        </div>
 
-    <button onclick="location.href='submit.html'">Submit Grievance</button>
-    <button onclick="location.href='grievances.html'">View Grievances</button>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <h1>Smart Grievance Portal</h1>
+
+        <p>
+            A smarter way for citizens to report civic problems, track grievances and help build better communities.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="submit.html" class="btn primary-btn">
+                📝 Submit Grievance
+            </a>
+
+            <a href="grievances.html" class="btn secondary-btn">
+                📋 View Grievances
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Location Search -->
+    <section class="search-section">
+
+        <h2>🔎 Find Grievances by Location</h2>
+
+        <p>
+            Search for reported grievances in your area.
+        </p>
+
+        <div class="search-box">
+
+            <input type="text" id="locationInput" placeholder="Enter location e.g. Kumbalagudu">
+
+            <button onclick="searchLocation()">
+                Search
+            </button>
+
+        </div>
+
+        <div id="results"></div>
+
+    </section>
+
+
+    <!-- Features -->
+    <section class="features">
+
+        <h2>How Smart Grievance Helps</h2>
+
+        <div class="feature-container">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📝
+                </div>
+
+                <h3>Easy Reporting</h3>
+
+                <p>
+                    Citizens can quickly submit civic complaints with important details about the issue.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📍
+                </div>
+
+                <h3>Location Based</h3>
+
+                <p>
+                    Find grievances reported in a particular location and understand local problems.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🔍
+                </div>
+
+                <h3>Transparent Tracking</h3>
+
+                <p>
+                    Track grievances and understand their current status.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Smart Grievance Portal | Making Communities Better
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+        function searchLocation() {
+
+            const location =
+                document.getElementById("locationInput").value.trim();
+
+            const results =
+                document.getElementById("results");
+
+            if (location === "") {
+
+                results.innerHTML =
+                    "<p style='text-align:center;color:red;'>Please enter a location.</p>";
+
+                return;
+            }
+
+            results.innerHTML =
+                "<p style='text-align:center;'>Searching...</p>";
+
+            fetch(
+                "/grievances/location/" +
+                encodeURIComponent(location)
+            )
+
+            .then(response => {
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch grievances");
+                }
+
+                return response.json();
+
+            })
+
+            .then(data => {
+
+                results.innerHTML = "";
+
+                if (data.length === 0) {
+
+                    results.innerHTML =
+                        "<p style='text-align:center;color:#6b7280;'>No grievances found for this location.</p>";
+
+                    return;
+                }
+
+                data.forEach(grievance => {
+
+                    const card =
+                        document.createElement("div");
+
+                    card.className = "result-card";
+
+                    card.innerHTML = `
+
+                            <h3>Grievance #${grievance.id}</h3>
+
+                            <p>
+                                <strong>Location:</strong>
+                                ${grievance.location}
+                            </p>
+
+                            <p>
+                                <strong>Grievance:</strong>
+                                ${grievance.grievance}
+                            </p>
+
+                            <p>
+                                <strong>Reported by:</strong>
+                                ${grievance.name}
+                            </p>
+
+                            <p>
+                                <strong>Status:</strong>
+                                <span class="status">
+                                    ${grievance.status || "Pending"}
+                                </span>
+                            </p>
+
+                        `;
+
+                    results.appendChild(card);
+
+                });
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+                results.innerHTML =
+                    "<p style='text-align:center;color:red;'>Unable to load grievances. Please try again.</p>";
+
+            });
+
+        }
+
+
+        // Allow pressing Enter in the search box
+        document
+            .getElementById("locationInput")
+            .addEventListener("keypress", function(event) {
+
+                if (event.key === "Enter") {
+
+                    searchLocation();
+
+                }
+
+            });
+    </script>
 
 </body>
 

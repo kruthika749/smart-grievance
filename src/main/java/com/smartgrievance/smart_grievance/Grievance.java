@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "grievances")
 public class Grievance {
@@ -23,6 +25,18 @@ public class Grievance {
     private String status;
 
     private String location;
+
+    private String category;
+
+    private String priority;
+
+    private String department;
+
+    private int slaHours;
+
+    private LocalDateTime slaDeadline;
+
+    private String escalationStatus;
 
     public int getId() {
         return id;
@@ -70,5 +84,53 @@ public class Grievance {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public int getSlaHours() {
+        return slaHours;
+    }
+
+    public void setSlaHours(int slaHours) {
+        this.slaHours = slaHours;
+    }
+
+    public LocalDateTime getSlaDeadline() {
+        return slaDeadline;
+    }
+
+    public void setSlaDeadline(LocalDateTime slaDeadline) {
+        this.slaDeadline = slaDeadline;
+    }
+
+    public String getEscalationStatus() {
+        return escalationStatus;
+    }
+
+    public void setEscalationStatus(String escalationStatus) {
+        this.escalationStatus = escalationStatus;
     }
 }
