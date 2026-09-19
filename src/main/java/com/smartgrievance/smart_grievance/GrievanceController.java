@@ -1,7 +1,6 @@
 package com.smartgrievance.smart_grievance;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,18 +13,6 @@ public class GrievanceController {
 
     public GrievanceController(GrievanceRepository grievanceRepository) {
         this.grievanceRepository = grievanceRepository;
-    }
-
-    @GetMapping("/grievances")
-    public List<Grievance> getAllGrievances() {
-        return grievanceRepository.findAll();
-    }
-
-    @GetMapping("/grievances/location/{location}")
-    public List<Grievance> getGrievancesByLocation(
-            @PathVariable String location) {
-
-        return grievanceRepository.findByLocationIgnoreCase(location);
     }
 
     // Testing endpoint to simulate an SLA breach
