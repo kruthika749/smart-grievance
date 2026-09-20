@@ -1,250 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Smart Grievance Portal</title>
+    <title>Smart Grievance | Your Voice. A Better Tomorrow.</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #f4f7fb;
-            color: #222;
-            min-height: 100vh;
-        }
-
-        /* Header */
-        header {
-            background: #1f4e79;
-            color: white;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            font-size: 26px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Hero */
-        .hero {
-            background: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .hero h2 {
-            color: #1f4e79;
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            color: #555;
-            font-size: 18px;
-            max-width: 650px;
-            margin: auto;
-            line-height: 1.6;
-        }
-
-        /* Buttons */
-        .buttons {
-            margin-top: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            margin: 8px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .primary {
-            background: #1f4e79;
-            color: white;
-        }
-
-        .primary:hover {
-            background: #163a5c;
-        }
-
-        .secondary {
-            background: white;
-            color: #1f4e79;
-            border: 2px solid #1f4e79;
-        }
-
-        .secondary:hover {
-            background: #eaf2f8;
-        }
-
-        /* Features */
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            padding: 50px 20px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: white;
-            width: 280px;
-            padding: 30px;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .card h3 {
-            color: #1f4e79;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: #666;
-            line-height: 1.5;
-        }
-
-        /* Footer */
-        footer {
-            background: #1f4e79;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px;
-            }
-
-            nav a {
-                margin: 0 8px;
-                font-size: 14px;
-            }
-
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .hero h2 {
-                font-size: 32px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header>
+    <!-- ================= HEADER ================= -->
 
-        <h1>Smart Grievance</h1>
+    <header class="navbar">
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="submit.html">Submit Grievance</a>
-            <a href="view-grievances.html">View Grievances</a>
-        </nav>
+        <div class="nav-container">
+
+        <a href="index.html" class="brand">
+                
+            <img
+                
+                src="logo-symbol.png"
+                alt="Smart Grievance Logo"
+                class="logo-symbol">
+                
+            <div class="brand-text">
+                    <h1>Smart <span>Grievance</span></h1>
+                    <p>Your Voice. A Better Tomorrow.</p>
+            
+            </div>
+        </a>
+
+
+            <nav class="nav-links">
+
+                <a href="index.html" class="active">
+                    <span class="nav-icon">⌂</span>
+                    Home
+                </a>
+
+                <a href="submit.html">
+                    <span class="nav-icon">▤</span>
+                    Submit Grievance
+                </a>
+
+                <a href="view-grievances.html">
+                    <span class="nav-icon">☷</span>
+                    View Grievances
+                </a>
+
+                <a href="admin.html">
+                    <span class="nav-icon">⚙</span>
+                    Admin
+                </a>
+
+            </nav>
+
+
+            <div class="nav-message">
+                <span>People</span>
+                <span>Problems</span>
+                <span>Progress</span>
+                <div class="message-line"></div>
+            </div>
+
+        </div>
 
     </header>
 
 
-    <!-- Welcome Section -->
-    <section class="hero">
+    <!-- ================= HERO ================= -->
 
-        <h2>Welcome to Smart Grievance</h2>
+    <main>
 
-        <p>
-            A simple and efficient platform to submit,
-            manage, and track grievances in one place.
-        </p>
+        <section class="hero">
 
-        <div class="buttons">
+            <div class="hero-overlay"></div>
 
-            <a href="submit.html" class="btn primary">
-                Submit a Grievance
-            </a>
-
-            <a href="view-grievances.html" class="btn secondary">
-                View Grievances
-            </a>
-
-        </div>
-
-    </section>
+            <div class="hero-container">
 
 
-    <!-- Features -->
-    <section class="features">
+                <!-- LEFT SIDE -->
 
-        <div class="card">
-            <h3>Easy Submission</h3>
+                <div class="hero-content">
+
+                    <p class="eyebrow">
+                        CITIZEN GRIEVANCE MANAGEMENT SYSTEM
+                    </p>
+
+
+                    <h2>
+                        A Safer, Cleaner<br>
+                        and Brighter Community
+                        <span>Together</span>
+                    </h2>
+
+
+                    <p class="hero-description">
+                        Report civic issues, track progress, and help build
+                        a better community. We listen. We act.
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="submit.html"
+                            class="hero-btn primary-btn">
+
+                            <span class="button-icon">▤</span>
+
+                            Submit a Grievance
+
+                            <span class="arrow">→</span>
+
+                        </a>
+
+
+                        <a
+                            href="view-grievances.html"
+                            class="hero-btn secondary-btn">
+
+                            <span class="search-icon">⌕</span>
+
+                            Track Status
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-quote">
+
+                        <span>
+                            Small Voices Create Big Change
+                        </span>
+
+                        <div></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RIGHT SIDE PROCESS GRAPHIC -->
+
+                <div class="process-area">
+
+
+                    <div class="process-circle"></div>
+
+
+                    <!-- CENTER -->
+
+                    <div class="process-center">
+                        
+                        <img
+                           src="logo-symbol.png"
+                           alt="Smart Grievance"
+                           class="process-logo">
+                           
+                        <h3>
+                            SMART<br>
+                            GRIEVANCE
+                        </h3>
+                        
+                        <p>
+                            CITIZENS • ACTION • BETTER TOMORROW
+                        </p>
+                    </div>
+
+
+                    <!-- TOP -->
+
+                    <div class="process-item process-top">
+
+                        <div class="process-icon terracotta">
+                            ▤
+                        </div>
+
+                        <h4>Report Issues</h4>
+
+                        <p>
+                            Easily submit your<br>
+                            grievances
+                        </p>
+
+                    </div>
+
+
+                    <!-- LEFT -->
+
+                    <div class="process-item process-left">
+
+                        <div class="process-icon olive">
+                            ⌕
+                        </div>
+
+                        <h4>Track Progress</h4>
+
+                        <p>
+                            Stay updated<br>
+                            in real time
+                        </p>
+
+                    </div>
+
+
+                    <!-- RIGHT -->
+
+                    <div class="process-item process-right">
+
+                        <div class="process-icon olive">
+                            ⚙
+                        </div>
+
+                        <h4>Faster Resolution</h4>
+
+                        <p>
+                            Ensuring timely<br>
+                            action
+                        </p>
+
+                    </div>
+
+
+                    <!-- BOTTOM LEFT -->
+
+                    <div class="process-item process-bottom-left">
+
+                        <div class="process-icon beige-icon">
+                            ♧
+                        </div>
+
+                        <h4>Transparent<br>Process</h4>
+
+                        <p>
+                            Building trust<br>
+                            with citizens
+                        </p>
+
+                    </div>
+
+
+                    <!-- BOTTOM RIGHT -->
+
+                    <div class="process-item process-bottom-right">
+
+                        <div class="process-icon terracotta">
+                            ▥
+                        </div>
+
+                        <h4>Better Communities</h4>
+
+                        <p>
+                            Clean, safe and<br>
+                            happier living
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BENGALURU QUOTE -->
+
+                <div class="bengaluru-quote">
+
+                    <p>
+                        “For a<br>
+                        Cleaner, Greener<br>
+                        and Stronger<br>
+                        Bengaluru”
+                    </p>
+
+                    <div></div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FEATURE CARDS ================= -->
+
+        <section class="features">
+
+            <div class="features-container">
+
+
+                <!-- CARD 1 -->
+
+                <a
+                    href="submit.html"
+                    class="feature-card">
+
+                    <div class="feature-icon terracotta-bg">
+                        ▤
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Submit Grievance
+                        </h3>
+
+                        <p>
+                            Report civic issues
+                            in a few clicks
+                        </p>
+
+                    </div>
+
+                    <div class="card-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+                <!-- CARD 2 -->
+
+                <a
+                    href="view-grievances.html"
+                    class="feature-card">
+
+                    <div class="feature-icon olive-bg">
+                        ◉
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            View Grievances
+                        </h3>
+
+                        <p>
+                            See all submitted
+                            grievances
+                        </p>
+
+                    </div>
+
+                    <div class="card-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+                <!-- CARD 3 -->
+
+                <a
+                    href="view-grievances.html"
+                    class="feature-card">
+
+                    <div class="feature-icon terracotta-bg">
+                        ⌕
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Track Status
+                        </h3>
+
+                        <p>
+                            Check real-time
+                            updates
+                        </p>
+
+                    </div>
+
+                    <div class="card-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+                <!-- CARD 4 -->
+
+                <a
+                    href="admin.html"
+                    class="feature-card">
+
+                    <div class="feature-icon olive-bg">
+                        ♧
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Admin Management
+                        </h3>
+
+                        <p>
+                            Manage and resolve
+                            grievances
+                        </p>
+
+                    </div>
+
+                    <div class="card-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
 
             <p>
-                Submit your grievance quickly by providing
-                your name, email, location and complaint.
+                © 2026 Smart Grievance. All rights reserved.
             </p>
+
+
+            <div class="footer-links">
+
+                <a href="#">
+                    Privacy
+                </a>
+
+                <span>|</span>
+
+                <a href="#">
+                    Terms
+                </a>
+
+                <span>|</span>
+
+                <a href="#">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div class="footer-message">
+
+                <span>
+                    Together for a Better Tomorrow
+                </span>
+
+                <b>◆</b>
+
+            </div>
+
         </div>
-
-
-        <div class="card">
-            <h3>Track Grievances</h3>
-
-            <p>
-                View submitted grievances and check their
-                current status.
-            </p>
-        </div>
-
-
-        <div class="card">
-            <h3>Location Based</h3>
-
-            <p>
-                Provide your location to help identify
-                and manage local issues.
-            </p>
-        </div>
-
-    </section>
-
-
-    <!-- Footer -->
-    <footer>
-
-        <p>
-            &copy; 2026 Smart Grievance Portal
-        </p>
 
     </footer>
 
+
 </body>
+
 </html>
