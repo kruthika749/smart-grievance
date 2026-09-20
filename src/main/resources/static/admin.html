@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,124 +12,213 @@
         * {
             box-sizing: border-box;
         }
-
+        
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f7fb;
-            color: #333;
+            color: #1f2937;
         }
-
+        
         header {
             background: #1f4e79;
             color: white;
-            padding: 20px 30px;
+            padding: 18px 35px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         header h1 {
             margin: 0;
             font-size: 22px;
         }
-
+        
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 25px;
+            margin-left: 22px;
             font-weight: bold;
         }
-
+        
         nav a:hover {
             text-decoration: underline;
         }
-
+        
         .container {
-            max-width: 1000px;
+            max-width: 1250px;
             margin: 35px auto;
             padding: 0 20px;
         }
-
+        
         .welcome {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
-
+        
         .welcome h2 {
             color: #1f4e79;
+            margin-bottom: 8px;
         }
-
+        
+        .welcome p {
+            color: #64748b;
+        }
+        /* ================= STATISTICS ================= */
+        
         .stats {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
         }
-
+        
         .card {
             background: white;
-            width: 30%;
-            padding: 20px;
+            padding: 22px;
             text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-
+        
         .card h3 {
             color: #1f4e79;
-            margin-bottom: 10px;
+            margin: 0 0 10px;
+            font-size: 15px;
         }
-
+        
         .number {
             font-size: 32px;
             font-weight: bold;
         }
-
+        /* ================= ANALYTICS ================= */
+        
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .analytics-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .analytics-card h2 {
+            color: #1f4e79;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 21px;
+        }
+        
+        .bar-item {
+            margin-bottom: 20px;
+        }
+        
+        .bar-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+        
+        .bar-label {
+            font-weight: bold;
+        }
+        
+        .bar-count {
+            font-weight: bold;
+            color: #64748b;
+        }
+        
+        .bar-background {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .bar-fill {
+            height: 100%;
+            background: #2563eb;
+            border-radius: 20px;
+            transition: width 0.5s ease;
+        }
+        /* ================= MANAGEMENT ================= */
+        
         .grievances {
             background: white;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-
+        
         .grievances h2 {
             color: #1f4e79;
-            margin-bottom: 20px;
+            margin-top: 0;
+            margin-bottom: 25px;
         }
-
+        
         .grievance-card {
             border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 18px;
-            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 18px;
         }
-
+        
         .grievance-card h3 {
             color: #1f4e79;
             margin-top: 0;
         }
-
+        
         .grievance-card p {
             margin: 7px 0;
         }
-
-        .status-control {
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             margin-top: 15px;
+        }
+        
+        .detail {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 7px;
+        }
+        
+        .detail-label {
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        
+        .detail-value {
+            font-weight: bold;
+        }
+        
+        .status-control {
+            margin-top: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
         }
-
+        
         .status-control select {
-            padding: 8px;
+            padding: 9px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-
+        
         .update-btn {
-            padding: 8px 15px;
+            padding: 9px 16px;
             background: #1f4e79;
             color: white;
             border: none;
@@ -136,27 +226,28 @@
             cursor: pointer;
             font-weight: bold;
         }
-
+        
         .update-btn:hover {
             background: #163a5c;
         }
-
+        /* ================= MESSAGES ================= */
+        
         .message {
             text-align: center;
             color: #666;
             padding: 20px;
         }
-
-        .success {
-            color: green;
-            font-weight: bold;
-        }
-
+        
         .error {
             color: red;
             font-weight: bold;
         }
-
+        
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        
         .back-btn {
             display: inline-block;
             margin-top: 25px;
@@ -167,11 +258,11 @@
             border-radius: 6px;
             font-weight: bold;
         }
-
+        
         .back-btn:hover {
             background: #163a5c;
         }
-
+        
         footer {
             margin-top: 50px;
             padding: 20px;
@@ -179,48 +270,88 @@
             color: white;
             text-align: center;
         }
-
-        @media (max-width: 600px) {
+        /* ================= RESPONSIVE ================= */
+        
+        @media (max-width: 1000px) {
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 700px) {
             header {
                 flex-direction: column;
                 gap: 15px;
+                align-items: flex-start;
             }
-
             nav a {
-                margin: 0 7px;
+                margin-left: 0;
+                margin-right: 15px;
                 font-size: 14px;
             }
-
             .stats {
-                flex-direction: column;
+                grid-template-columns: repeat(2, 1fr);
             }
-
-            .card {
-                width: 100%;
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 450px) {
+            .stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
+
 </head>
+
 
 <body>
 
+
     <header>
 
-        <h1>Smart Grievance</h1>
+        <h1>
+            Smart Grievance
+        </h1>
 
         <nav>
-            <a href="index.html">Home</a>
-            <a href="submit.html">Submit Grievance</a>
-            <a href="view-grievances.html">View Grievances</a>
+
+            <a href="index.html">
+            Home
+        </a>
+
+            <a href="submit.html">
+            Submit Grievance
+        </a>
+
+            <a href="view-grievances.html">
+            View Grievances
+        </a>
+
+            <a href="my-grievances.html">
+            My Grievances
+        </a>
+
         </nav>
 
     </header>
 
+
     <div class="container">
+
+
+        <!-- ================= TITLE ================= -->
 
         <div class="welcome">
 
-            <h2>Admin Dashboard</h2>
+            <h2>
+                Admin Dashboard
+            </h2>
 
             <p>
                 Manage and monitor submitted grievances.
@@ -228,257 +359,742 @@
 
         </div>
 
+
+        <!-- ================= STATISTICS ================= -->
+
         <div class="stats">
 
-            <div class="card">
-                <h3>Total Grievances</h3>
-                <div class="number" id="totalCount">0</div>
-            </div>
 
             <div class="card">
-                <h3>Pending</h3>
-                <div class="number" id="pendingCount">0</div>
+
+                <h3>
+                    Total Grievances
+                </h3>
+
+                <div class="number" id="totalCount">
+
+                    0
+
+                </div>
+
             </div>
 
+
             <div class="card">
-                <h3>Resolved</h3>
-                <div class="number" id="resolvedCount">0</div>
+
+                <h3>
+                    Pending
+                </h3>
+
+                <div class="number" id="pendingCount">
+
+                    0
+
+                </div>
+
             </div>
+
+
+            <div class="card">
+
+                <h3>
+                    In Progress
+                </h3>
+
+                <div class="number" id="inProgressCount">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Resolved
+                </h3>
+
+                <div class="number" id="resolvedCount">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Escalated
+                </h3>
+
+                <div class="number" id="escalatedCount">
+
+                    0
+
+                </div>
+
+            </div>
+
 
         </div>
+
+
+        <!-- ================= ANALYTICS ================= -->
+
+        <div class="analytics-grid">
+
+
+            <!-- DEPARTMENT -->
+
+            <div class="analytics-card">
+
+                <h2>
+                    Department-wise Grievances
+                </h2>
+
+                <div id="departmentAnalytics">
+
+                    Loading...
+
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="analytics-card">
+
+                <h2>
+                    Category-wise Grievances
+                </h2>
+
+                <div id="categoryAnalytics">
+
+                    Loading...
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= MANAGEMENT ================= -->
 
         <div class="grievances">
 
-            <h2>Grievance Management</h2>
+
+            <h2>
+                Grievance Management
+            </h2>
+
 
             <div id="message" class="message">
+
                 Loading grievances...
+
             </div>
 
-            <div id="grievanceList"></div>
+
+            <div id="grievanceList">
+
+            </div>
+
 
         </div>
 
+
         <a href="index.html" class="back-btn">
-            Back to Home
-        </a>
+
+        Back to Home
+
+    </a>
+
 
     </div>
 
+
     <footer>
 
-        <p>&copy; 2026 Smart Grievance. All rights reserved.</p>
+        <p>
+            &copy; 2026 Smart Grievance. All rights reserved.
+        </p>
 
     </footer>
 
-    <script>
 
+    <script>
         let grievances = [];
 
-        // Load grievances from backend
-        function loadGrievances() {
 
-            fetch("/grievances")
+        /* =====================================================
+           LOAD ANALYTICS
+           ===================================================== */
 
-                .then(response => {
-
-                    if (!response.ok) {
-                        throw new Error("Failed to load grievances");
-                    }
-
-                    return response.json();
-                })
-
-                .then(data => {
-
-                    grievances = data;
-
-                    updateStatistics();
-
-                    displayGrievances();
-
-                })
-
-                .catch(error => {
-
-                    console.error(error);
-
-                    document.getElementById("message").textContent =
-                        "Unable to load grievances.";
-
-                    document.getElementById("message").className =
-                        "message error";
-
-                });
-        }
+        function loadAnalytics() {
 
 
-        // Update dashboard numbers
-        function updateStatistics() {
-
-            const total = grievances.length;
-
-            const pending = grievances.filter(
-                g => g.status === "Pending"
-            ).length;
-
-            const resolved = grievances.filter(
-                g => g.status === "Resolved"
-            ).length;
-
-            document.getElementById("totalCount").textContent = total;
-
-            document.getElementById("pendingCount").textContent = pending;
-
-            document.getElementById("resolvedCount").textContent = resolved;
-        }
-
-
-        // Display grievances
-        function displayGrievances() {
-
-            const list = document.getElementById("grievanceList");
-
-            list.innerHTML = "";
-
-            document.getElementById("message").textContent = "";
-
-            if (grievances.length === 0) {
-
-                document.getElementById("message").textContent =
-                    "No grievances found.";
-
-                return;
-            }
-
-            grievances.forEach(g => {
-
-                const card = document.createElement("div");
-
-                card.className = "grievance-card";
-
-                card.innerHTML = `
-
-                    <h3>Grievance #${g.id}</h3>
-
-                    <p>
-                        <strong>Name:</strong>
-                        ${g.name || "N/A"}
-                    </p>
-
-                    <p>
-                        <strong>Email:</strong>
-                        ${g.email || "N/A"}
-                    </p>
-
-                    <p>
-                        <strong>Location:</strong>
-                        ${g.location || "N/A"}
-                    </p>
-
-                    <p>
-                        <strong>Grievance:</strong>
-                        ${g.grievance || "N/A"}
-                    </p>
-
-                    <p>
-                        <strong>Priority:</strong>
-                        ${g.priority || "N/A"}
-                    </p>
-
-                    <p>
-                        <strong>Status:</strong>
-                        ${g.status || "N/A"}
-                    </p>
-
-                    <p>
-                        <strong>Deadline:</strong>
-                        ${g.deadline || "N/A"}
-                    </p>
-
-                    <div class="status-control">
-
-                        <label>
-                            <strong>Change Status:</strong>
-                        </label>
-
-                        <select id="status-${g.id}">
-
-                            <option value="Pending"
-                                ${g.status === "Pending" ? "selected" : ""}>
-                                Pending
-                            </option>
-
-                            <option value="In Progress"
-                                ${g.status === "In Progress" ? "selected" : ""}>
-                                In Progress
-                            </option>
-
-                            <option value="Resolved"
-                                ${g.status === "Resolved" ? "selected" : ""}>
-                                Resolved
-                            </option>
-
-                        </select>
-
-                        <button
-                            class="update-btn"
-                            onclick="updateStatus(${g.id})">
-                            Update
-                        </button>
-
-                    </div>
-                `;
-
-                list.appendChild(card);
-            });
-        }
-
-
-        // Update grievance status
-        function updateStatus(id) {
-
-            const selectedStatus =
-                document.getElementById(`status-${id}`).value;
-
-            fetch(
-                `/grievances/${id}/status?status=${encodeURIComponent(selectedStatus)}`,
-                {
-                    method: "PUT"
-                }
-            )
+            fetch("/admin/stats")
 
             .then(response => {
 
                 if (!response.ok) {
-                    throw new Error("Failed to update status");
+
+                    throw new Error(
+                        "Failed to load dashboard statistics"
+                    );
+
                 }
 
-                return response.text();
-            })
-
-            .then(message => {
-
-                alert(message);
-
-                // Reload data from backend
-                loadGrievances();
+                return response.json();
 
             })
+
+
+            .then(stats => {
+
+
+                document.getElementById(
+                        "totalCount"
+                    ).textContent =
+                    stats.total;
+
+
+                document.getElementById(
+                        "pendingCount"
+                    ).textContent =
+                    stats.pending;
+
+
+                document.getElementById(
+                        "inProgressCount"
+                    ).textContent =
+                    stats.inProgress;
+
+
+                document.getElementById(
+                        "resolvedCount"
+                    ).textContent =
+                    stats.resolved;
+
+
+                document.getElementById(
+                        "escalatedCount"
+                    ).textContent =
+                    stats.escalated;
+
+
+                displayAnalytics(
+                    "departmentAnalytics",
+                    stats.departmentCounts
+                );
+
+
+                displayAnalytics(
+                    "categoryAnalytics",
+                    stats.categoryCounts
+                );
+
+            })
+
 
             .catch(error => {
 
                 console.error(error);
 
-                alert("Unable to update grievance status.");
+
+                document.getElementById(
+                        "departmentAnalytics"
+                    ).innerHTML =
+                    "<p class='error'>Unable to load department analytics.</p>";
+
+
+                document.getElementById(
+                        "categoryAnalytics"
+                    ).innerHTML =
+                    "<p class='error'>Unable to load category analytics.</p>";
+
             });
+
         }
 
 
-        // Load data when page opens
-        window.onload = loadGrievances;
+        /* =====================================================
+           DISPLAY ANALYTICS
+           ===================================================== */
 
+        function displayAnalytics(
+            elementId,
+            data
+        ) {
+
+
+            const container =
+                document.getElementById(
+                    elementId
+                );
+
+
+            if (!data ||
+                Object.keys(data).length === 0) {
+
+                container.innerHTML =
+                    "<p>No analytics data available.</p>";
+
+                return;
+            }
+
+
+            const values =
+                Object.values(data);
+
+
+            const maxValue =
+                Math.max(
+                    ...values,
+                    1
+                );
+
+
+            container.innerHTML =
+                Object.entries(data)
+
+            .map(
+                ([label, count]) => {
+
+
+                    const percentage =
+                        (
+                            count /
+                            maxValue
+                        ) * 100;
+
+
+                    return `
+
+                            <div class="bar-item">
+
+                                <div class="bar-header">
+
+                                    <span class="bar-label">
+                                        ${label}
+                                    </span>
+
+                                    <span class="bar-count">
+                                        ${count}
+                                    </span>
+
+                                </div>
+
+                                <div class="bar-background">
+
+                                    <div
+                                        class="bar-fill"
+                                        style="width:${percentage}%">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                }
+            )
+
+            .join("");
+
+        }
+
+
+        /* =====================================================
+           LOAD GRIEVANCES
+           ===================================================== */
+
+        function loadGrievances() {
+
+
+            fetch("/grievances")
+
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to load grievances"
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+
+            .then(data => {
+
+                grievances = data;
+
+                displayGrievances();
+
+            })
+
+
+            .catch(error => {
+
+                console.error(error);
+
+
+                document.getElementById(
+                        "message"
+                    ).textContent =
+                    "Unable to load grievances.";
+
+
+                document.getElementById(
+                        "message"
+                    ).className =
+                    "message error";
+
+            });
+
+        }
+
+
+        /* =====================================================
+           DISPLAY GRIEVANCES
+           ===================================================== */
+
+        function displayGrievances() {
+
+
+            const list =
+                document.getElementById(
+                    "grievanceList"
+                );
+
+
+            list.innerHTML = "";
+
+
+            document.getElementById(
+                "message"
+            ).textContent = "";
+
+
+            if (grievances.length === 0) {
+
+                document.getElementById(
+                        "message"
+                    ).textContent =
+                    "No grievances found.";
+
+                return;
+            }
+
+
+            grievances.forEach(g => {
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "grievance-card";
+
+
+                card.innerHTML = `
+
+                <h3>
+                    Grievance #${g.id}
+                </h3>
+
+
+                <p>
+                    <strong>Name:</strong>
+                    ${g.name || "N/A"}
+                </p>
+
+
+                <p>
+                    <strong>Email:</strong>
+                    ${g.email || "N/A"}
+                </p>
+
+
+                <p>
+                    <strong>Location:</strong>
+                    ${g.location || "N/A"}
+                </p>
+
+
+                <p>
+                    <strong>Grievance:</strong>
+                    ${g.grievance || "N/A"}
+                </p>
+
+
+                <div class="details-grid">
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Category
+                        </div>
+
+                        <div class="detail-value">
+                            ${g.category || "Unclassified"}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Priority
+                        </div>
+
+                        <div class="detail-value">
+                            ${g.priority || "N/A"}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Department
+                        </div>
+
+                        <div class="detail-value">
+                            ${g.department || "Unassigned"}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Status
+                        </div>
+
+                        <div class="detail-value">
+                            ${g.status || "N/A"}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            SLA
+                        </div>
+
+                        <div class="detail-value">
+                            ${g.slaHours || "-"} hours
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Escalation
+                        </div>
+
+                        <div class="detail-value">
+                            ${g.escalationStatus || "Not Escalated"}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Deadline
+                        </div>
+
+                        <div class="detail-value">
+                            ${g.deadline || "N/A"}
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="status-control">
+
+
+                    <label>
+
+                        <strong>
+                            Change Status:
+                        </strong>
+
+                    </label>
+
+
+                    <select
+                        id="status-${g.id}">
+
+
+                        <option
+                            value="Pending"
+                            ${g.status === "Pending"
+                                ? "selected"
+                                : ""}>
+
+                            Pending
+
+                        </option>
+
+
+                        <option
+                            value="In Progress"
+                            ${g.status === "In Progress"
+                                ? "selected"
+                                : ""}>
+
+                            In Progress
+
+                        </option>
+
+
+                        <option
+                            value="Resolved"
+                            ${g.status === "Resolved"
+                                ? "selected"
+                                : ""}>
+
+                            Resolved
+
+                        </option>
+
+
+                    </select>
+
+
+                    <button
+                        class="update-btn"
+                        onclick="updateStatus(${g.id})">
+
+                        Update
+
+                    </button>
+
+
+                </div>
+
+            `;
+
+
+                list.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =====================================================
+           UPDATE STATUS
+           ===================================================== */
+
+        function updateStatus(id) {
+
+
+            const selectedStatus =
+                document.getElementById(
+                    `status-${id}`
+                ).value;
+
+
+            fetch(
+                `/grievances/${id}/status?status=` +
+                encodeURIComponent(
+                    selectedStatus
+                ), {
+                    method: "PUT"
+                }
+            )
+
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to update status"
+                    );
+
+                }
+
+                return response.text();
+
+            })
+
+
+            .then(message => {
+
+                alert(message);
+
+                /*
+                 * Reload both management
+                 * data and analytics.
+                 */
+
+                loadGrievances();
+
+                loadAnalytics();
+
+            })
+
+
+            .catch(error => {
+
+                console.error(error);
+
+                alert(
+                    "Unable to update grievance status."
+                );
+
+            });
+
+        }
+
+
+        /* =====================================================
+           INITIAL LOAD
+           ===================================================== */
+
+        window.onload = function() {
+
+            loadAnalytics();
+
+            loadGrievances();
+
+        };
     </script>
+
 
 </body>
 
