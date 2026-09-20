@@ -2,134 +2,44 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Smart Grievance Portal</title>
+    <title>Smart Grievance | Your Voice. A Better Tomorrow.</title>
+
+    <link rel="stylesheet" href="style.css">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+        /* ================= LOCATION SEARCH ================= */
         
-        body {
-            background: #f4f7fb;
-            color: #1f2937;
-            min-height: 100vh;
-        }
-        /* Navigation Bar */
-        
-        nav {
-            background: #123b6d;
-            color: white;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-        }
-        
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-        /* Hero Section */
-        
-        .hero {
-            background: linear-gradient(135deg, #123b6d, #1d6fa5);
-            color: white;
-            padding: 70px 8%;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            max-width: 700px;
-            margin: auto;
-            line-height: 1.6;
-        }
-        
-        .hero-buttons {
-            margin-top: 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 13px 25px;
-            margin: 8px;
-            border-radius: 7px;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .primary-btn {
-            background: white;
-            color: #123b6d;
-        }
-        
-        .secondary-btn {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-        
-        .btn:hover {
-            opacity: 0.85;
-        }
-        /* Location Search */
-        
-        .search-section {
+        .location-search-section {
             width: 85%;
             max-width: 1000px;
-            margin: -35px auto 40px;
+            margin: 40px auto;
             background: white;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
         }
         
-        .search-section h2 {
+        .location-search-section h2 {
             text-align: center;
             margin-bottom: 10px;
-            color: #123b6d;
         }
         
-        .search-section p {
+        .location-search-section>p {
             text-align: center;
             color: #6b7280;
             margin-bottom: 20px;
         }
         
-        .search-box {
+        .location-search-box {
             display: flex;
             gap: 10px;
         }
         
-        .search-box input {
+        .location-search-box input {
             flex: 1;
             padding: 14px;
             border: 1px solid #d1d5db;
@@ -137,10 +47,8 @@
             font-size: 16px;
         }
         
-        .search-box button {
+        .location-search-box button {
             padding: 14px 25px;
-            background: #123b6d;
-            color: white;
             border: none;
             border-radius: 7px;
             cursor: pointer;
@@ -148,16 +56,11 @@
             font-weight: bold;
         }
         
-        .search-box button:hover {
-            background: #0d2d52;
-        }
-        /* Results */
-        
-        #results {
+        #locationResults {
             margin-top: 25px;
         }
         
-        .result-card {
+        .location-result-card {
             background: #f8fafc;
             border-left: 5px solid #1d6fa5;
             padding: 18px;
@@ -165,275 +68,561 @@
             border-radius: 6px;
         }
         
-        .result-card h3 {
-            color: #123b6d;
+        .location-result-card h3 {
             margin-bottom: 8px;
         }
         
-        .result-card p {
-            text-align: left;
-            margin: 5px 0;
+        .location-result-card p {
+            margin: 6px 0;
             color: #374151;
         }
         
-        .status {
+        .location-status {
             display: inline-block;
-            background: #fff3cd;
-            color: #856404;
             padding: 5px 10px;
             border-radius: 15px;
             font-size: 13px;
             font-weight: bold;
+            background: #fff3cd;
+            color: #856404;
         }
-        /* Features */
-        
-        .features {
-            padding: 20px 8% 60px;
-            text-align: center;
-        }
-        
-        .features h2 {
-            color: #123b6d;
-            margin-bottom: 30px;
-            font-size: 30px;
-        }
-        
-        .feature-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 10px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .feature-icon {
-            font-size: 35px;
-            margin-bottom: 15px;
-        }
-        
-        .feature-card h3 {
-            color: #123b6d;
-            margin-bottom: 10px;
-        }
-        
-        .feature-card p {
-            color: #6b7280;
-            line-height: 1.5;
-        }
-        /* Footer */
-        
-        footer {
-            background: #123b6d;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        /* Mobile */
         
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 32px;
-            }
-            .search-box {
+            .location-search-box {
                 flex-direction: column;
-            }
-            .feature-container {
-                grid-template-columns: 1fr;
             }
         }
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- Navigation -->
 
-    <nav>
+    <!-- ================= HEADER ================= -->
 
-        <div class="logo">
-            🏛️ Smart Grievance
-        </div>
+    <header class="navbar">
 
-        <div class="nav-links">
-
-            <a href="index.html">Home</a>
-
-            <a href="submit.html">
-                Submit Grievance
-            </a>
-
-            <a href="grievances.html">
-                View Grievances
-            </a>
-
-            <a href="view-grievances.html">
-                Manage Grievances
-            </a>
-
-        </div>
-
-    </nav>
+        <div class="nav-container">
 
 
-    <!-- Hero Section -->
+            <a href="index.html" class="brand">
 
-    <section class="hero">
+                <img src="logo-symbol.png" alt="Smart Grievance Logo" class="logo-symbol">
 
-        <h1>
-            Smart Grievance Portal
-        </h1>
+                <div class="brand-text">
 
-        <p>
-            A smarter way for citizens to report civic problems, track grievances and help build better communities.
-        </p>
+                    <h1>
+                        Smart <span>Grievance</span>
+                    </h1>
 
-        <div class="hero-buttons">
+                    <p>
+                        Your Voice. A Better Tomorrow.
+                    </p>
 
-            <a href="submit.html" class="btn primary-btn">
-                📝 Submit Grievance
-            </a>
-
-            <a href="grievances.html" class="btn secondary-btn">
-                📋 View Grievances
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- Location Search -->
-
-    <section class="search-section">
-
-        <h2>
-            🔎 Find Grievances by Location
-        </h2>
-
-        <p>
-            Search for reported grievances in your area.
-        </p>
-
-        <div class="search-box">
-
-            <input type="text" id="locationInput" placeholder="Enter location e.g. Kumbalagudu">
-
-            <button onclick="searchLocation()">
-                Search
-            </button>
-
-        </div>
-
-        <div id="results"></div>
-
-    </section>
-
-
-    <!-- Features -->
-
-    <section class="features">
-
-        <h2>
-            How Smart Grievance Helps
-        </h2>
-
-        <div class="feature-container">
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    📝
                 </div>
 
-                <h3>
-                    Easy Reporting
-                </h3>
+            </a>
 
-                <p>
-                    Citizens can quickly submit civic complaints with important details about the issue.
-                </p>
+
+            <nav class="nav-links">
+
+                <a href="index.html" class="active">
+                    <span class="nav-icon">⌂</span> Home
+                </a>
+
+                <a href="submit.html">
+                    <span class="nav-icon">▤</span> Submit Grievance
+                </a>
+
+                <a href="view-grievances.html">
+                    <span class="nav-icon">☷</span> View Grievances
+                </a>
+
+                <a href="my-grievances.html">
+                    <span class="nav-icon">◉</span> My Grievances
+                </a>
+
+                <a href="admin.html">
+                    <span class="nav-icon">⚙</span> Admin
+                </a>
+
+            </nav>
+
+
+            <div class="nav-message">
+
+                <span>People</span>
+                <span>Problems</span>
+                <span>Progress</span>
+
+                <div class="message-line"></div>
 
             </div>
 
 
-            <div class="feature-card">
+        </div>
 
-                <div class="feature-icon">
-                    📍
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+
+        <section class="hero">
+
+            <div class="hero-overlay"></div>
+
+
+            <div class="hero-container">
+
+
+                <!-- LEFT SIDE -->
+
+                <div class="hero-content">
+
+
+                    <p class="eyebrow">
+                        CITIZEN GRIEVANCE MANAGEMENT SYSTEM
+                    </p>
+
+
+                    <h2>
+
+                        A Safer, Cleaner<br> and Brighter Community
+
+                        <span>Together</span>
+
+                    </h2>
+
+
+                    <p class="hero-description">
+
+                        Report civic issues, track progress, and help build a better community. We listen. We act.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+
+                        <a href="submit.html" class="hero-btn primary-btn">
+
+                            <span class="button-icon">
+                                ▤
+                            </span> Submit a Grievance
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a href="view-grievances.html" class="hero-btn secondary-btn">
+
+                            <span class="search-icon">
+                                ⌕
+                            </span> Track Status
+
+                        </a>
+
+
+                    </div>
+
+
+                    <div class="hero-quote">
+
+                        <span>
+                            Small Voices Create Big Change
+                        </span>
+
+                        <div></div>
+
+                    </div>
+
+
                 </div>
 
-                <h3>
-                    Location Based
-                </h3>
 
-                <p>
-                    Find grievances reported in a particular location and understand local problems.
-                </p>
+                <!-- RIGHT SIDE PROCESS GRAPHIC -->
+
+                <div class="process-area">
+
+
+                    <div class="process-circle"></div>
+
+
+                    <!-- CENTER -->
+
+                    <div class="process-center">
+
+                        <img src="logo-symbol.png" alt="Smart Grievance" class="process-logo">
+
+                        <h3>
+                            SMART<br> GRIEVANCE
+                        </h3>
+
+                        <p>
+                            CITIZENS • ACTION • BETTER TOMORROW
+                        </p>
+
+                    </div>
+
+
+                    <!-- TOP -->
+
+                    <div class="process-item process-top">
+
+                        <div class="process-icon terracotta">
+                            ▤
+                        </div>
+
+                        <h4>
+                            Report Issues
+                        </h4>
+
+                        <p>
+                            Easily submit your<br> grievances
+                        </p>
+
+                    </div>
+
+
+                    <!-- LEFT -->
+
+                    <div class="process-item process-left">
+
+                        <div class="process-icon olive">
+                            ⌕
+                        </div>
+
+                        <h4>
+                            Track Progress
+                        </h4>
+
+                        <p>
+                            Stay updated<br> in real time
+                        </p>
+
+                    </div>
+
+
+                    <!-- RIGHT -->
+
+                    <div class="process-item process-right">
+
+                        <div class="process-icon olive">
+                            ⚙
+                        </div>
+
+                        <h4>
+                            Faster Resolution
+                        </h4>
+
+                        <p>
+                            Ensuring timely<br> action
+                        </p>
+
+                    </div>
+
+
+                    <!-- BOTTOM LEFT -->
+
+                    <div class="process-item process-bottom-left">
+
+                        <div class="process-icon beige-icon">
+                            ♧
+                        </div>
+
+                        <h4>
+                            Transparent<br> Process
+                        </h4>
+
+                        <p>
+                            Building trust<br> with citizens
+                        </p>
+
+                    </div>
+
+
+                    <!-- BOTTOM RIGHT -->
+
+                    <div class="process-item process-bottom-right">
+
+                        <div class="process-icon terracotta">
+                            ▥
+                        </div>
+
+                        <h4>
+                            Better Communities
+                        </h4>
+
+                        <p>
+                            Clean, safe and<br> happier living
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- BENGALURU QUOTE -->
+
+                <div class="bengaluru-quote">
+
+                    <p>
+                        “For a<br> Cleaner, Greener<br> and Stronger<br> Bengaluru”
+                    </p>
+
+                    <div></div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LOCATION SEARCH ================= -->
+
+        <section class="location-search-section">
+
+            <h2>
+                🔎 Find Grievances by Location
+            </h2>
+
+            <p>
+                Search for reported grievances in your area.
+            </p>
+
+
+            <div class="location-search-box">
+
+                <input type="text" id="locationInput" placeholder="Enter location e.g. Kumbalgudu">
+
+
+                <button onclick="searchLocation()">
+                    Search
+                </button>
 
             </div>
 
 
-            <div class="feature-card">
+            <div id="locationResults"></div>
 
-                <div class="feature-icon">
-                    🔍
-                </div>
+        </section>
 
-                <h3>
-                    Transparent Tracking
-                </h3>
 
-                <p>
-                    Track grievances and understand their current status.
-                </p>
+        <!-- ================= FEATURE CARDS ================= -->
+
+        <section class="features">
+
+            <div class="features-container">
+
+
+                <!-- CARD 1 -->
+
+                <a href="submit.html" class="feature-card">
+
+                    <div class="feature-icon terracotta-bg">
+                        ▤
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Submit Grievance
+                        </h3>
+
+                        <p>
+                            Report civic issues in a few clicks
+                        </p>
+
+                    </div>
+
+                    <div class="card-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+                <!-- CARD 2 -->
+
+                <a href="view-grievances.html" class="feature-card">
+
+                    <div class="feature-icon olive-bg">
+                        ◉
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            View Grievances
+                        </h3>
+
+                        <p>
+                            See all submitted grievances
+                        </p>
+
+                    </div>
+
+                    <div class="card-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+                <!-- CARD 3 -->
+
+                <a href="view-grievances.html" class="feature-card">
+
+                    <div class="feature-icon terracotta-bg">
+                        ⌕
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Track Status
+                        </h3>
+
+                        <p>
+                            Check real-time updates
+                        </p>
+
+                    </div>
+
+                    <div class="card-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+                <!-- CARD 4 -->
+
+                <a href="admin.html" class="feature-card">
+
+                    <div class="feature-icon olive-bg">
+                        ♧
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Admin Management
+                        </h3>
+
+                        <p>
+                            Manage and resolve grievances
+                        </p>
+
+                    </div>
+
+                    <div class="card-arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <p>
+                © 2026 Smart Grievance. All rights reserved.
+            </p>
+
+
+            <div class="footer-links">
+
+                <a href="#">
+                    Privacy
+                </a>
+
+                <span>|</span>
+
+                <a href="#">
+                    Terms
+                </a>
+
+                <span>|</span>
+
+                <a href="#">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div class="footer-message">
+
+                <span>
+                    Together for a Better Tomorrow
+                </span>
+
+                <b>◆</b>
 
             </div>
 
         </div>
-
-    </section>
-
-
-    <!-- Footer -->
-
-    <footer>
-
-        <p>
-            © 2026 Smart Grievance Portal | Making Communities Better
-        </p>
 
     </footer>
 
 
-    <!-- JavaScript -->
+    <!-- ================= LOCATION SEARCH JAVASCRIPT ================= -->
 
     <script>
         function searchLocation() {
 
             const location =
-                document.getElementById("locationInput").value.trim();
+                document
+                .getElementById("locationInput")
+                .value
+                .trim();
+
 
             const results =
-                document.getElementById("results");
+                document.getElementById(
+                    "locationResults"
+                );
+
 
             if (location === "") {
 
                 results.innerHTML =
-                    "<p style='text-align:center;color:red;'>Please enter a location.</p>";
+                    "<p style='text-align:center;color:red;'>" +
+                    "Please enter a location." +
+                    "</p>";
 
                 return;
             }
 
+
             results.innerHTML =
-                "<p style='text-align:center;'>Searching...</p>";
+                "<p style='text-align:center;'>" +
+                "Searching..." +
+                "</p>";
+
 
             fetch(
                 "/grievances/location/" +
@@ -443,31 +632,46 @@
             .then(response => {
 
                 if (!response.ok) {
-                    throw new Error("Failed to fetch grievances");
+
+                    throw new Error(
+                        "Failed to fetch grievances"
+                    );
+
                 }
 
                 return response.json();
 
             })
 
+
             .then(data => {
 
                 results.innerHTML = "";
 
+
                 if (data.length === 0) {
 
                     results.innerHTML =
-                        "<p style='text-align:center;color:#6b7280;'>No grievances found for this location.</p>";
+                        "<p style='text-align:center;color:#6b7280;'>" +
+                        "No grievances found for this location." +
+                        "</p>";
 
                     return;
                 }
 
+
                 data.forEach(grievance => {
 
-                    const card =
-                        document.createElement("div");
 
-                    card.className = "result-card";
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "location-result-card";
+
 
                     card.innerHTML = `
 
@@ -477,23 +681,28 @@
 
                         <p>
                             <strong>Location:</strong>
-                            ${grievance.location}
+                            ${grievance.location || ""}
                         </p>
 
                         <p>
                             <strong>Grievance:</strong>
-                            ${grievance.grievance}
+                            ${grievance.grievance || ""}
                         </p>
 
                         <p>
                             <strong>Reported by:</strong>
-                            ${grievance.name}
+                            ${grievance.name || ""}
+                        </p>
+
+                        <p>
+                            <strong>Category:</strong>
+                            ${grievance.category || "Unclassified"}
                         </p>
 
                         <p>
                             <strong>Status:</strong>
 
-                            <span class="status">
+                            <span class="location-status">
                                 ${grievance.status || "Pending"}
                             </span>
 
@@ -501,38 +710,47 @@
 
                     `;
 
+
                     results.appendChild(card);
 
                 });
 
             })
 
+
             .catch(error => {
 
                 console.error(error);
 
+
                 results.innerHTML =
-                    "<p style='text-align:center;color:red;'>Unable to load grievances. Please try again.</p>";
+                    "<p style='text-align:center;color:red;'>" +
+                    "Unable to load grievances. Please try again." +
+                    "</p>";
 
             });
 
         }
 
 
-        // Allow pressing Enter in the search box
+        /* Allow pressing Enter */
 
         document
             .getElementById("locationInput")
-            .addEventListener("keypress", function(event) {
+            .addEventListener(
+                "keypress",
+                function(event) {
 
-                if (event.key === "Enter") {
+                    if (event.key === "Enter") {
 
-                    searchLocation();
+                        searchLocation();
+
+                    }
 
                 }
-
-            });
+            );
     </script>
+
 
 </body>
 
