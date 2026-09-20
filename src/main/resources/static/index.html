@@ -4,6 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Smart Grievance | Your Voice. A Better Tomorrow.</title>
@@ -86,10 +87,57 @@
             background: #fff3cd;
             color: #856404;
         }
+        /* ================= LOGIN / REGISTER LINKS ================= */
+        
+        .auth-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 15px;
+        }
+        
+        .auth-links a {
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+        
+        .login-link {
+            color: #1f2937;
+        }
+        
+        .login-link:hover {
+            background: #f3f4f6;
+        }
+        
+        .register-link {
+            color: white;
+            background: #bd5535;
+        }
+        
+        .register-link:hover {
+            background: #a9472b;
+        }
+        
+        @media (max-width: 1200px) {
+            .auth-links {
+                margin-left: 5px;
+            }
+            .auth-links a {
+                padding: 7px 9px;
+                font-size: 14px;
+            }
+        }
         
         @media (max-width: 768px) {
             .location-search-box {
                 flex-direction: column;
+            }
+            .auth-links {
+                margin-top: 10px;
+                justify-content: center;
             }
         }
     </style>
@@ -106,6 +154,8 @@
 
         <div class="nav-container">
 
+
+            <!-- BRAND -->
 
             <a href="index.html" class="brand">
 
@@ -126,35 +176,68 @@
             </a>
 
 
+            <!-- NAVIGATION -->
+
             <nav class="nav-links">
 
                 <a href="index.html" class="active">
                     <span class="nav-icon">⌂</span> Home
                 </a>
 
+
                 <a href="submit.html">
+
                     <span class="nav-icon">▤</span> Submit Grievance
+
                 </a>
+
 
                 <a href="view-grievances.html">
+
                     <span class="nav-icon">☷</span> View Grievances
+
                 </a>
+
 
                 <a href="my-grievances.html">
+
                     <span class="nav-icon">◉</span> My Grievances
+
                 </a>
 
+
                 <a href="admin.html">
+
                     <span class="nav-icon">⚙</span> Admin
+
                 </a>
 
             </nav>
 
 
+            <!-- LOGIN / REGISTER -->
+
+            <div class="auth-links">
+
+                <a href="login.html" class="login-link">
+                    Login
+                </a>
+
+                <a href="register.html" class="register-link">
+                    Register
+                </a>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
             <div class="nav-message">
 
                 <span>People</span>
+
                 <span>Problems</span>
+
                 <span>Progress</span>
 
                 <div class="message-line"></div>
@@ -186,7 +269,9 @@
 
 
                     <p class="eyebrow">
+
                         CITIZEN GRIEVANCE MANAGEMENT SYSTEM
+
                     </p>
 
 
@@ -194,7 +279,9 @@
 
                         A Safer, Cleaner<br> and Brighter Community
 
-                        <span>Together</span>
+                        <span>
+                            Together
+                        </span>
 
                     </h2>
 
@@ -548,6 +635,7 @@
 
         <div class="footer-container">
 
+
             <p>
                 © 2026 Smart Grievance. All rights reserved.
             </p>
@@ -583,6 +671,7 @@
                 <b>◆</b>
 
             </div>
+
 
         </div>
 

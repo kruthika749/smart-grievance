@@ -63,7 +63,48 @@
             font-size: 15px;
         }
         
-        button {
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        /* Password wrapper */
+        
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 18px;
+        }
+        
+        .password-wrapper input {
+            width: 100%;
+            margin-bottom: 0;
+            padding-right: 50px;
+        }
+        /* Eye button */
+        
+        .eye-button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: transparent;
+            color: #555;
+            font-size: 19px;
+            cursor: pointer;
+        }
+        
+        .eye-button:hover {
+            background: transparent;
+            opacity: 0.7;
+        }
+        /* Login button */
+        
+        .login-button {
             width: 100%;
             padding: 14px;
             border: none;
@@ -75,7 +116,7 @@
             cursor: pointer;
         }
         
-        button:hover {
+        .login-button:hover {
             opacity: 0.9;
         }
         
@@ -105,8 +146,13 @@
             color: #2563eb;
             text-decoration: none;
         }
+        
+        .links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
+
 
 <body>
 
@@ -120,37 +166,75 @@
                 Login to access your Smart Grievance account
             </p>
 
+
             <form id="loginForm">
 
-                <label for="mobile">
-                Mobile Number
-            </label>
+                <!-- MOBILE NUMBER -->
 
-                <input type="text" id="mobile" placeholder="Enter mobile number" required>
+                <label for="mobile">
+                    Mobile Number
+                </label>
+
+                <input type="text" id="mobile" placeholder="Enter mobile number" maxlength="10" required>
+
+
+                <!-- PASSWORD -->
 
                 <label for="password">
-                Password
-            </label>
+                    Password
+                </label>
 
-                <input type="password" id="password" placeholder="Enter password" required>
+                <div class="password-wrapper">
 
-                <button type="submit">
-                Login
-            </button>
+                    <input type="password" id="password" placeholder="Enter password" required>
+
+                    <button type="button" id="eyeButton" class="eye-button" onclick="togglePassword()">
+                        👁
+                    </button>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button type="submit" class="login-button">
+                    Login
+                </button>
 
             </form>
 
+
+            <!-- MESSAGE -->
+
             <div id="message" class="message"></div>
 
+
+            <!-- LINKS -->
+
             <div class="links">
-                <a href="index.html">← Back to Home</a>
+
+                <a href="register.html">
+                    New citizen? Register here
+                </a>
+
+                <br><br>
+
+                <a href="index.html">
+                    ← Back to Home
+                </a>
+
             </div>
 
         </div>
 
     </div>
 
+
     <script>
+        /* =========================================
+                           LOGIN
+                           ========================================= */
+
         const loginForm =
             document.getElementById("loginForm");
 
@@ -158,77 +242,105 @@
             document.getElementById("message");
 
 
-        loginForm.addEventListener("submit", async function(event) {
+        loginForm.addEventListener(
+            "submit",
+            async function(event) {
 
-            event.preventDefault();
-
-            const mobile =
-                document.getElementById("mobile").value;
-
-            const password =
-                document.getElementById("password").value;
+                event.preventDefault();
 
 
-            message.style.display = "none";
+                const mobile =
+                    document.getElementById("mobile")
+                    .value.trim();
+
+                const password =
+                    document.getElementById("password")
+                    .value;
 
 
-            try {
+                message.style.display = "none";
 
-                const response = await fetch(
-                    `/login?mobile=${encodeURIComponent(mobile)}&password=${encodeURIComponent(password)}`, {
-                        method: "POST"
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `/login?mobile=${encodeURIComponent(mobile)}&password=${encodeURIComponent(password)}`, {
+                                method: "POST"
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (data.success) {
+
+                        /*
+                         * Store the actual
+                         * logged-in user's details.
+                         */
+
+                        sessionStorage.setItem(
+                            "userId",
+                            data.userId
+                        );
+
+                        sessionStorage.setItem(
+                            "userName",
+                            data.name
+                        );
+
+                        sessionStorage.setItem(
+                            "userRole",
+                            data.role
+                        );
+
+
+                        message.className =
+                            "message success";
+
+                        message.style.display =
+                            "block";
+
+                        message.textContent =
+                            "Login successful!";
+
+
+                        /*
+                         * Redirect to
+                         * My Grievances page.
+                         */
+
+                        setTimeout(
+                            function() {
+
+                                window.location.href =
+                                    "my-grievances.html";
+
+                            },
+                            800
+                        );
+
+
+                    } else {
+
+                        message.className =
+                            "message error";
+
+                        message.style.display =
+                            "block";
+
+                        message.textContent =
+                            data.message ||
+                            "Invalid login details.";
+
                     }
-                );
 
+                } catch (error) {
 
-                const data =
-                    await response.json();
-
-
-                if (data.success) {
-
-                    /*
-                     * Store the actual logged-in
-                     * user's ID.
-                     */
-                    sessionStorage.setItem(
-                        "userId",
-                        data.userId
-                    );
-
-                    sessionStorage.setItem(
-                        "userName",
-                        data.name
-                    );
-
-                    sessionStorage.setItem(
-                        "userRole",
-                        data.role
-                    );
-
-
-                    message.className =
-                        "message success";
-
-                    message.style.display =
-                        "block";
-
-                    message.textContent =
-                        "Login successful!";
-
-
-                    /*
-                     * Give the user a moment to
-                     * see the success message.
-                     */
-                    setTimeout(function() {
-
-                        window.location.href =
-                            "my-grievances.html";
-
-                    }, 800);
-
-                } else {
+                    console.error(error);
 
                     message.className =
                         "message error";
@@ -237,27 +349,42 @@
                         "block";
 
                     message.textContent =
-                        data.message ||
-                        "Invalid login details.";
+                        "Unable to connect to the server.";
 
                 }
 
-            } catch (error) {
+            }
+        );
 
-                console.error(error);
 
-                message.className =
-                    "message error";
+        /* =========================================
+           SHOW / HIDE PASSWORD
+           ========================================= */
 
-                message.style.display =
-                    "block";
+        function togglePassword() {
 
-                message.textContent =
-                    "Unable to connect to the server.";
+            const password =
+                document.getElementById("password");
+
+            const eyeButton =
+                document.getElementById("eyeButton");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                eyeButton.innerText = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                eyeButton.innerText = "👁";
 
             }
 
-        });
+        }
     </script>
 
 </body>

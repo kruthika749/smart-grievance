@@ -20,15 +20,18 @@ public class HomeController {
     private final GrievanceRepository grievanceRepository;
     private final CategoryService categoryService;
     private final DuplicateGrievanceService duplicateGrievanceService;
+    private final NotificationService notificationService;
 
     public HomeController(
             GrievanceRepository grievanceRepository,
             CategoryService categoryService,
-            DuplicateGrievanceService duplicateGrievanceService) {
+            DuplicateGrievanceService duplicateGrievanceService, 
+            NotificationService notificationService) {
 
         this.grievanceRepository = grievanceRepository;
         this.categoryService = categoryService;
         this.duplicateGrievanceService = duplicateGrievanceService;
+        this.notificationService = notificationService;
     }
 
     @PostMapping("/submit")
@@ -85,6 +88,16 @@ public class HomeController {
         g.setVerificationStatus("Pending");
 
         grievanceRepository.save(g);
+
+        notificationService.createNotification(
+            userId,
+            "Grievance Submitted",
+            "Your grievance has been submitted successfully. "
+                    + "Category: " + category
+                    + ", Department: " + department
+                    + ", Priority: " + predictedPriority,
+            "GRIEVANCE_SUBMITTED"
+    );
 
         String duplicateMessage;
 
