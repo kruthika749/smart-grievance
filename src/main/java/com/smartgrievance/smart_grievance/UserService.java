@@ -2,6 +2,7 @@ package com.smartgrievance.smart_grievance;
 
 import java.util.Optional;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,6 +10,9 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final OtpVerificationRepository otpRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder =
+            new BCryptPasswordEncoder();
 
     public UserService(
             UserRepository userRepository,
@@ -44,7 +48,10 @@ public class UserService {
         user.setName(name);
         user.setEmail(email);
         user.setMobile(mobile);
-        user.setPassword(password);
+
+        // Hash password before storing it
+        user.setPassword(passwordEncoder.encode(password));
+
         user.setRole("CITIZEN");
         user.setMobileVerified(true);
 

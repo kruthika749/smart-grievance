@@ -37,6 +37,12 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- Password Hashing -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+        </dependency>
+
         <!-- MySQL Database -->
         <dependency>
             <groupId>com.mysql</groupId>
@@ -67,23 +73,23 @@
         </dependency>
 
         <!-- Java Machine Learning - Tribuo -->
-<dependency>
-    <groupId>org.tribuo</groupId>
-    <artifactId>tribuo-data</artifactId>
-    <version>4.3.2</version>
-</dependency>
+        <dependency>
+            <groupId>org.tribuo</groupId>
+            <artifactId>tribuo-data</artifactId>
+            <version>4.3.2</version>
+        </dependency>
 
-<dependency>
-    <groupId>org.tribuo</groupId>
-    <artifactId>tribuo-classification-core</artifactId>
-    <version>4.3.2</version>
-</dependency>
+        <dependency>
+            <groupId>org.tribuo</groupId>
+            <artifactId>tribuo-classification-core</artifactId>
+            <version>4.3.2</version>
+        </dependency>
 
-<dependency>
-    <groupId>org.tribuo</groupId>
-    <artifactId>tribuo-classification-sgd</artifactId>
-    <version>4.3.2</version>
-</dependency>
+        <dependency>
+            <groupId>org.tribuo</groupId>
+            <artifactId>tribuo-classification-sgd</artifactId>
+            <version>4.3.2</version>
+        </dependency>
 
     </dependencies>
 

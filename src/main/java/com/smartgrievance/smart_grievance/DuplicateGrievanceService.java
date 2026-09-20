@@ -25,6 +25,7 @@ public class DuplicateGrievanceService {
 
         String newText = normalize(grievanceText);
         String newLocation = normalize(location);
+        String newCategory = normalize(category);
 
         for (Grievance existing : existingGrievances) {
 
@@ -41,22 +42,58 @@ public class DuplicateGrievanceService {
             String existingCategory =
                     normalize(existing.getCategory());
 
+            /*
+             * Ignore old grievances that do not have
+             * an AI category.
+             */
+            if (existingCategory.isEmpty()) {
+                continue;
+            }
+
+            /*
+             * Category must match.
+             */
+            boolean sameCategory =
+                    !newCategory.isEmpty()
+                    && newCategory.equalsIgnoreCase(
+                            existingCategory
+                    );
+
+            if (!sameCategory) {
+                continue;
+            }
+
+            /*
+             * Location comparison.
+             */
             boolean sameLocation =
                     !newLocation.isEmpty()
                     && !existingLocation.isEmpty()
-                    && newLocation.equals(existingLocation);
+                    && newLocation.equalsIgnoreCase(
+                            existingLocation
+                    );
 
-            boolean sameCategory =
-                    !category.isEmpty()
-                    && !existingCategory.isEmpty()
-                    && category.equalsIgnoreCase(existingCategory);
-
+            /*
+             * Calculate text similarity.
+             */
             double similarity =
-                    calculateSimilarity(newText, existingText);
+                    calculateSimilarity(
+                            newText,
+                            existingText
+                    );
 
-            if ((sameLocation
-                    && sameCategory
-                    && similarity >= 0.35)
+            /*
+             * Duplicate rules:
+             *
+             * 1. Same category + same location
+             *    + similarity >= 0.35
+             *
+             * OR
+             *
+             * 2. Same category
+             *    + similarity >= 0.70
+             */
+            if ((sameLocation && similarity >= 0.35)
                     || similarity >= 0.70) {
 
                 return existing;
@@ -95,9 +132,13 @@ public class DuplicateGrievanceService {
         }
 
         int totalWords =
-                Math.max(words1.length, words2.length);
+                Math.max(
+                        words1.length,
+                        words2.length
+                );
 
-        return (double) matchingWords / totalWords;
+        return (double) matchingWords
+                / totalWords;
     }
 
     private String normalize(String text) {

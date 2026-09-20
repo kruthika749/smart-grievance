@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Department Head Dashboard - Smart Grievance</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+        
+        nav {
+            background: #0f172a;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav h2 {
+            margin: 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        
+        .container {
+            max-width: 1250px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            color: #64748b;
+        }
+        
+        .department-selector {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .department-selector label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        select {
+            width: 480px;
+            max-width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+        }
+        
+        .grievance-card {
+            background: white;
+            border-radius: 14px;
+            padding: 26px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .grievance-id {
+            font-size: 21px;
+            font-weight: bold;
+        }
+        
+        .status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #fff3cd;
+            color: #856404;
+            font-weight: bold;
+        }
+        
+        .grievance-text {
+            margin: 22px 0;
+            font-size: 17px;
+        }
+        
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        
+        .detail {
+            background: #f8fafc;
+            padding: 14px;
+            border-radius: 8px;
+        }
+        
+        .label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        
+        .value {
+            font-weight: bold;
+        }
+        
+        .actions {
+            margin-top: 22px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .progress-btn {
+            background: #2563eb;
+        }
+        
+        .resolve-btn {
+            background: #16a34a;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        button:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            opacity: 1;
+        }
+        
+        .empty {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 14px;
+            color: #64748b;
+        }
+        
+        .loading {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 14px;
+        }
+        
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 700px) {
+            nav {
+                padding: 15px 20px;
+            }
+            nav {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            .details {
+                grid-template-columns: 1fr;
+            }
+            .top-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .actions {
+                flex-direction: column;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <h2>Smart Grievance</h2>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="submit.html">Submit</a>
+            <a href="my-grievances.html">My Grievances</a>
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1>Department Head Dashboard</h1>
+
+            <p>
+                View and manage grievances assigned to your department.
+            </p>
+
+        </div>
+
+
+        <div class="department-selector">
+
+            <label for="department">
+                Select Department
+            </label>
+
+            <select id="department" onchange="loadGrievances()">
+
+                <option value="Water Supply">
+                    Water Supply
+                </option>
+
+                <option value="Electricity Department">
+                    Electricity Department
+                </option>
+
+                <option value="Solid Waste Management">
+                    Solid Waste Management
+                </option>
+
+                <option value="Roads & Infrastructure">
+                    Roads & Infrastructure
+                </option>
+
+                <option value="Drainage & Sewage">
+                    Drainage & Sewage
+                </option>
+
+                <option value="Streetlight Department">
+                    Streetlight Department
+                </option>
+
+                <option value="Public Safety Department">
+                    Public Safety Department
+                </option>
+
+                <option value="Health Department">
+                    Health Department
+                </option>
+
+                <option value="Education Department">
+                    Education Department
+                </option>
+
+                <option value="Public Transport">
+                    Public Transport
+                </option>
+
+                <option value="Traffic Management">
+                    Traffic Management
+                </option>
+
+                <option value="Public Toilet Maintenance">
+                    Public Toilet Maintenance
+                </option>
+
+                <option value="Parks & Horticulture">
+                    Parks & Horticulture
+                </option>
+
+                <option value="Animal Control">
+                    Animal Control
+                </option>
+
+                <option value="Environment Department">
+                    Environment Department
+                </option>
+
+                <option value="Housing Department">
+                    Housing Department
+                </option>
+
+                <option value="Accessibility Services">
+                    Accessibility Services
+                </option>
+
+                <option value="Municipal Services">
+                    Municipal Services
+                </option>
+
+                <option value="General Grievance Cell">
+                    General Grievance Cell
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div id="grievancesContainer">
+
+            <div class="loading">
+                Loading grievances...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        async function loadGrievances() {
+
+            const container =
+                document.getElementById(
+                    "grievancesContainer"
+                );
+
+            const selectedDepartment =
+                document.getElementById(
+                    "department"
+                ).value;
+
+
+            container.innerHTML = `
+                <div class="loading">
+                    Loading grievances...
+                </div>
+            `;
+
+
+            try {
+
+                const response =
+                    await fetch("/grievances");
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load grievances"
+                    );
+
+                }
+
+
+                const grievances =
+                    await response.json();
+
+
+                const departmentGrievances =
+                    grievances.filter(
+                        g =>
+                        g.department &&
+                        g.department.toLowerCase() ===
+                        selectedDepartment.toLowerCase()
+                    );
+
+
+                if (
+                    departmentGrievances.length === 0
+                ) {
+
+                    container.innerHTML = `
+
+                        <div class="empty">
+
+                            <h2>
+                                No grievances found
+                            </h2>
+
+                            <p>
+                                There are currently no
+                                grievances assigned to
+                                ${selectedDepartment}.
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    return;
+                }
+
+
+                container.innerHTML =
+
+                    departmentGrievances.map(g => `
+
+                        <div class="grievance-card">
+
+
+                            <div class="top-row">
+
+                                <div class="grievance-id">
+
+                                    Grievance #${g.id}
+
+                                </div>
+
+
+                                <div class="status">
+
+                                    ${g.status || "Pending"}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="grievance-text">
+
+                                ${g.grievance || ""}
+
+                            </div>
+
+
+                            <div class="details">
+
+
+                                <div class="detail">
+
+                                    <div class="label">
+                                        Category
+                                    </div>
+
+                                    <div class="value">
+
+                                        ${g.category ||
+                                        "Not classified"}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="label">
+                                        Priority
+                                    </div>
+
+                                    <div class="value">
+
+                                        ${g.priority ||
+                                        "Not assigned"}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="label">
+                                        Department
+                                    </div>
+
+                                    <div class="value">
+
+                                        ${g.department ||
+                                        "Not assigned"}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="label">
+                                        Location
+                                    </div>
+
+                                    <div class="value">
+
+                                        ${g.location ||
+                                        "Not provided"}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="label">
+                                        SLA
+                                    </div>
+
+                                    <div class="value">
+
+                                        ${g.slaHours || "-"}
+                                        hours
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="label">
+                                        Escalation
+                                    </div>
+
+                                    <div class="value">
+
+                                        ${g.escalationStatus ||
+                                        "Not Escalated"}
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="actions">
+
+                                <button
+                                    class="progress-btn"
+                                    onclick="updateStatus(
+                                        ${g.id},
+                                        'In Progress'
+                                    )"
+                                    ${g.status === "Resolved"
+                                        ? "disabled"
+                                        : ""}>
+
+                                    Mark In Progress
+
+                                </button>
+
+
+                                <button
+                                    class="resolve-btn"
+                                    onclick="updateStatus(
+                                        ${g.id},
+                                        'Resolved'
+                                    )"
+                                    ${g.status === "Resolved"
+                                        ? "disabled"
+                                        : ""}>
+
+                                    Mark Resolved
+
+                                </button>
+
+                            </div>
+
+
+                        </div>
+
+                    `).join("");
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                container.innerHTML = `
+
+                    <div class="error">
+
+                        <strong>Error:</strong>
+
+                        Unable to load grievances.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        async function updateStatus(
+            id,
+            status
+        ) {
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/grievances/${id}/status?status=${encodeURIComponent(status)}`, {
+                            method: "PUT"
+                        }
+                    );
+
+
+                const result =
+                    await response.text();
+
+
+                if (!response.ok) {
+
+                    alert(
+                        "Unable to update grievance status."
+                    );
+
+                    return;
+
+                }
+
+
+                alert(result);
+
+
+                loadGrievances();
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to connect to the server."
+                );
+
+            }
+
+        }
+
+
+        loadGrievances();
+    </script>
+
+</body>
+
+</html>

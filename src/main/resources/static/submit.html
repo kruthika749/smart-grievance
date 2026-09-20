@@ -253,9 +253,7 @@
 
 </head>
 
-
 <body>
-
 
     <!-- Navigation -->
 
@@ -307,13 +305,24 @@
 
     <div class="form-container">
 
-
         <h2 class="section-title">
             Citizen Information
         </h2>
 
 
         <form action="/submit" method="post">
+
+            <!-- Temporary User ID -->
+
+            <!--
+                Temporary testing value.
+                User ID 1 = Kruthika's citizen account.
+
+                This will later be replaced by the
+                logged-in citizen's actual User ID.
+            -->
+
+            <input type="hidden" id="userId" name="userId">
 
 
             <!-- Name -->
@@ -466,16 +475,11 @@
             <div class="button-container">
 
                 <button type="submit" class="submit-btn">
-
                     🚀 Submit Grievance
-
                 </button>
 
-
                 <button type="button" class="back-btn" onclick="location.href='index.html'">
-
                     ← Back to Home
-
                 </button>
 
             </div>
@@ -495,7 +499,15 @@
         </p>
 
     </footer>
+    <script>
+        const userId = sessionStorage.getItem("userId");
 
+        if (!userId) {
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("userId").value = userId;
+        }
+    </script>
 
 </body>
 

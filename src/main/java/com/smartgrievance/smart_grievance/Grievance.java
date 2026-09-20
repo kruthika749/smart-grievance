@@ -21,6 +21,8 @@ public class Grievance {
 
     private String email;
 
+    private Integer userId;
+
     private String grievance;
 
     private String status;
@@ -77,6 +79,14 @@ public class Grievance {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+    
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getGrievance() {
