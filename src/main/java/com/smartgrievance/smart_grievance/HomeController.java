@@ -25,6 +25,9 @@ public class HomeController {
     private final LocationIntelligenceService locationIntelligenceService;
     private final AIResolutionVerificationService
         aiResolutionVerificationService;
+    private final SLARiskPredictionService
+        slaRiskPredictionService;
+    private final CommunityAnalyticsService communityAnalyticsService;
     public HomeController(
         GrievanceRepository grievanceRepository,
         CategoryService categoryService,
@@ -32,7 +35,9 @@ public class HomeController {
         NotificationService notificationService,
         CommunityIssueService communityIssueService,
         LocationIntelligenceService locationIntelligenceService,
-        AIResolutionVerificationService aiResolutionVerificationService) { 
+        AIResolutionVerificationService aiResolutionVerificationService,
+        SLARiskPredictionService slaRiskPredictionService,
+        CommunityAnalyticsService communityAnalyticsService) {
 
     this.grievanceRepository =
             grievanceRepository;
@@ -54,6 +59,12 @@ public class HomeController {
 
     this.aiResolutionVerificationService =
             aiResolutionVerificationService;
+
+    this.slaRiskPredictionService =
+            slaRiskPredictionService;
+
+    this.communityAnalyticsService =
+        communityAnalyticsService;
 }
  
     @PostMapping("/submit")
@@ -449,6 +460,55 @@ public AIResolutionVerificationService.VerificationResult
             grievance.getGrievance(),
             grievance.getAfterEvidence()
     );
+}
+@GetMapping("/grievances/{id}/sla-risk")
+public SLARiskPredictionService.SLARiskResult
+        predictSLARisk(@PathVariable int id) {
+
+    Optional<Grievance> optionalGrievance =
+            grievanceRepository.findById(id);
+
+    if (optionalGrievance.isEmpty()) {
+        return new SLARiskPredictionService.SLARiskResult(
+                "UNKNOWN",
+                0,
+                "Grievance not found with ID: " + id
+        );
+    }
+
+    return slaRiskPredictionService.predictRisk(
+            optionalGrievance.get()
+    );
+}
+@PutMapping("/grievances/{id}/test-expire-sla")
+public String testExpireSla(@PathVariable int id) {
+
+    Optional<Grievance> optionalGrievance =
+            grievanceRepository.findById(id);
+
+    if (optionalGrievance.isEmpty()) {
+        return "Grievance not found with ID: " + id;
+    }
+
+    Grievance grievance =
+            optionalGrievance.get();
+
+    grievance.setSlaDeadline(
+            LocalDateTime.now().minusHours(1)
+    );
+
+    grievanceRepository.save(grievance);
+
+    return "Test SLA deadline set to the past for grievance ID: "
+            + id;
+}
+@GetMapping("/community-analytics/{location}")
+public CommunityAnalyticsService.CommunityAnalytics
+        getCommunityAnalytics(
+                @PathVariable String location) {
+
+    return communityAnalyticsService
+            .analyzeCommunity(location);
 }
 }
        
