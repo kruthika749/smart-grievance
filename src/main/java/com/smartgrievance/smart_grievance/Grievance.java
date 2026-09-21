@@ -32,10 +32,11 @@ public class Grievance {
     private String evidence;
 
     private String afterEvidence;
-
     private String category;
+    private String categoryReason;
 
     private String priority;
+    private String priorityReason;
 
     private String department;
 
@@ -137,12 +138,28 @@ public class Grievance {
         this.category = category;
     }
 
+    public String getCategoryReason() {
+        return categoryReason;
+    }
+    
+    public void setCategoryReason(String categoryReason) {
+        this.categoryReason = categoryReason;
+    }
+
     public String getPriority() {
         return priority;
     }
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public String getPriorityReason() {
+        return priorityReason;
+    }
+    
+    public void setPriorityReason(String priorityReason) {
+        this.priorityReason = priorityReason;
     }
 
     public String getDepartment() {

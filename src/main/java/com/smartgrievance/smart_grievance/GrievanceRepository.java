@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GrievanceRepository extends JpaRepository<Grievance, Integer> {
+public interface GrievanceRepository
+        extends JpaRepository<Grievance, Integer> {
 
     List<Grievance> findByLocationIgnoreCase(String location);
 
@@ -13,4 +14,9 @@ public interface GrievanceRepository extends JpaRepository<Grievance, Integer> {
     List<Grievance> findByUserId(Integer userId);
 
     List<Grievance> findByDepartmentIgnoreCase(String department);
+
+    List<Grievance> findByLocationIgnoreCaseAndCategoryIgnoreCase(
+            String location,
+            String category
+    );
 }

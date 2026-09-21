@@ -21,19 +21,41 @@ public class HomeController {
     private final CategoryService categoryService;
     private final DuplicateGrievanceService duplicateGrievanceService;
     private final NotificationService notificationService;
-
+    private final CommunityIssueService communityIssueService;
+    private final LocationIntelligenceService locationIntelligenceService;
+    private final AIResolutionVerificationService
+        aiResolutionVerificationService;
     public HomeController(
-            GrievanceRepository grievanceRepository,
-            CategoryService categoryService,
-            DuplicateGrievanceService duplicateGrievanceService, 
-            NotificationService notificationService) {
+        GrievanceRepository grievanceRepository,
+        CategoryService categoryService,
+        DuplicateGrievanceService duplicateGrievanceService,
+        NotificationService notificationService,
+        CommunityIssueService communityIssueService,
+        LocationIntelligenceService locationIntelligenceService,
+        AIResolutionVerificationService aiResolutionVerificationService) { 
 
-        this.grievanceRepository = grievanceRepository;
-        this.categoryService = categoryService;
-        this.duplicateGrievanceService = duplicateGrievanceService;
-        this.notificationService = notificationService;
-    }
+    this.grievanceRepository =
+            grievanceRepository;
 
+    this.categoryService =
+            categoryService;
+
+    this.duplicateGrievanceService =
+            duplicateGrievanceService;
+
+    this.notificationService =
+            notificationService;
+
+    this.communityIssueService =
+            communityIssueService;
+
+    this.locationIntelligenceService =
+            locationIntelligenceService;
+
+    this.aiResolutionVerificationService =
+            aiResolutionVerificationService;
+}
+ 
     @PostMapping("/submit")
     public String submitGrievance(
             @RequestParam String name,
@@ -45,6 +67,8 @@ public class HomeController {
 
         String category =
                 categoryService.predictCategory(grievance);
+        String categoryReason =
+                categoryService.explainCategory(grievance);
 
         Grievance similarGrievance =
                 duplicateGrievanceService.findSimilarGrievance(
@@ -55,10 +79,13 @@ public class HomeController {
 
         String predictedPriority =
                 PriorityPredictor.predictPriority(grievance);
+        String priorityReason =
+                PriorityPredictor.explainPriority(grievance);
 
         String department =
                 getDepartment(category);
-
+        
+       
         int slaHours =
                 getSlaHours(predictedPriority);
 
@@ -73,9 +100,12 @@ public class HomeController {
         g.setGrievance(grievance);
         g.setLocation(location);
         g.setStatus("Pending");
-
         g.setCategory(category);
+        g.setCategoryReason(categoryReason);
+
         g.setPriority(predictedPriority);
+        g.setPriorityReason(priorityReason);
+
         g.setDepartment(department);
 
         g.setSlaHours(slaHours);
@@ -88,6 +118,11 @@ public class HomeController {
         g.setVerificationStatus("Pending");
 
         grievanceRepository.save(g);
+        CommunityIssueService.CommunityIssueResult communityResult =
+        communityIssueService.analyzeCommunityIssue(
+                location,
+                category
+        );
 
         notificationService.createNotification(
             userId,
@@ -136,12 +171,22 @@ public class HomeController {
                 + "Grievance: " + grievance + "<br>"
                 + "Location: " + location + "<br>"
                 + "AI Category: " + category + "<br>"
+                + "Category Reason: " + categoryReason + "<br>"
                 + "AI Priority: " + predictedPriority + "<br>"
+                + "Priority Reason: " + priorityReason + "<br>"
                 + "Department: " + department + "<br>"
                 + "SLA: " + slaHours + " hours<br>"
                 + "SLA Deadline: " + slaDeadline + "<br>"
                 + "Escalation: Not Escalated<br>"
                 + "Status: Pending"
+                + "<br>Community Issue: "
+                + (communityResult.isCommunityIssueDetected()
+                ? "YES"
+                : "NO")
+                + "<br>Related Grievances: "
+                + communityResult.getRelatedGrievanceCount()
+                + "<br>Community Analysis: "
+                + communityResult.getMessage()
                 + duplicateMessage;
     }
 
@@ -275,13 +320,19 @@ public class HomeController {
         Grievance grievance =
                 optionalGrievance.get();
 
-        if ("Resolved".equalsIgnoreCase(status)) {
+                if ("Resolved".equalsIgnoreCase(status)) {
 
-            grievance.setResolvedAt(
-                    LocalDateTime.now()
-            );
-
-        } else {
+                    if (grievance.getAfterEvidence() == null ||
+                            grievance.getAfterEvidence().trim().isEmpty()) {
+                
+                        return "Cannot mark grievance as Resolved. "
+                                + "Resolution evidence is required.";
+                    }
+                
+                    grievance.setResolvedAt(
+                            LocalDateTime.now()
+                    );
+                }else {
 
             grievance.setResolvedAt(null);
         }
@@ -293,6 +344,29 @@ public class HomeController {
         return "Grievance status updated successfully to: "
                 + status;
     }
+    @PutMapping("/grievances/{id}/resolution-evidence")
+public String addResolutionEvidence(
+        @PathVariable int id,
+        @RequestParam String afterEvidence) {
+
+    Optional<Grievance> optionalGrievance =
+            grievanceRepository.findById(id);
+
+    if (optionalGrievance.isEmpty()) {
+
+        return "Grievance not found with ID: " + id;
+    }
+
+    Grievance grievance =
+            optionalGrievance.get();
+
+    grievance.setAfterEvidence(afterEvidence);
+
+    grievanceRepository.save(grievance);
+
+    return "Resolution evidence added successfully for grievance ID: "
+            + id;
+}
 
     @PutMapping("/grievances/{id}/verify")
     public String verifyGrievance(
@@ -343,6 +417,38 @@ public class HomeController {
         @PathVariable String department) {
 
         return grievanceRepository.findByDepartmentIgnoreCase(department);
+}
+@GetMapping("/location-intelligence/{location}")
+public LocationIntelligenceService.LocationInsight
+        getLocationIntelligence(
+                @PathVariable String location) {
+
+    return locationIntelligenceService
+            .analyzeLocation(location);
+}
+@PostMapping("/grievances/{id}/ai-verify-resolution")
+public AIResolutionVerificationService.VerificationResult
+        verifyResolutionWithAI(@PathVariable int id) {
+
+    Optional<Grievance> optionalGrievance =
+            grievanceRepository.findById(id);
+
+    if (optionalGrievance.isEmpty()) {
+
+        return new AIResolutionVerificationService.VerificationResult(
+                false,
+                0,
+                "Grievance not found with ID: " + id
+        );
+    }
+
+    Grievance grievance =
+            optionalGrievance.get();
+
+    return aiResolutionVerificationService.verifyResolution(
+            grievance.getGrievance(),
+            grievance.getAfterEvidence()
+    );
 }
 }
        
