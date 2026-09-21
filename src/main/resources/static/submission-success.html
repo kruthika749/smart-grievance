@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Grievance | Submitted Successfully</title>
+
+    <link rel="stylesheet" href="submission-success.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="index.html" class="brand">
+
+            <img
+                src="logo-symbol.png"
+                alt="Smart Grievance Logo"
+                class="logo-symbol">
+
+            <div class="brand-text">
+                <h1>SMART <span>GRIEVANCE</span></h1>
+                <p>A CLEANER, GREENER BENGALURU</p>
+            </div>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Home
+            </a>
+
+            <a href="submit.html" class="active">
+                <span>▤</span>
+                Submit Grievance
+            </a>
+
+            <a href="my-grievances.html">
+                <span>☷</span>
+                My Grievances
+            </a>
+
+            <a href="view-grievances.html">
+                <span>▦</span>
+                View Grievances
+            </a>
+
+            <a href="admin.html">
+                <span>⚙</span>
+                Admin
+            </a>
+
+        </nav>
+
+
+        <div class="nav-right">
+
+            <a href="login.html" class="logout-link">
+                Logout
+            </a>
+
+            <div class="user-pill">
+                <span class="user-icon">●</span>
+                <span id="navUserName">Citizen</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="page">
+
+
+    <!-- ================= SUCCESS BANNER ================= -->
+
+    <section class="success-banner">
+
+        <div class="success-content">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <p class="eyebrow">
+                    CITIZEN GRIEVANCE MANAGEMENT
+                </p>
+
+                <h2>
+                    Grievance Submitted
+                    <span>Successfully!</span>
+                </h2>
+
+                <p class="success-description">
+                    Thank you for helping us build a better Bengaluru.
+                    Your grievance has been recorded and is now under review.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="banner-quote">
+            Together<br>
+            for a Better<br>
+            Bengaluru
+            <span>◆</span>
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTENT GRID ================= -->
+
+    <section class="content-grid">
+
+
+        <!-- ================= LEFT CARD ================= -->
+
+        <div class="details-card">
+
+            <div class="card-header">
+
+                <div class="card-title-icon">
+                    ▤
+                </div>
+
+                <div>
+
+                    <h2>Grievance Details</h2>
+
+                    <p>
+                        Here is a summary of the grievance you submitted.
+                    </p>
+
+                </div>
+
+                <div class="status-badge" id="statusBadge">
+                    <span>⌛</span>
+                    Status: <strong id="status">Pending</strong>
+                </div>
+
+            </div>
+
+
+            <div class="divider"></div>
+
+
+            <div class="details-columns">
+
+
+                <!-- LEFT COLUMN -->
+
+                <div class="details-column">
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            #
+                        </div>
+
+                        <div>
+                            <label>User ID</label>
+                            <p id="grievanceId">-</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ●
+                        </div>
+
+                        <div>
+                            <label>Name</label>
+                            <p id="name">-</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ✉
+                        </div>
+
+                        <div>
+                            <label>Email</label>
+                            <p id="email">-</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item grievance-item">
+
+                        <div class="detail-icon">
+                            ▤
+                        </div>
+
+                        <div>
+                            <label>Grievance</label>
+                            <p id="grievance">-</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ●
+                        </div>
+
+                        <div>
+                            <label>Location</label>
+                            <p id="location">-</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ◆
+                        </div>
+
+                        <div>
+
+                            <label>AI Category</label>
+
+                            <p id="category">
+                                -
+                            </p>
+
+                            <small id="categoryReason">
+                                AI category classification information.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT COLUMN -->
+
+                <div class="details-column right-column">
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ▥
+                        </div>
+
+                        <div>
+
+                            <label>AI Priority</label>
+
+                            <p id="priority">
+                                -
+                            </p>
+
+                            <small id="priorityReason">
+                                Priority was determined automatically by the system.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ▦
+                        </div>
+
+                        <div>
+
+                            <label>Department</label>
+
+                            <p id="department">
+                                -
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ◷
+                        </div>
+
+                        <div>
+
+                            <label>SLA</label>
+
+                            <p>
+                                <span id="sla">-</span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ◫
+                        </div>
+
+                        <div>
+
+                            <label>SLA Deadline</label>
+
+                            <p id="deadline">
+                                -
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ↑
+                        </div>
+
+                        <div>
+
+                            <label>Escalation</label>
+
+                            <p id="escalation">
+                                -
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ●●
+                        </div>
+
+                        <div>
+
+                            <label>Community Issue</label>
+
+                            <p id="communityIssue">
+                                -
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ↗
+                        </div>
+
+                        <div>
+
+                            <label>Related Grievances</label>
+
+                            <p id="relatedGrievances">
+                                -
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-icon">
+                            ●●
+                        </div>
+
+                        <div>
+
+                            <label>Community Analysis</label>
+
+                            <p id="communityAnalysis">
+                                -
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+
+            <!-- WHAT HAPPENS NEXT -->
+
+            <div class="next-card">
+
+                <div class="side-card-header">
+
+                    <div class="side-icon green">
+                        i
+                    </div>
+
+                    <h2>
+                        What Happens Next?
+                    </h2>
+
+                </div>
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item active">
+
+                        <div class="timeline-number">
+                            1
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Your grievance is under review
+                            </h3>
+
+                            <p>
+                                Our system has recorded your grievance
+                                and assigned it to the relevant department.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            2
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Department action
+                            </h3>
+
+                            <p>
+                                The concerned department will review
+                                and take action within the SLA timeframe.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            3
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Track progress
+                            </h3>
+
+                            <p>
+                                You can track the status in your
+                                My Grievances section.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            4
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Get notified
+                            </h3>
+
+                            <p>
+                                You will be notified when there are
+                                updates or when the issue is resolved.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HELP CARD -->
+
+            <div class="help-card">
+
+                <div class="side-card-header">
+
+                    <div class="side-icon terracotta">
+                        ☎
+                    </div>
+
+                    <h2>
+                        Need Help?
+                    </h2>
+
+                </div>
+
+                <p>
+                    If you have any questions or need to update
+                    information, please contact support.
+                </p>
+
+                <a href="mailto:support@smartgrievance.com"
+                   class="support-button">
+
+                    ✉
+                    Contact Support
+
+                </a>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+    <!-- ================= ACTION BUTTONS ================= -->
+
+    <section class="actions">
+
+        <a href="index.html" class="action-button outline">
+
+            <span>⌂</span>
+
+            Back to Home
+
+        </a>
+
+
+        <a href="submit.html" class="action-button primary">
+
+            <span>▤</span>
+
+            Submit Another Grievance
+
+        </a>
+
+
+        <a href="my-grievances.html" class="action-button outline">
+
+            <span>☷</span>
+
+            View My Grievances
+
+        </a>
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-brand">
+
+        <img
+            src="logo-symbol.png"
+            alt="Smart Grievance">
+
+        <div>
+
+            <strong>
+                SMART <span>GRIEVANCE</span>
+            </strong>
+
+            <small>
+                A CLEANER, GREENER BENGALURU
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-message">
+
+        Better Citizens
+        <span>|</span>
+        Responsive Governance
+        <span>|</span>
+        A Cleaner, Greener Bengaluru
+
+    </div>
+
+
+    <div class="footer-quote">
+
+        Together for a Better Bengaluru
+        <span>◆</span>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+    /*
+     * =========================================================
+     * SMART GRIEVANCE - SUBMISSION SUCCESS PAGE
+     * =========================================================
+     *
+     * Reads the actual submission saved by submit.html
+     * from sessionStorage and displays it on this page.
+     */
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /*
+         * Get the saved submission.
+         */
+        const savedSubmission =
+            sessionStorage.getItem("lastSubmission");
+
+
+        /*
+         * Stop if nothing was saved.
+         */
+        if (!savedSubmission) {
+
+            console.error(
+                "No submission data found in sessionStorage."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert JSON string back into an object.
+         */
+        let submission;
+
+        try {
+
+            submission =
+                JSON.parse(savedSubmission);
+
+        } catch (error) {
+
+            console.error(
+                "Unable to read submission data:",
+                error
+            );
+
+            return;
+        }
+
+
+        /*
+         * Show the complete object in the browser console.
+         */
+        console.log(
+            "SUCCESS PAGE DATA:",
+            submission
+        );
+
+
+        /*
+         * Helper function.
+         *
+         * It searches the page for an element with
+         * the supplied ID and puts the value inside it.
+         */
+        function setValue(id, value) {
+
+            const element =
+                document.getElementById(id);
+
+            if (!element) {
+
+                console.warn(
+                    "Element not found:",
+                    id
+                );
+
+                return;
+            }
+
+            element.textContent =
+                value || "-";
+        }
+
+
+        /*
+         * =====================================================
+         * MAIN GRIEVANCE DETAILS
+         * =====================================================
+         *
+         * These IDs must exist in the HTML.
+         */
+
+
+        setValue(
+            "grievanceId",
+            submission.userId
+        );
+
+
+        setValue(
+            "userId",
+            submission.userId
+        );
+
+
+        setValue(
+            "name",
+            submission.name
+        );
+
+
+        setValue(
+            "email",
+            submission.email
+        );
+
+
+        setValue(
+            "grievance",
+            submission.grievance
+        );
+
+
+        setValue(
+            "location",
+            submission.location
+        );
+
+
+        setValue(
+            "category",
+            submission.category
+        );
+
+
+        setValue(
+            "categoryReason",
+            submission.categoryReason
+        );
+
+
+        setValue(
+            "priority",
+            submission.priority
+        );
+
+
+        setValue(
+            "priorityReason",
+            submission.priorityReason
+        );
+
+
+        setValue(
+            "department",
+            submission.department
+        );
+
+
+        setValue(
+            "sla",
+            submission.sla
+        );
+
+
+        setValue(
+            "deadline",
+            submission.deadline
+        );
+
+
+        setValue(
+            "escalation",
+            submission.escalation
+        );
+
+
+        setValue(
+            "status",
+            submission.status
+        );
+
+
+        setValue(
+            "communityIssue",
+            submission.communityIssue
+        );
+
+
+        setValue(
+            "relatedGrievances",
+            submission.relatedGrievances
+        );
+
+
+        setValue(
+            "communityAnalysis",
+            submission.communityAnalysis
+        );
+
+
+        /*
+         * =====================================================
+         * STATUS BADGE
+         * =====================================================
+         */
+
+        const statusElement =
+            document.getElementById("status");
+
+        const statusBadge =
+            document.getElementById("statusBadge");
+
+
+        if (statusBadge) {
+
+            const status =
+                submission.status || "Pending";
+
+            statusBadge.textContent =
+                "Status: " + status;
+        }
+
+
+        /*
+         * =====================================================
+         * NAVBAR USER NAME
+         * =====================================================
+         */
+
+        const navUserName =
+            document.getElementById("navUserName");
+
+
+        if (navUserName) {
+
+            navUserName.textContent =
+                submission.name ||
+                sessionStorage.getItem("userName") ||
+                "Citizen";
+        }
+
+
+        /*
+         * =====================================================
+         * SUCCESS MESSAGE
+         * =====================================================
+         */
+
+        console.log(
+            "Submission displayed successfully."
+        );
+
+    });
+
+</script>
+
+</body>
+
+</html>

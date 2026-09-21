@@ -6,508 +6,2834 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Submit Grievance - Smart Grievance</title>
+    <title>Submit Grievance | Smart Grievance</title>
 
     <style>
+
+        /* =========================================================
+           SMART GRIEVANCE - SUBMIT PAGE
+           Theme: Terracotta + Olive + Beige
+           ========================================================= */
+
+        :root {
+            --terracotta: #B65335;
+            --terracotta-dark: #913F2A;
+            --terracotta-light: #E9C8B8;
+
+            --olive: #59613D;
+            --olive-dark: #3F472B;
+            --olive-light: #DCE0C9;
+
+            --beige: #F3E8D7;
+            --beige-light: #FAF4EA;
+            --cream: #FFFDF8;
+
+            --dark: #20231D;
+            --text: #34362F;
+            --muted: #6E6A60;
+            --border: #D9C8B1;
+
+            --green: #4D6B45;
+            --green-light: #E5F0E2;
+
+            --yellow: #9A741C;
+            --yellow-light: #FFF4D6;
+
+            --shadow: 0 12px 35px rgba(63, 71, 43, 0.10);
+        }
+
+
+        /* =========================================================
+           RESET
+           ========================================================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
         }
-        
+
         body {
-            background: #f4f7fb;
-            color: #1f2937;
             min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(233, 200, 184, 0.25),
+                    transparent 28%
+                ),
+                var(--beige-light);
+
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
         }
-        /* Navigation */
-        
-        nav {
-            background: #123b6d;
-            color: white;
-            padding: 18px 8%;
+
+
+        /* =========================================================
+           NAVBAR
+           ========================================================= */
+
+        .navbar {
+            width: 100%;
+            background: rgba(255, 253, 248, 0.98);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1500px;
+            min-height: 92px;
+            margin: 0 auto;
+            padding: 10px 45px;
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+
+            gap: 22px;
         }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            flex: 0 0 auto;
+            min-width: 270px;
+
+            text-decoration: none;
         }
-        
+
+        .logo-symbol {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-text h1 {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 25px;
+            line-height: 1;
+            font-weight: 700;
+
+            color: var(--terracotta);
+        }
+
+        .brand-text h1 span {
+            color: var(--olive-dark);
+        }
+
+        .brand-text p {
+            margin-top: 5px;
+
+            font-size: 11px;
+            color: var(--olive-dark);
+
+            letter-spacing: .3px;
+            white-space: nowrap;
+        }
+
         .nav-links {
             display: flex;
-            gap: 25px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-        }
-        
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-        /* Header */
-        
-        .header {
-            background: linear-gradient(135deg, #123b6d, #1d6fa5);
-            color: white;
-            text-align: center;
-            padding: 45px 20px;
-        }
-        
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 12px;
-        }
-        
-        .header p {
-            font-size: 17px;
-        }
-        /* Form Container */
-        
-        .form-container {
-            width: 90%;
-            max-width: 800px;
-            margin: 40px auto;
-            background: white;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
-        }
-        /* Form Sections */
-        
-        .section-title {
-            color: #123b6d;
-            font-size: 21px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 10px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #374151;
-        }
-        
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            font-size: 15px;
-            outline: none;
-            background: white;
-        }
-        
-        input:focus,
-        textarea:focus,
-        select:focus {
-            border-color: #1d6fa5;
-            box-shadow: 0 0 0 2px rgba(29, 111, 165, 0.12);
-        }
-        
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .hint {
-            color: #6b7280;
-            font-size: 13px;
-            margin-top: 6px;
-        }
-        /* Location */
-        
-        .location-box {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .location-box input {
+            align-items: center;
+            justify-content: center;
+
+            gap: 4px;
+
             flex: 1;
+            margin: 0 auto;
         }
-        /* Evidence */
-        
-        .evidence-box {
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            color: var(--dark);
+
+            font-size: 14px;
+            font-weight: 600;
+
+            white-space: nowrap;
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                transform .2s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--beige);
+            color: var(--terracotta-dark);
+        }
+
+        .nav-links a.active {
+            background: var(--terracotta);
+            color: white;
+
+            box-shadow:
+                0 5px 14px rgba(182, 83, 53, .22);
+        }
+
+        .nav-icon {
+            font-size: 15px;
+        }
+
+        .auth-links {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            flex: 0 0 auto;
+        }
+
+        .auth-links a {
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+
+            padding: 9px 12px;
             border-radius: 8px;
-            padding: 25px;
-            text-align: center;
-            color: #6b7280;
         }
-        
-        .evidence-icon {
-            font-size: 40px;
+
+        .login-link {
+            color: var(--olive-dark);
+        }
+
+        .login-link:hover {
+            background: var(--beige);
+        }
+
+        .register-link {
+            color: white;
+            background: var(--terracotta);
+        }
+
+        .register-link:hover {
+            background: var(--terracotta-dark);
+        }
+
+
+        /* =========================================================
+           PAGE INTRO
+           ========================================================= */
+
+        .page-intro {
+            position: relative;
+            overflow: hidden;
+
+            padding: 52px 25px 44px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #F8EDE1 0%,
+                    #F3E8D7 48%,
+                    #E8E6D5 100%
+                );
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-intro::before {
+            content: "";
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(182, 83, 53, .07);
+
+            right: -90px;
+            top: -130px;
+        }
+
+        .intro-inner {
+            width: 92%;
+            max-width: 1120px;
+
+            margin: auto;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            color: var(--terracotta);
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
             margin-bottom: 10px;
         }
-        /* Smart Processing */
-        
-        .smart-box {
-            background: #eef6ff;
-            border-left: 5px solid #1d6fa5;
-            padding: 18px;
-            border-radius: 6px;
-            margin-top: 25px;
-            margin-bottom: 25px;
+
+        .page-intro h2 {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: var(--dark);
+
+            font-size: clamp(34px, 5vw, 54px);
+
+            line-height: 1.08;
+
+            margin-bottom: 14px;
         }
-        
-        .smart-box h3 {
-            color: #123b6d;
-            margin-bottom: 8px;
+
+        .page-intro h2 span {
+            color: var(--terracotta);
         }
-        
-        .smart-box p {
-            color: #4b5563;
+
+        .intro-text {
+            max-width: 700px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           SMART PROCESS STRIP
+           ========================================================= */
+
+        .smart-strip {
+            width: 92%;
+            max-width: 1120px;
+
+            margin: -25px auto 35px;
+
+            position: relative;
+            z-index: 5;
+
+            background: var(--cream);
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            box-shadow: var(--shadow);
+
+            padding: 20px 22px;
+        }
+
+        .smart-strip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 17px;
+        }
+
+        .smart-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: var(--olive);
+            color: white;
+
+            font-size: 17px;
+        }
+
+        .smart-strip-title h3 {
+            color: var(--olive-dark);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 20px;
+        }
+
+        .smart-strip-title p {
+            margin-left: auto;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .smart-flow {
+            display: grid;
+
+            grid-template-columns:
+                repeat(6, 1fr);
+
+            gap: 8px;
+        }
+
+        .smart-step {
+            min-height: 72px;
+
+            padding: 12px 10px;
+
+            background: var(--beige-light);
+
+            border: 1px solid #E6D9C7;
+
+            border-radius: 11px;
+
+            text-align: center;
+
+            position: relative;
+        }
+
+        .smart-step:not(:last-child)::after {
+            content: "→";
+
+            position: absolute;
+
+            right: -13px;
+            top: 25px;
+
+            color: var(--terracotta);
+
+            font-weight: bold;
+
+            z-index: 2;
+        }
+
+        .step-number {
+            display: inline-flex;
+
+            width: 23px;
+            height: 23px;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--terracotta);
+            color: white;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            margin-bottom: 6px;
+        }
+
+        .smart-step strong {
+            display: block;
+
+            color: var(--dark);
+
+            font-size: 12px;
+        }
+
+        .smart-step small {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            margin-top: 3px;
+        }
+
+
+        /* =========================================================
+           MAIN LAYOUT
+           ========================================================= */
+
+        .main-layout {
+            width: 92%;
+            max-width: 1120px;
+
+            margin: 0 auto 60px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.65fr)
+                minmax(280px, .75fr);
+
+            gap: 28px;
+
+            align-items: start;
+        }
+
+
+        /* =========================================================
+           FORM CARD
+           ========================================================= */
+
+        .form-card {
+            background: var(--cream);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+
+            padding: 32px;
+        }
+
+        .section {
+            padding-bottom: 28px;
+
+            margin-bottom: 28px;
+
+            border-bottom: 1px solid #E5D8C7;
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+
+            margin-bottom: 21px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+
+            flex: 0 0 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: var(--terracotta-light);
+
+            color: var(--terracotta-dark);
+
+            font-size: 18px;
+        }
+
+        .section-heading h3 {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: var(--dark);
+
+            font-size: 22px;
+
+            margin-bottom: 4px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+
+            font-size: 13px;
+
             line-height: 1.5;
         }
-        /* Buttons */
-        
-        .button-container {
-            display: flex;
-            gap: 12px;
-            margin-top: 30px;
+
+
+        /* =========================================================
+           FORM FIELDS
+           ========================================================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 19px;
         }
-        
-        .submit-btn {
-            flex: 1;
-            background: #123b6d;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 7px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
+
+        .form-group {
+            margin-bottom: 19px;
         }
-        
-        .submit-btn:hover {
-            background: #0d2d52;
+
+        .form-grid .form-group {
+            margin-bottom: 0;
         }
-        
-        .back-btn {
-            flex: 1;
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+
+            color: var(--dark);
+
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: var(--terracotta);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+
+            border: 1px solid #D8CCBC;
+
+            background: #FFFEFB;
+
+            color: var(--dark);
+
+            border-radius: 10px;
+
+            padding: 13px 14px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition:
+                border .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--terracotta);
+
             background: white;
-            color: #123b6d;
-            border: 2px solid #123b6d;
-            padding: 12px;
-            border-radius: 7px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
+
+            box-shadow:
+                0 0 0 3px rgba(182, 83, 53, .10);
         }
-        
-        .back-btn:hover {
-            background: #f1f5f9;
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #AAA397;
         }
-        /* Footer */
-        
-        footer {
-            background: #123b6d;
+
+        textarea {
+            min-height: 170px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+        }
+
+        .hint {
+            margin-top: 7px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.45;
+        }
+
+        .character-count {
+            display: flex;
+            justify-content: flex-end;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================================================
+           LOCATION FIELD
+           ========================================================= */
+
+        .location-wrapper {
+            position: relative;
+        }
+
+        .location-prefix {
+            position: absolute;
+
+            left: 13px;
+            top: 13px;
+
+            color: var(--terracotta);
+
+            font-size: 17px;
+
+            pointer-events: none;
+        }
+
+        .location-wrapper input {
+            padding-left: 40px;
+        }
+
+
+        /* =========================================================
+           CITIZEN INFO
+           ========================================================= */
+
+        .logged-in-box {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            padding: 14px 16px;
+
+            background: var(--olive-light);
+
+            border: 1px solid #C7CFAD;
+
+            border-radius: 11px;
+
+            margin-bottom: 21px;
+        }
+
+        .user-circle {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--olive);
             color: white;
+
+            font-weight: bold;
+        }
+
+        .logged-in-box strong {
+            display: block;
+
+            color: var(--olive-dark);
+
+            font-size: 13px;
+
+            margin-bottom: 2px;
+        }
+
+        .logged-in-box span {
+            color: #626951;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           SMART NOTE
+           ========================================================= */
+
+        .smart-note {
+            display: flex;
+
+            gap: 12px;
+
+            padding: 15px 16px;
+
+            background: #F7F1E6;
+
+            border-left: 4px solid var(--olive);
+
+            border-radius: 9px;
+
+            margin-top: 20px;
+        }
+
+        .smart-note-icon {
+            color: var(--olive-dark);
+
+            font-size: 18px;
+
+            flex: 0 0 auto;
+        }
+
+        .smart-note strong {
+            display: block;
+
+            color: var(--olive-dark);
+
+            font-size: 13px;
+
+            margin-bottom: 4px;
+        }
+
+        .smart-note p {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           EVIDENCE AREA
+           ========================================================= */
+
+        .evidence-card {
+            padding: 18px;
+
+            border: 1px dashed #CFC2AF;
+
+            background: var(--beige-light);
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+        .evidence-symbol {
+            width: 43px;
+            height: 43px;
+
+            flex: 0 0 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: var(--terracotta-light);
+
+            font-size: 20px;
+        }
+
+        .evidence-card strong {
+            display: block;
+
+            color: var(--dark);
+
+            font-size: 13px;
+
+            margin-bottom: 4px;
+        }
+
+        .evidence-card p {
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+        .coming-soon {
+            margin-left: auto;
+
+            flex: 0 0 auto;
+
+            padding: 6px 9px;
+
+            background: var(--beige);
+
+            color: var(--terracotta-dark);
+
+            border-radius: 20px;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================================
+           SUBMIT ACTION
+           ========================================================= */
+
+        .submit-area {
+            padding-top: 25px;
+        }
+
+        .submit-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 15px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.4;
+        }
+
+        .submit-info span:first-child {
+            color: var(--olive);
+            font-size: 15px;
+        }
+
+        .button-row {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1.7fr;
+
+            gap: 12px;
+        }
+
+        .back-btn,
+        .submit-btn {
+            min-height: 51px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .back-btn {
+            border: 1px solid var(--border);
+
+            color: var(--olive-dark);
+
+            background: white;
+        }
+
+        .back-btn:hover {
+            background: var(--beige);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn {
+            border: none;
+
+            color: white;
+
+            background: var(--terracotta);
+
+            box-shadow:
+                0 7px 18px rgba(182, 83, 53, .22);
+        }
+
+        .submit-btn:hover {
+            background: var(--terracotta-dark);
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 22px rgba(145, 63, 42, .25);
+        }
+
+        .submit-btn:disabled {
+            opacity: .7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        /* =========================================================
+           RIGHT SIDE - WHAT HAPPENS NEXT
+           ========================================================= */
+
+        .side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+
+            position: sticky;
+            top: 20px;
+        }
+
+        .side-card {
+            background: var(--cream);
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            padding: 23px;
+
+            box-shadow:
+                0 8px 25px rgba(63, 71, 43, .07);
+        }
+
+        .side-card h3 {
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: var(--dark);
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+        .side-card > p {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.55;
+
+            margin-bottom: 18px;
+        }
+
+        .feature-item {
+            display: flex;
+
+            gap: 12px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #E9DECE;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 33px;
+            height: 33px;
+
+            flex: 0 0 33px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: var(--olive-light);
+
+            color: var(--olive-dark);
+
+            font-size: 14px;
+        }
+
+        .feature-item strong {
+            display: block;
+
+            color: var(--dark);
+
+            font-size: 12px;
+
+            margin-bottom: 3px;
+        }
+
+        .feature-item span {
+            color: var(--muted);
+
+            font-size: 10.5px;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================================================
+           SLA CARD
+           ========================================================= */
+
+        .sla-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--olive-dark),
+                    var(--olive)
+                );
+
+            border: none;
+
+            color: white;
+        }
+
+        .sla-card h3 {
+            color: white;
+        }
+
+        .sla-card > p {
+            color: #E5E8DA;
+        }
+
+        .sla-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 8px;
+        }
+
+        .sla-item {
+            padding: 11px;
+
+            border-radius: 9px;
+
+            background: rgba(255,255,255,.10);
+
+            border: 1px solid rgba(255,255,255,.10);
+        }
+
+        .sla-item strong {
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 2px;
+        }
+
+        .sla-item span {
+            color: #E4E8D9;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           AFTER SUBMISSION NOTE
+           ========================================================= */
+
+        .tracking-card {
+            background: #FFF9EE;
+
+            border: 1px solid #E6D7B8;
+        }
+
+        .tracking-card h3 {
+            color: var(--terracotta-dark);
+        }
+
+        .tracking-card p {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.55;
+        }
+
+        .tracking-links {
+            display: flex;
+            gap: 8px;
+
+            margin-top: 14px;
+        }
+
+        .tracking-links a {
+            flex: 1;
+
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+
+            padding: 9px 8px;
+
+            border-radius: 8px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            color: var(--olive-dark);
+
+            text-decoration: none;
+
+            font-size: 11px;
+            font-weight: 700;
         }
-        /* Mobile */
-        
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 12px;
+
+        .tracking-links a:hover {
+            background: var(--beige);
+        }
+
+
+        /* =========================================================
+           ERROR / LOGIN MESSAGE
+           ========================================================= */
+
+        .message {
+            display: none;
+
+            width: 92%;
+            max-width: 1120px;
+
+            margin: 0 auto 25px;
+
+            padding: 14px 17px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .message.error {
+            display: block;
+
+            background: #FBE8E5;
+
+            border: 1px solid #E7BDB5;
+
+            color: #8B3328;
+        }
+
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer {
+            background: var(--olive-dark);
+
+            color: #EDEEDF;
+
+            text-align: center;
+
+            padding: 24px 20px;
+
+            font-size: 11px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+           ========================================================= */
+
+        @media (max-width: 1100px) {
+
+            .nav-container {
+                padding: 10px 22px;
             }
+
+            .brand {
+                min-width: 235px;
+            }
+
+            .brand-text h1 {
+                font-size: 22px;
+            }
+
+            .nav-links a {
+                padding: 10px 9px;
+                font-size: 12px;
+            }
+
+            .auth-links {
+                display: none;
+            }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .side-column {
+                position: static;
+
+                display: grid;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 850px) {
+
+            .smart-flow {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .smart-step:nth-child(3)::after,
+            .smart-step:nth-child(6)::after {
+                display: none;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .side-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .nav-container {
+                flex-direction: column;
+
+                padding: 14px 15px;
+            }
+
+            .brand {
+                min-width: auto;
+            }
+
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 12px;
+                width: 100%;
+
+                overflow-x: auto;
+
+                justify-content: flex-start;
             }
-            .form-container {
-                padding: 22px;
+
+            .nav-links a {
+                flex: 0 0 auto;
             }
-            .button-container {
-                flex-direction: column;
+
+            .page-intro {
+                padding: 40px 18px;
             }
-            .location-box {
-                flex-direction: column;
+
+            .smart-strip {
+                width: calc(100% - 28px);
+
+                padding: 17px;
             }
-            .header h1 {
-                font-size: 30px;
+
+            .smart-flow {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .smart-step::after {
+                display: none !important;
+            }
+
+            .main-layout {
+                width: calc(100% - 28px);
+            }
+
+            .form-card {
+                padding: 22px 18px;
+            }
+
+            .button-row {
+                grid-template-columns: 1fr;
+            }
+
+            .evidence-card {
+                align-items: flex-start;
+            }
+
+            .coming-soon {
+                margin-left: 0;
+            }
+
+            .smart-strip-title {
+                align-items: flex-start;
+            }
+
+            .smart-strip-title p {
+                display: none;
             }
         }
+
     </style>
 
 </head>
 
+
 <body>
 
-    <!-- Navigation -->
 
-    <nav>
+    <!-- =========================================================
+         NAVIGATION
+         ========================================================= -->
 
-        <div class="logo">
-            🏛️ Smart Grievance
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="brand">
+
+                <img
+                    src="logo-symbol.png"
+                    alt="Smart Grievance Logo"
+                    class="logo-symbol"
+                >
+
+                <div class="brand-text">
+
+                    <h1>
+                        SMART <span>GRIEVANCE</span>
+                    </h1>
+
+                    <p>
+                        A CLEANER, GREENER BENGALURU
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="index.html">
+                    <span class="nav-icon">⌂</span>
+                    Home
+                </a>
+
+                <a href="submit.html" class="active">
+                    <span class="nav-icon">▤</span>
+                    Submit Grievance
+                </a>
+
+                <a href="view-grievances.html">
+                    <span class="nav-icon">☷</span>
+                    View Grievances
+                </a>
+
+                <a href="my-grievances.html">
+                    <span class="nav-icon">◉</span>
+                    My Grievances
+                </a>
+
+                <a href="admin.html">
+                    <span class="nav-icon">⚙</span>
+                    Admin
+                </a>
+
+            </nav>
+
+
+            <div class="auth-links">
+
+                <a
+                    href="login.html"
+                    class="login-link"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="register.html"
+                    class="register-link"
+                >
+                    Register
+                </a>
+
+            </div>
+
         </div>
 
-        <div class="nav-links">
+    </header>
 
-            <a href="index.html">
-                Home
-            </a>
 
-            <a href="submit.html">
-                Submit Grievance
-            </a>
 
-            <a href="grievances.html">
-                View Grievances
-            </a>
+    <!-- =========================================================
+         PAGE INTRO
+         ========================================================= -->
 
-            <a href="view-grievances.html">
-                Manage Grievances
-            </a>
+    <section class="page-intro">
+
+        <div class="intro-inner">
+
+            <div class="eyebrow">
+                CITIZEN GRIEVANCE MANAGEMENT
+            </div>
+
+            <h2>
+                Tell us what needs to
+                <span>change.</span>
+            </h2>
+
+            <p class="intro-text">
+
+                Describe the civic problem clearly and provide its
+                location. Smart Grievance will analyze your complaint,
+                identify the appropriate category and department,
+                determine its priority, and calculate the response
+                deadline automatically.
+
+            </p>
 
         </div>
-
-    </nav>
-
-
-    <!-- Header -->
-
-    <section class="header">
-
-        <h1>
-            📝 Submit a Grievance
-        </h1>
-
-        <p>
-            Report a civic issue and help improve your community.
-        </p>
 
     </section>
 
 
-    <!-- Form -->
 
-    <div class="form-container">
+    <!-- =========================================================
+         SMART PROCESS
+         ========================================================= -->
 
-        <h2 class="section-title">
-            Citizen Information
-        </h2>
+    <section class="smart-strip">
 
+        <div class="smart-strip-title">
 
-        <form action="/submit" method="post">
-
-            <!-- Temporary User ID -->
-
-            <!--
-                Temporary testing value.
-                User ID 1 = Kruthika's citizen account.
-
-                This will later be replaced by the
-                logged-in citizen's actual User ID.
-            -->
-
-            <input type="hidden" id="userId" name="userId">
-
-
-            <!-- Name -->
-
-            <div class="form-group">
-
-                <label for="name">
-                    Full Name
-                </label>
-
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-
+            <div class="smart-badge">
+                ✦
             </div>
 
-
-            <!-- Email -->
-
-            <div class="form-group">
-
-                <label for="email">
-                    Email Address
-                </label>
-
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-
-                <div class="hint">
-                    We may use this to provide grievance updates.
-                </div>
-
-            </div>
-
-
-            <!-- Grievance Details -->
-
-            <h2 class="section-title">
-                Grievance Details
-            </h2>
-
-
-            <!-- Grievance -->
-
-            <div class="form-group">
-
-                <label for="grievance">
-                    Describe the Problem
-                </label>
-
-                <textarea id="grievance" name="grievance" placeholder="Describe the civic problem clearly..." required></textarea>
-
-                <div class="hint">
-                    Please include important details such as what happened, how long the problem has existed, and who may be affected.
-                </div>
-
-            </div>
-
-
-            <!-- Location -->
-
-            <div class="form-group">
-
-                <label for="location">
-                    📍 Location
-                </label>
-
-                <input type="text" id="location" name="location" placeholder="Enter the location of the problem" required>
-
-                <div class="hint">
-                    Example: Kumbalagudu, Bengaluru
-                </div>
-
-            </div>
-
-
-            <!-- Priority -->
-
-            <div class="form-group">
-
-                <label for="priority">
-                    Priority
-                </label>
-
-                <select id="priority" name="priority">
-
-                    <option value="Low">
-                        Low
-                    </option>
-
-                    <option value="Medium" selected>
-                        Medium
-                    </option>
-
-                    <option value="High">
-                        High
-                    </option>
-
-                    <option value="Critical">
-                        Critical
-                    </option>
-
-                </select>
-
-                <div class="hint">
-                    AI will determine the final priority based on the grievance details.
-                </div>
-
-            </div>
-
-
-            <!-- Evidence -->
-
-            <h2 class="section-title">
-                📷 Evidence
-            </h2>
-
-
-            <div class="evidence-box">
-
-                <div class="evidence-icon">
-                    📷
-                </div>
-
-                <strong>
-                    Evidence upload coming next
-                </strong>
-
-                <p style="margin-top: 8px;">
-                    You will be able to upload a photo or video showing the problem.
-                </p>
-
-            </div>
-
-
-            <!-- Smart Processing -->
-
-            <div class="smart-box">
+            <div>
 
                 <h3>
-                    🤖 Smart Processing
+                    What happens after you submit?
+                </h3>
+
+            </div>
+
+            <p>
+                Powered by your Smart Grievance workflow
+            </p>
+
+        </div>
+
+
+        <div class="smart-flow">
+
+            <div class="smart-step">
+
+                <span class="step-number">1</span>
+
+                <strong>Your Complaint</strong>
+
+                <small>
+                    You describe the issue
+                </small>
+
+            </div>
+
+
+            <div class="smart-step">
+
+                <span class="step-number">2</span>
+
+                <strong>AI Category</strong>
+
+                <small>
+                    Issue is classified
+                </small>
+
+            </div>
+
+
+            <div class="smart-step">
+
+                <span class="step-number">3</span>
+
+                <strong>AI Priority</strong>
+
+                <small>
+                    Urgency is assessed
+                </small>
+
+            </div>
+
+
+            <div class="smart-step">
+
+                <span class="step-number">4</span>
+
+                <strong>Department</strong>
+
+                <small>
+                    Routed appropriately
+                </small>
+
+            </div>
+
+
+            <div class="smart-step">
+
+                <span class="step-number">5</span>
+
+                <strong>SLA</strong>
+
+                <small>
+                    Deadline calculated
+                </small>
+
+            </div>
+
+
+            <div class="smart-step">
+
+                <span class="step-number">6</span>
+
+                <strong>Duplicate Check</strong>
+
+                <small>
+                    Similar issues checked
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         LOGIN ERROR MESSAGE
+         ========================================================= -->
+
+    <div
+        id="loginMessage"
+        class="message"
+    ></div>
+
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+         ========================================================= -->
+
+    <main class="main-layout">
+
+
+        <!-- =====================================================
+             FORM
+             ===================================================== -->
+
+        <section class="form-card">
+
+
+            <form
+                id="grievanceForm"
+                action="/submit"
+                method="post"
+            >
+
+
+                <!-- =============================================
+                     CITIZEN INFORMATION
+                     ============================================= -->
+
+                <div class="section">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon">
+                            ◉
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Citizen Information
+                            </h3>
+
+                            <p>
+                                Tell us who is submitting this grievance.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="loggedInBox"
+                        class="logged-in-box"
+                    >
+
+                        <div class="user-circle">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong id="loggedInName">
+                                Logged-in citizen
+                            </strong>
+
+                            <span>
+                                Your grievance will be linked to your
+                                citizen account.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Hidden user ID required by backend -->
+
+                    <input
+                        type="hidden"
+                        id="userId"
+                        name="userId"
+                    >
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                Full Name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email Address
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email address"
+                                required
+                            >
+
+                            <div class="hint">
+                                Used for grievance communication.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     GRIEVANCE DETAILS
+                     ============================================= -->
+
+                <div class="section">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon">
+                            ✎
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Describe the Problem
+                            </h3>
+
+                            <p>
+                                Give enough detail so the system can
+                                understand the issue accurately.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="grievance">
+                            What is the problem?
+                            <span class="required">*</span>
+                        </label>
+
+                        <textarea
+                            id="grievance"
+                            name="grievance"
+                            maxlength="2000"
+                            placeholder="Example: There has been no drinking water supply in our area for several days. Residents are facing difficulty getting water for daily needs."
+                            required
+                        ></textarea>
+
+
+                        <div class="character-count">
+
+                            <span id="characterCount">
+                                0 / 2000
+                            </span>
+
+                        </div>
+
+
+                        <div class="hint">
+
+                            Include what happened, how long it has
+                            been happening, how people are affected,
+                            and any important details you know.
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Location of the Problem
+                            <span class="required">*</span>
+                        </label>
+
+
+                        <div class="location-wrapper">
+
+                            <span class="location-prefix">
+                                📍
+                            </span>
+
+                            <input
+                                type="text"
+                                id="location"
+                                name="location"
+                                placeholder="Example: Kumbalagudu, Bengaluru"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="hint">
+
+                            Enter the area, street, locality or landmark
+                            where the civic issue is occurring.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- IMPORTANT:
+                         Priority is intentionally NOT a citizen
+                         input. The backend predicts it from the
+                         grievance description.
+                    -->
+
+                    <div class="smart-note">
+
+                        <div class="smart-note-icon">
+                            ✦
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                You don't need to choose a priority.
+                            </strong>
+
+                            <p>
+
+                                Smart Grievance automatically analyzes
+                                the description and predicts the
+                                appropriate priority. This helps avoid
+                                incorrect manual prioritization.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     SUPPORTING INFORMATION
+                     ============================================= -->
+
+                <div class="section">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon">
+                            ◫
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Supporting Information
+                            </h3>
+
+                            <p>
+                                Additional evidence can help explain
+                                the civic problem.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="evidence-card">
+
+                        <div class="evidence-symbol">
+                            📷
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Evidence / Supporting Documents
+                            </strong>
+
+                            <p>
+
+                                The grievance model contains support
+                                for evidence information. File upload
+                                is not currently connected to the
+                                submission endpoint, so no unsupported
+                                upload control is shown here.
+
+                            </p>
+
+                        </div>
+
+                        <div class="coming-soon">
+                            Next step
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     SUBMIT
+                     ============================================= -->
+
+                <div class="submit-area">
+
+                    <div class="submit-info">
+
+                        <span>🔒</span>
+
+                        <span>
+
+                            Your grievance will be stored in the
+                            Smart Grievance system and linked to
+                            your citizen account.
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="button-row">
+
+                        <a
+                            href="index.html"
+                            class="back-btn"
+                        >
+                            ← Back to Home
+                        </a>
+
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                            id="submitButton"
+                        >
+                            Submit Grievance&nbsp;&nbsp; →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SIDE INFORMATION
+             ===================================================== -->
+
+        <aside class="side-column">
+
+
+            <!-- =============================================
+                 SMART FEATURES
+                 ============================================= -->
+
+            <div class="side-card">
+
+                <h3>
+                    Your grievance is processed intelligently.
                 </h3>
 
                 <p>
-                    After submission, Smart Grievance will automatically analyze the complaint, identify its category, determine its priority, detect possible duplicate grievances, route it to the appropriate department and calculate the applicable SLA.
+
+                    You provide the information. Smart Grievance
+                    takes care of the classification and routing.
+
                 </p>
 
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        AI
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            AI Category Prediction
+                        </strong>
+
+                        <span>
+                            Your complaint is classified into the
+                            appropriate civic category.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            AI Priority Prediction
+                        </strong>
+
+                        <span>
+                            The system assesses the urgency from
+                            the grievance description.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        →
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Department Assignment
+                        </strong>
+
+                        <span>
+                            The predicted category determines the
+                            relevant department.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        ⏱
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            SLA Deadline
+                        </strong>
+
+                        <span>
+                            A response deadline is calculated from
+                            the predicted priority.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        ≈
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Duplicate Detection
+                        </strong>
+
+                        <span>
+                            Similar grievances are checked using
+                            category, location and text similarity.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon">
+                        🔔
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Citizen Notification
+                        </strong>
+
+                        <span>
+                            A submission notification is created
+                            for the citizen account.
+                        </span>
+
+                    </div>
+
+                </div>
+
             </div>
 
 
-            <!-- Buttons -->
 
-            <div class="button-container">
+            <!-- =============================================
+                 SLA
+                 ============================================= -->
 
-                <button type="submit" class="submit-btn">
-                    🚀 Submit Grievance
-                </button>
+            <div class="side-card sla-card">
 
-                <button type="button" class="back-btn" onclick="location.href='index.html'">
-                    ← Back to Home
-                </button>
+                <h3>
+                    Smart SLA
+                </h3>
+
+                <p>
+                    The response window is automatically determined
+                    from the predicted priority.
+                </p>
+
+
+                <div class="sla-list">
+
+                    <div class="sla-item">
+
+                        <strong>
+                            Critical
+                        </strong>
+
+                        <span>
+                            4 hours
+                        </span>
+
+                    </div>
+
+
+                    <div class="sla-item">
+
+                        <strong>
+                            High
+                        </strong>
+
+                        <span>
+                            24 hours
+                        </span>
+
+                    </div>
+
+
+                    <div class="sla-item">
+
+                        <strong>
+                            Medium
+                        </strong>
+
+                        <span>
+                            48 hours
+                        </span>
+
+                    </div>
+
+
+                    <div class="sla-item">
+
+                        <strong>
+                            Low
+                        </strong>
+
+                        <span>
+                            72 hours
+                        </span>
+
+                    </div>
+
+                </div>
 
             </div>
 
 
-        </form>
 
-    </div>
+            <!-- =============================================
+                 AFTER SUBMISSION
+                 ============================================= -->
+
+            <div class="side-card tracking-card">
+
+                <h3>
+                    After you submit
+                </h3>
+
+                <p>
+
+                    Your grievance starts with <strong>Pending</strong>
+                    status. You can then use the citizen grievance
+                    page to follow its progress and receive
+                    notifications.
+
+                </p>
 
 
-    <!-- Footer -->
+                <div class="tracking-links">
+
+                    <a href="my-grievances.html">
+                        My Grievances
+                    </a>
+
+                    <a href="view-grievances.html">
+                        Track Status
+                    </a>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
 
     <footer>
 
-        <p>
-            © 2026 Smart Grievance Portal | Making Communities Better
-        </p>
+        <strong>
+            Smart Grievance
+        </strong>
+
+        &nbsp;•&nbsp;
+
+        A citizen-focused grievance management system
 
     </footer>
-    <script>
-        const userId = sessionStorage.getItem("userId");
 
-        if (!userId) {
-            window.location.href = "login.html";
-        } else {
-            document.getElementById("userId").value = userId;
-        }
-    </script>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script>
+
+    /*
+     * =========================================================
+     * SMART GRIEVANCE - SUBMISSION
+     * =========================================================
+     *
+     * 1. Gets logged-in user ID
+     * 2. Sends grievance to Spring Boot
+     * 3. Reads the complete backend response
+     * 4. Saves all returned information
+     * 5. Opens submission-success.html
+     * =========================================================
+     */
+
+
+    const grievanceForm =
+        document.getElementById("grievanceForm");
+
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+
+    if (grievanceForm) {
+
+        grievanceForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                /*
+                 * -------------------------------------------------
+                 * 1. GET LOGGED-IN USER
+                 * -------------------------------------------------
+                 */
+
+                const loggedInUserId =
+                    sessionStorage.getItem("userId");
+
+
+                if (!loggedInUserId) {
+
+                    alert(
+                        "Please login before submitting a grievance."
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+                }
+
+
+                /*
+                 * -------------------------------------------------
+                 * 2. PUT USER ID INTO HIDDEN FIELD
+                 * -------------------------------------------------
+                 */
+
+                const userIdInput =
+                    document.getElementById("userId");
+
+
+                if (!userIdInput) {
+
+                    alert(
+                        "User information field is missing."
+                    );
+
+                    return;
+                }
+
+
+                userIdInput.value =
+                    loggedInUserId;
+
+
+                /*
+                 * -------------------------------------------------
+                 * 3. GET BUTTON TEXT
+                 * -------------------------------------------------
+                 */
+
+                const originalButtonText =
+                    submitButton
+                        ? submitButton.innerHTML
+                        : "";
+
+
+                /*
+                 * Disable button while submitting
+                 */
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        true;
+
+                    submitButton.innerHTML =
+                        "Submitting... ⏳";
+                }
+
+
+                try {
+
+                    /*
+                     * -------------------------------------------------
+                     * 4. CREATE FORM DATA
+                     * -------------------------------------------------
+                     *
+                     * IMPORTANT:
+                     * userId is set BEFORE FormData is created.
+                     */
+
+                    const formData =
+                        new FormData(
+                            grievanceForm
+                        );
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 5. SEND TO SPRING BOOT
+                     * -------------------------------------------------
+                     */
+
+                    const response =
+                        await fetch(
+                            grievanceForm.action ||
+                            "/submit",
+                            {
+                                method: "POST",
+                                body: formData,
+                                credentials: "same-origin"
+                            }
+                        );
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 6. CHECK SERVER RESPONSE
+                     * -------------------------------------------------
+                     */
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            "Server returned HTTP " +
+                            response.status
+                        );
+                    }
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 7. READ BACKEND RESPONSE
+                     * -------------------------------------------------
+                     */
+
+                    const html =
+                        await response.text();
+
+
+                    console.log(
+                        "========== BACKEND RESPONSE =========="
+                    );
+
+                    console.log(html);
+
+                    console.log(
+                        "======================================"
+                    );
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 8. CONVERT HTML RESPONSE TO TEXT
+                     * -------------------------------------------------
+                     */
+
+                    const parser =
+                        new DOMParser();
+
+
+                    const responseDocument =
+                        parser.parseFromString(
+                            html,
+                            "text/html"
+                        );
+
+
+                    /*
+                     * Replace <br> tags with new lines first.
+                     * This is important because the backend response
+                     * is HTML.
+                     */
+
+                    const normalizedHtml =
+                        html
+                            .replace(
+                                /<br\s*\/?>/gi,
+                                "\n"
+                            )
+                            .replace(
+                                /<\/p>/gi,
+                                "\n"
+                            )
+                            .replace(
+                                /<\/div>/gi,
+                                "\n"
+                            )
+                            .replace(
+                                /<\/li>/gi,
+                                "\n"
+                            );
+
+
+                    const normalizedDocument =
+                        parser.parseFromString(
+                            normalizedHtml,
+                            "text/html"
+                        );
+
+
+                    const cleanText =
+                        normalizedDocument
+                            .body
+                            .innerText
+                            .replace(/\r/g, "")
+                            .replace(
+                                /\u00a0/g,
+                                " "
+                            )
+                            .trim();
+
+
+                    console.log(
+                        "========== CLEAN RESPONSE =========="
+                    );
+
+                    console.log(cleanText);
+
+                    console.log(
+                        "===================================="
+                    );
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 9. GET FORM VALUES
+                     * -------------------------------------------------
+                     *
+                     * These are used as fallbacks for citizen
+                     * information.
+                     */
+
+                    const formName =
+                        formData.get("name") ||
+                        "";
+
+                    const formEmail =
+                        formData.get("email") ||
+                        "";
+
+                    const formGrievance =
+                        formData.get("grievance") ||
+                        "";
+
+                    const formLocation =
+                        formData.get("location") ||
+                        "";
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 10. EXTRACT BACKEND VALUES
+                     * -------------------------------------------------
+                     *
+                     * Handles:
+                     *
+                     * User ID: 1
+                     * Name: Kavya B
+                     * AI Category: ROAD
+                     * AI Priority: MEDIUM
+                     * Department: Roads & Infrastructure
+                     * etc.
+                     */
+
+                    function getValue(label) {
+
+                        const escapedLabel =
+                            label.replace(
+                                /[.*+?^${}()|[\]\\]/g,
+                                "\\$&"
+                            );
+
+
+                        const regex =
+                            new RegExp(
+                                "(?:^|\\n)\\s*" +
+                                escapedLabel +
+                                "\\s*:\\s*([^\\n]*)",
+                                "i"
+                            );
+
+
+                        const match =
+                            cleanText.match(regex);
+
+
+                        if (!match) {
+
+                            console.warn(
+                                "Value not found:",
+                                label
+                            );
+
+                            return "";
+                        }
+
+
+                        return match[1].trim();
+                    }
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 11. CREATE COMPLETE SUBMISSION OBJECT
+                     * -------------------------------------------------
+                     */
+
+                    const submission = {
+
+                        userId:
+                            getValue("User ID") ||
+                            loggedInUserId,
+
+
+                        name:
+                            getValue("Name") ||
+                            formName ||
+                            sessionStorage.getItem(
+                                "userName"
+                            ) ||
+                            "",
+
+
+                        email:
+                            getValue("Email") ||
+                            formEmail ||
+                            "",
+
+
+                        grievance:
+                            getValue("Grievance") ||
+                            formGrievance ||
+                            "",
+
+
+                        location:
+                            getValue("Location") ||
+                            formLocation ||
+                            "",
+
+
+                        category:
+                            getValue("AI Category") ||
+                            "",
+
+
+                        categoryReason:
+                            getValue(
+                                "Category Reason"
+                            ) ||
+                            "",
+
+
+                        priority:
+                            getValue(
+                                "AI Priority"
+                            ) ||
+                            "",
+
+
+                        priorityReason:
+                            getValue(
+                                "Priority Reason"
+                            ) ||
+                            "",
+
+
+                        department:
+                            getValue(
+                                "Department"
+                            ) ||
+                            "",
+
+
+                        sla:
+                            getValue("SLA") ||
+                            "",
+
+
+                        deadline:
+                            getValue(
+                                "SLA Deadline"
+                            ) ||
+                            "",
+
+
+                        escalation:
+                            getValue(
+                                "Escalation"
+                            ) ||
+                            "",
+
+
+                        status:
+                            getValue("Status") ||
+                            "",
+
+
+                        communityIssue:
+                            getValue(
+                                "Community Issue"
+                            ) ||
+                            "",
+
+
+                        relatedGrievances:
+                            getValue(
+                                "Related Grievances"
+                            ) ||
+                            "",
+
+
+                        communityAnalysis:
+                            getValue(
+                                "Community Analysis"
+                            ) ||
+                            ""
+                    };
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 12. DEBUG OUTPUT
+                     * -------------------------------------------------
+                     */
+
+                    console.log(
+                        "========== FINAL SUBMISSION =========="
+                    );
+
+                    console.log(
+                        submission
+                    );
+
+                    console.log(
+                        "======================================"
+                    );
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 13. SAVE COMPLETE DATA
+                     * -------------------------------------------------
+                     */
+
+                    sessionStorage.setItem(
+                        "lastSubmission",
+                        JSON.stringify(
+                            submission
+                        )
+                    );
+
+
+                    /*
+                     * -------------------------------------------------
+                     * 14. GO TO SUCCESS PAGE
+                     * -------------------------------------------------
+                     */
+
+                    window.location.replace(
+                        "/submission-success.html"
+                    );
+
+                }
+
+
+                catch (error) {
+
+                    console.error(
+                        "Grievance submission failed:",
+                        error
+                    );
+
+
+                    alert(
+                        "The grievance could not be submitted. " +
+                        "Please try again."
+                    );
+
+
+                    /*
+                     * Re-enable submit button.
+                     */
+
+                    if (submitButton) {
+
+                        submitButton.disabled =
+                            false;
+
+                        submitButton.innerHTML =
+                            originalButtonText;
+                    }
+                }
+
+            }
+        );
+    }
+
+</script>
 
 </body>
 
