@@ -14,297 +14,1010 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
-        
+
+        :root {
+            --terracotta: #B65335;
+            --terracotta-dark: #963F27;
+            --olive: #68734A;
+            --olive-dark: #505A38;
+            --cream: #F7F1E7;
+            --beige: #EFE4D2;
+            --brown: #4A4038;
+            --muted: #766F68;
+            --white: #FFFFFF;
+            --success: #58733E;
+            --danger: #A63D32;
+        }
+
         body {
             min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(182, 83, 53, 0.10), transparent 32%),
+                radial-gradient(circle at bottom right, rgba(104, 115, 74, 0.12), transparent 32%),
+                var(--cream);
+            color: var(--brown);
+        }
+
+        /* =========================
+           NAVBAR
+           ========================= */
+         /* =========================
+   NAVBAR
+   ========================= */
+
+.navbar {
+    width: 100%;
+    height: 78px;
+    background: #ffffff;
+    border-bottom: 1px solid #DED8CC;
+    box-shadow: 0 3px 18px rgba(40, 35, 25, 0.05);
+}
+
+.nav-container {
+    width: 92%;
+    max-width: 1180px;
+    height: 78px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo + brand */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
+    color: #25251F;
+}
+
+.logo-symbol {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-text h1 {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.brand-text h1 span {
+    color: #B65335;
+}
+
+.brand-text p {
+    margin: 5px 0 0;
+
+    color: #4D5835;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+/* Home button */
+
+.home-link {
+    display: inline-block;
+
+    padding: 9px 13px;
+
+    color: #4D5835;
+    background: transparent;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+}
+
+.home-link:hover {
+    background: #F3E8D7;
+    color: #963F27;
+}
+        
+
+        /* =========================
+           PAGE LAYOUT
+           ========================= */
+
+        .page {
+            min-height: calc(100vh - 76px);
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #eef5ff, #ffffff);
-            padding: 30px;
+            padding: 45px 20px;
         }
-        
-        .container {
+
+        .register-wrapper {
             width: 100%;
-            max-width: 500px;
-            background: white;
-            padding: 35px;
-            border-radius: 18px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+            max-width: 1050px;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 55px rgba(74, 64, 56, 0.13);
+            border: 1px solid rgba(74, 64, 56, 0.08);
         }
-        
-        .logo {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 30px;
-            font-weight: bold;
-            color: #1d4ed8;
+
+        /* =========================
+           LEFT PANEL
+           ========================= */
+
+        .intro-panel {
+            background:
+                linear-gradient(150deg, rgba(182, 83, 53, 0.98), rgba(150, 63, 39, 0.98));
+            color: white;
+            padding: 55px 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 25px;
+
+        .intro-panel::before {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            top: -90px;
+            right: -80px;
         }
-        
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #222;
+
+        .intro-panel::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            bottom: -70px;
+            left: -60px;
         }
-        
-        .form-group {
+
+        .intro-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-badge {
+            display: inline-block;
+            width: fit-content;
+            padding: 7px 13px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .intro-panel h1 {
+            font-size: 39px;
+            line-height: 1.12;
             margin-bottom: 18px;
+            letter-spacing: -1px;
         }
-        
+
+        .intro-panel .description {
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+        }
+
+        .feature-icon {
+            width: 34px;
+            height: 34px;
+            flex-shrink: 0;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, 0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .feature-text span {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           FORM PANEL
+           ========================= */
+
+        .form-panel {
+            padding: 45px 48px;
+            background: white;
+        }
+
+        .form-header {
+            margin-bottom: 27px;
+        }
+
+        .form-header h2 {
+            color: var(--brown);
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .form-header p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
         label {
             display: block;
             margin-bottom: 7px;
-            font-weight: 600;
-            color: #333;
+            color: var(--brown);
+            font-size: 13px;
+            font-weight: 700;
         }
-        
+
         input {
             width: 100%;
-            padding: 13px;
-            border: 1px solid #ccc;
-            border-radius: 9px;
-            font-size: 15px;
-            outline: none;
-        }
-        
-        input:focus {
-            border-color: #2563eb;
-        }
-        
-        button {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 9px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-        
-        .otp-btn {
-            background: #2563eb;
-            color: white;
-        }
-        
-        .otp-btn:hover {
-            background: #1d4ed8;
-        }
-        
-        .verify-btn {
-            background: #16a34a;
-            color: white;
-        }
-        
-        .verify-btn:hover {
-            background: #15803d;
-        }
-        
-        .register-btn {
-            background: #7c3aed;
-            color: white;
-            margin-top: 18px;
-        }
-        
-        .register-btn:hover {
-            background: #6d28d9;
-        }
-        
-        button:disabled {
-            background: #aaa;
-            cursor: not-allowed;
-        }
-        
-        .otp-box {
-            margin-top: 15px;
-            padding: 15px;
-            background: #fff7d6;
-            border: 1px solid #f0c36d;
+            height: 46px;
+            padding: 0 14px;
+            border: 1px solid #D9D1C7;
             border-radius: 10px;
-            display: none;
-        }
-        
-        .otp-box strong {
-            color: #92400e;
-        }
-        
-        .otp-value {
-            margin-top: 8px;
-            font-size: 25px;
-            font-weight: bold;
-            letter-spacing: 5px;
-            color: #b45309;
-            text-align: center;
-        }
-        
-        .message {
-            margin-top: 18px;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
-            text-align: center;
+            background: #FFFCF8;
+            color: var(--brown);
             font-size: 14px;
+            outline: none;
+            transition: 0.2s ease;
         }
-        
+
+        input::placeholder {
+            color: #A49B91;
+        }
+
+        input:focus {
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 3px rgba(182, 83, 53, 0.10);
+            background: white;
+        }
+
+        /* =========================
+           MOBILE OTP
+           ========================= */
+
+        .mobile-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mobile-row input {
+            flex: 1;
+        }
+
+        .otp-btn {
+            width: 145px;
+            flex-shrink: 0;
+            height: 46px;
+            border: none;
+            border-radius: 10px;
+            background: var(--olive);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .otp-btn:hover {
+            background: var(--olive-dark);
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           OTP DISPLAY
+           ========================= */
+
+        .otp-box {
+            margin-top: -3px;
+            margin-bottom: 17px;
+            padding: 16px;
+            border-radius: 12px;
+            background: #F5F0DF;
+            border: 1px solid #D9CEAC;
+            display: none;
+        }
+
+        .otp-box strong {
+            display: block;
+            color: var(--brown);
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .otp-box p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .otp-value {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 6px;
+            color: var(--terracotta);
+        }
+
+        /* =========================
+           VERIFY OTP
+           ========================= */
+
+        .verify-btn {
+            width: 100%;
+            height: 44px;
+            border: none;
+            border-radius: 10px;
+            background: var(--terracotta);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s ease;
+        }
+
+        .verify-btn:hover {
+            background: var(--terracotta-dark);
+        }
+
+        .verified {
+            color: var(--success);
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 8px;
+            display: none;
+        }
+
+        /* =========================
+           PASSWORD
+           ========================= */
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 48px;
+        }
+
+        .eye-button {
+            position: absolute;
+            right: 9px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 34px;
+            height: 34px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .eye-button:hover {
+            background: var(--cream);
+            border-radius: 7px;
+        }
+
+        /* =========================
+           REGISTER BUTTON
+           ========================= */
+
+        .register-btn {
+            width: 100%;
+            height: 48px;
+            border: none;
+            border-radius: 10px;
+            background: var(--terracotta);
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: 0.2s ease;
+        }
+
+        .register-btn:hover {
+            background: var(--terracotta-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 7px 18px rgba(182, 83, 53, 0.18);
+        }
+
+        .register-btn:disabled {
+            background: #B7AEA5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* =========================
+           MESSAGE
+           ========================= */
+
+        .message {
+            margin-top: 15px;
+            padding: 11px 13px;
+            border-radius: 9px;
+            display: none;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
         .success {
-            background: #dcfce7;
-            color: #166534;
+            background: #E8F0DF;
+            color: #4B6536;
+            border: 1px solid #CBDAB9;
         }
-        
+
         .error {
-            background: #fee2e2;
-            color: #991b1b;
+            background: #F9E7E2;
+            color: #8E352B;
+            border: 1px solid #E8C2BA;
         }
-        
+
+        /* =========================
+           LOGIN LINK
+           ========================= */
+
         .login-link {
             text-align: center;
-            margin-top: 22px;
-            color: #555;
+            margin-top: 21px;
+            color: var(--muted);
+            font-size: 13px;
         }
-        
+
         .login-link a {
-            color: #2563eb;
+            color: var(--terracotta);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 800;
         }
-        
+
         .login-link a:hover {
             text-decoration: underline;
         }
-        
-        .verified {
-            color: #16a34a;
-            font-weight: bold;
-            margin-top: 8px;
-            display: none;
+
+        /* =========================
+           FOOTER
+           ========================= */
+
+        .footer-note {
+            text-align: center;
+            margin-top: 18px;
+            color: #948B82;
+            font-size: 11px;
         }
+
+        /* =========================
+           RESPONSIVE
+           ========================= */
+
+        @media (max-width: 850px) {
+            .register-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 570px;
+            }
+
+            .intro-panel {
+                padding: 35px 35px;
+            }
+
+            .intro-panel h1 {
+                font-size: 31px;
+            }
+
+            .features {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-panel {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .brand {
+                font-size: 18px;
+            }
+
+            .brand img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .page {
+                padding: 20px 12px;
+            }
+
+            .register-wrapper {
+                border-radius: 18px;
+            }
+
+            .intro-panel {
+                padding: 30px 24px;
+            }
+
+            .intro-panel h1 {
+                font-size: 28px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .form-panel {
+                padding: 28px 22px;
+            }
+
+            .form-header h2 {
+                font-size: 24px;
+            }
+
+            .mobile-row {
+                flex-direction: column;
+            }
+
+            .otp-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 560px) {
+
+    .nav-container {
+        min-height: 68px;
+    }
+
+    .brand-text h1 {
+        font-size: 17px;
+    }
+
+    .brand-text p {
+        display: none;
+    }
+
+    .home-link {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
+
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <!-- =========================
+         NAVBAR
+         ========================= -->
 
-        <div class="logo">Smart Grievance</div>
 
-        <div class="subtitle">
-            Citizen Registration Portal
-        </div>
+    <header class="navbar">
 
-        <h2>Create Your Account</h2>
+    <div class="nav-container">
 
-        <!-- NAME -->
-        <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Enter your full name">
-        </div>
+        <a href="index.html" class="brand">
 
-        <!-- EMAIL -->
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Enter your email">
-        </div>
+            <img
+                src="logo-symbol.png"
+                alt="Smart Grievance Logo"
+                class="logo-symbol"
+            >
 
-        <!-- MOBILE -->
-        <div class="form-group">
-            <label for="mobile">Mobile Number</label>
+            <div class="brand-text">
 
-            <input type="tel" id="mobile" placeholder="Enter 10-digit mobile number" maxlength="10">
+                <h1>
+                    SMART <span>GRIEVANCE</span>
+                </h1>
 
-            <button type="button" class="otp-btn" onclick="sendOtp()">
-            Send Demo OTP
-        </button>
-        </div>
-
-        <!-- DEMO OTP -->
-        <div id="otpBox" class="otp-box">
-
-            <strong>Demo OTP</strong>
-
-            <p>
-                Since this is a demo system, the OTP is displayed here instead of being sent by SMS.
-            </p>
-
-            <div id="otpValue" class="otp-value"></div>
-
-        </div>
-
-        <!-- ENTER OTP -->
-        <div class="form-group" style="margin-top: 18px;">
-
-            <label for="otp">Enter OTP</label>
-
-            <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6">
-
-            <button type="button" class="verify-btn" onclick="verifyOtp()">
-            Verify OTP
-        </button>
-
-            <div id="verifiedMessage" class="verified">
-                ✓ Mobile number verified
-            </div>
-
-        </div>
-
-        <!-- PASSWORD -->
-
-        <div class="form-group">
-
-            <label for="password">Password</label>
-
-            <div style="position: relative;">
-
-                <input type="password" id="password" placeholder="Create a password" style="padding-right: 45px;">
-
-                <button type="button" onclick="togglePassword()" id="eyeButton" style="
-                       position: absolute;
-                       right: 10px;
-                       top: 50%;
-                       transform: translateY(-50%);
-                       width: auto;
-                       margin: 0;
-                       padding: 5px;
-                       background: none;
-                       color: #555;
-                       font-size: 20px;
-                       cursor: pointer;
-                    ">
-                    👁
-                </button>
+                <p>
+                    A CLEANER, GREENER BENGALURU
+                </p>
 
             </div>
 
-        </div>
-
-        <!-- REGISTER -->
-        <button type="button" class="register-btn" id="registerButton" onclick="registerCitizen()">
-        Create Citizen Account
-    </button>
-
-        <!-- MESSAGE -->
-        <div id="message" class="message"></div>
-
-        <!-- LOGIN -->
-        <div class="login-link">
-
-            Already have an account?
-
-            <a href="login.html">
-            Login here
         </a>
 
-        </div>
+        <a href="index.html" class="home-link">
+            ← Home
+        </a>
 
     </div>
 
+</header>
+
+
+    <!-- =========================
+         PAGE
+         ========================= -->
+
+    <main class="page">
+
+        <div class="register-wrapper">
+
+            <!-- =========================
+                 LEFT INTRO PANEL
+                 ========================= -->
+
+            <section class="intro-panel">
+
+                <div class="intro-content">
+
+                    <div class="intro-badge">
+                        Citizen Portal
+                    </div>
+
+                    <h1>
+                        Your voice can<br>
+                        create change.
+                    </h1>
+
+                    <p class="description">
+                        Create your Smart Grievance account and
+                        get a simple, transparent way to raise
+                        and track civic issues.
+                    </p>
+
+
+                    <div class="features">
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                📝
+                            </div>
+
+                            <div class="feature-text">
+                                <strong>Raise Grievances</strong>
+                                <span>
+                                    Report civic issues from one convenient portal.
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                🔐
+                            </div>
+
+                            <div class="feature-text">
+                                <strong>Secure Account</strong>
+                                <span>
+                                    Verify your mobile number before registration.
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                📍
+                            </div>
+
+                            <div class="feature-text">
+                                <strong>Track Your Issues</strong>
+                                <span>
+                                    Follow the progress of grievances you submit.
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                🤝
+                            </div>
+
+                            <div class="feature-text">
+                                <strong>Community Impact</strong>
+                                <span>
+                                    Help identify issues affecting your community.
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 FORM PANEL
+                 ========================= -->
+
+            <section class="form-panel">
+
+                <div class="form-header">
+
+                    <h2>Create your account</h2>
+
+                    <p>
+                        Enter your details below to register as a citizen.
+                    </p>
+
+                </div>
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        Mobile Number
+                    </label>
+
+                    <div class="mobile-row">
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            placeholder="Enter 10-digit mobile number"
+                            maxlength="10"
+                        >
+
+                        <button
+                            type="button"
+                            class="otp-btn"
+                            onclick="sendOtp()"
+                        >
+                            Send Demo OTP
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DEMO OTP -->
+
+                <div id="otpBox" class="otp-box">
+
+                    <strong>
+                        Demo OTP
+                    </strong>
+
+                    <p>
+                        Since this is a demo system, the OTP is displayed
+                        here instead of being sent by SMS.
+                    </p>
+
+                    <div
+                        id="otpValue"
+                        class="otp-value"
+                    ></div>
+
+                </div>
+
+
+                <!-- ENTER OTP -->
+
+                <div
+                    class="form-group"
+                    style="margin-top: 18px;"
+                >
+
+                    <label for="otp">
+                        Enter OTP
+                    </label>
+
+                    <input
+                        type="text"
+                        id="otp"
+                        placeholder="Enter 6-digit OTP"
+                        maxlength="6"
+                    >
+
+                    <button
+                        type="button"
+                        class="verify-btn"
+                        onclick="verifyOtp()"
+                    >
+                        Verify OTP
+                    </button>
+
+                    <div
+                        id="verifiedMessage"
+                        class="verified"
+                    >
+                        ✓ Mobile number verified
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Create a password"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword()"
+                            id="eyeButton"
+                            class="eye-button"
+                            aria-label="Show or hide password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REGISTER -->
+
+                <button
+                    type="button"
+                    class="register-btn"
+                    id="registerButton"
+                    onclick="registerCitizen()"
+                >
+                    Create Citizen Account
+                </button>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="message"
+                    class="message"
+                ></div>
+
+
+                <!-- LOGIN -->
+
+                <div class="login-link">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Login here
+                    </a>
+
+                </div>
+
+                <div class="footer-note">
+                    Smart Grievance · Citizen Registration Portal
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
 
     <script>
+
         let otpVerified = false;
 
 
@@ -355,12 +1068,14 @@
                 const result =
                     await response.text();
 
+
                 /*
                  * Backend returns:
                  *
                  * OTP generated successfully.
                  * Demo OTP: 123456
                  */
+
 
                 const otpMatch =
                     result.match(/Demo OTP:\s*(\d{6})/);
@@ -411,6 +1126,7 @@
             const otp =
                 document.getElementById("otp").value.trim();
 
+
             if (!/^[0-9]{10}$/.test(mobile)) {
 
                 showMessage(
@@ -420,6 +1136,7 @@
 
                 return;
             }
+
 
             if (!/^[0-9]{6}$/.test(otp)) {
 
@@ -431,6 +1148,7 @@
                 return;
             }
 
+
             try {
 
                 const response =
@@ -441,9 +1159,11 @@
                 const result =
                     await response.text();
 
+
                 if (
-                    result.toLowerCase()
-                    .includes("successfully")
+                    result
+                        .toLowerCase()
+                        .includes("successfully")
                 ) {
 
                     otpVerified = true;
@@ -483,8 +1203,6 @@
 
         async function registerCitizen() {
 
-
-
             const name =
                 document.getElementById("name").value.trim();
 
@@ -497,6 +1215,7 @@
             const password =
                 document.getElementById("password").value;
 
+
             if (!name || !email || !mobile || !password) {
 
                 showMessage(
@@ -506,6 +1225,7 @@
 
                 return;
             }
+
 
             if (!/^[0-9]{10}$/.test(mobile)) {
 
@@ -517,6 +1237,7 @@
                 return;
             }
 
+
             if (!otpVerified) {
 
                 showMessage(
@@ -526,6 +1247,7 @@
 
                 return;
             }
+
 
             if (password.length < 6) {
 
@@ -537,6 +1259,7 @@
                 return;
             }
 
+
             try {
 
                 const url =
@@ -545,20 +1268,24 @@
                     `&mobile=${encodeURIComponent(mobile)}` +
                     `&password=${encodeURIComponent(password)}`;
 
+
                 const response =
                     await fetch(
-                        url, {
+                        url,
+                        {
                             method: "POST"
                         }
                     );
 
+
                 const result =
                     await response.text();
 
+
                 if (
                     result
-                    .toLowerCase()
-                    .includes("successfully")
+                        .toLowerCase()
+                        .includes("successfully")
                 ) {
 
                     showMessage(
@@ -566,14 +1293,18 @@
                         "success"
                     );
 
+
                     document.getElementById(
                         "registerButton"
                     ).disabled = true;
 
+
                     setTimeout(
                         () => {
+
                             window.location.href =
                                 "login.html";
+
                         },
                         2000
                     );
@@ -595,6 +1326,11 @@
             }
         }
 
+
+        /* ==============================
+           PASSWORD TOGGLE
+           ============================== */
+
         function togglePassword() {
 
             const password =
@@ -603,18 +1339,21 @@
             const eyeButton =
                 document.getElementById("eyeButton");
 
+
             if (password.type === "password") {
 
                 password.type = "text";
+
                 eyeButton.innerText = "🙈";
 
             } else {
 
                 password.type = "password";
-                eyeButton.innerText = "👁";
 
+                eyeButton.innerText = "👁";
             }
         }
+
     </script>
 
 </body>

@@ -1,204 +1,937 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Citizen Login - Smart Grievance</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        
-        .login-container {
-            width: 100%;
-            max-width: 430px;
-            padding: 20px;
-        }
-        
-        .login-card {
-            background: white;
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
-        }
-        
-        h1 {
-            margin-top: 0;
-            text-align: center;
-            color: #0f172a;
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 30px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
-        
-        input {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            margin-bottom: 18px;
-            font-size: 15px;
-        }
-        
-        input:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
-        /* Password wrapper */
-        
-        .password-wrapper {
-            position: relative;
-            width: 100%;
-            margin-bottom: 18px;
-        }
-        
-        .password-wrapper input {
-            width: 100%;
-            margin-bottom: 0;
-            padding-right: 50px;
-        }
-        /* Eye button */
-        
-        .eye-button {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            margin: 0;
-            border: none;
-            background: transparent;
-            color: #555;
-            font-size: 19px;
-            cursor: pointer;
-        }
-        
-        .eye-button:hover {
-            background: transparent;
-            opacity: 0.7;
-        }
-        /* Login button */
-        
-        .login-button {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            background: #0f172a;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .login-button:hover {
-            opacity: 0.9;
-        }
-        
-        .message {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 8px;
+<title>Citizen Login | Smart Grievance</title>
+
+<style>
+    :root {
+        --terracotta: #B65335;
+        --terracotta-dark: #963F27;
+        --olive: #68734A;
+        --olive-dark: #4D5835;
+        --beige: #F3E8D7;
+        --cream: #FBF7F0;
+        --dark: #25251F;
+        --muted: #77766E;
+        --border: #DED8CC;
+        --white: #FFFFFF;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+        color: var(--dark);
+
+        background:
+            radial-gradient(
+                circle at 12% 15%,
+                rgba(182, 83, 53, .10),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 88% 85%,
+                rgba(104, 115, 74, .12),
+                transparent 30%
+            ),
+            var(--cream);
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* =====================================================
+       NAVBAR
+       ===================================================== */
+
+    .navbar {
+        width: 100%;
+        background: rgba(255, 255, 255, .96);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 3px 18px rgba(40, 35, 25, .05);
+    }
+
+    .nav-container {
+        width: 92%;
+        max-width: 1180px;
+        min-height: 78px;
+        margin: auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        color: var(--dark);
+        text-decoration: none;
+        flex-shrink: 0;
+    }
+
+    .logo-symbol {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+    }
+
+    .brand-text h1 {
+        margin: 0;
+
+        font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
+        font-size: 21px;
+        letter-spacing: 1px;
+        line-height: 1;
+    }
+
+    .brand-text h1 span {
+        color: var(--terracotta);
+    }
+
+    .brand-text p {
+        margin: 6px 0 0;
+
+        color: var(--olive-dark);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .nav-links a {
+        padding: 10px 13px;
+
+        color: var(--dark);
+        text-decoration: none;
+
+        border-radius: 8px;
+
+        font-size: 13px;
+        font-weight: 600;
+
+        transition: .2s ease;
+    }
+
+    .nav-links a:hover {
+        background: var(--beige);
+        color: var(--terracotta-dark);
+    }
+
+    .nav-links a.active {
+        background: var(--terracotta);
+        color: white;
+        box-shadow: 0 5px 14px rgba(182, 83, 53, .20);
+    }
+
+    .auth-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .auth-links a {
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+
+        padding: 9px 13px;
+        border-radius: 8px;
+    }
+
+    .register-link {
+        color: white;
+        background: var(--terracotta);
+    }
+
+    .register-link:hover {
+        background: var(--terracotta-dark);
+    }
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
+    .page {
+        flex: 1;
+
+        width: 92%;
+        max-width: 1180px;
+
+        margin: auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 55px 0;
+    }
+
+    .login-layout {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 440px;
+        gap: 70px;
+
+        align-items: center;
+    }
+
+    /* =====================================================
+       LEFT INFORMATION PANEL
+       ===================================================== */
+
+    .intro-panel {
+        padding: 20px 0;
+    }
+
+    .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        color: var(--terracotta);
+
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+
+        margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--terracotta);
+    }
+
+    .intro-panel h2 {
+        max-width: 590px;
+
+        margin: 0 0 18px;
+
+        font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
+        font-size: clamp(38px, 5vw, 58px);
+        line-height: 1.04;
+        font-weight: 500;
+    }
+
+    .intro-panel h2 span {
+        color: var(--terracotta);
+    }
+
+    .intro-text {
+        max-width: 560px;
+
+        margin: 0;
+
+        color: var(--muted);
+
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+    .feature-list {
+        display: grid;
+        gap: 14px;
+
+        margin-top: 32px;
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+    }
+
+    .feature-icon {
+        width: 39px;
+        height: 39px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        border-radius: 50%;
+
+        background: var(--beige);
+        color: var(--terracotta);
+
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .feature strong {
+        display: block;
+        margin-bottom: 2px;
+
+        font-size: 14px;
+    }
+
+    .feature span {
+        color: var(--muted);
+        font-size: 12px;
+    }
+
+    /* =====================================================
+       LOGIN CARD
+       ===================================================== */
+
+    .login-card {
+        background: var(--white);
+
+        padding: 38px;
+
+        border: 1px solid var(--border);
+        border-radius: 20px;
+
+        box-shadow:
+            0 20px 55px rgba(50, 42, 30, .11);
+    }
+
+    .card-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-icon {
+        width: 58px;
+        height: 58px;
+
+        margin: 0 auto 17px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: var(--beige);
+        color: var(--terracotta);
+
+        font-size: 25px;
+    }
+
+    .card-header h1 {
+        margin: 0;
+
+        font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
+        font-size: 31px;
+        font-weight: 500;
+    }
+
+    .card-header p {
+        margin: 9px 0 0;
+
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    /* =====================================================
+       FORM
+       ===================================================== */
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: var(--dark);
+
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    input {
+        width: 100%;
+
+        padding: 14px 15px;
+
+        border: 1px solid var(--border);
+        border-radius: 10px;
+
+        background: #FFFDFC;
+
+        color: var(--dark);
+
+        font-size: 14px;
+
+        outline: none;
+
+        transition:
+            border .2s ease,
+            box-shadow .2s ease,
+            background .2s ease;
+    }
+
+    input::placeholder {
+        color: #AAA79D;
+    }
+
+    input:focus {
+        border-color: var(--terracotta);
+
+        background: white;
+
+        box-shadow:
+            0 0 0 3px rgba(182, 83, 53, .10);
+    }
+
+    /* =====================================================
+       PASSWORD
+       ===================================================== */
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-wrapper input {
+        padding-right: 50px;
+    }
+
+    .eye-button {
+        position: absolute;
+
+        right: 7px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        width: 38px;
+        height: 38px;
+
+        padding: 0;
+
+        border: none;
+        border-radius: 7px;
+
+        background: transparent;
+
+        color: var(--muted);
+
+        font-size: 18px;
+
+        cursor: pointer;
+    }
+
+    .eye-button:hover {
+        background: var(--beige);
+        color: var(--terracotta);
+    }
+
+    /* =====================================================
+       LOGIN BUTTON
+       ===================================================== */
+
+    .login-button {
+        width: 100%;
+
+        padding: 15px;
+
+        margin-top: 4px;
+
+        border: none;
+        border-radius: 10px;
+
+        background: var(--terracotta);
+        color: white;
+
+        font-size: 15px;
+        font-weight: 800;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 7px 18px rgba(182, 83, 53, .20);
+
+        transition:
+            background .2s ease,
+            transform .2s ease,
+            box-shadow .2s ease;
+    }
+
+    .login-button:hover {
+        background: var(--terracotta-dark);
+
+        transform: translateY(-1px);
+
+        box-shadow:
+            0 10px 22px rgba(182, 83, 53, .25);
+    }
+
+    .login-button:active {
+        transform: translateY(0);
+    }
+
+    /* =====================================================
+       MESSAGE
+       ===================================================== */
+
+    .message {
+        display: none;
+
+        margin-top: 17px;
+        padding: 12px 14px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+        line-height: 1.5;
+
+        text-align: center;
+    }
+
+    .success {
+        background: #E8F1DF;
+        color: var(--olive-dark);
+
+        border: 1px solid #C9D9B7;
+    }
+
+    .error {
+        background: #FBE8E3;
+        color: #8F3927;
+
+        border: 1px solid #E8BDB2;
+    }
+
+    /* =====================================================
+       LINKS
+       ===================================================== */
+
+    .links {
+        margin-top: 25px;
+
+        text-align: center;
+
+        color: var(--muted);
+
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .links a {
+        color: var(--terracotta);
+
+        font-weight: 700;
+
+        text-decoration: none;
+    }
+
+    .links a:hover {
+        text-decoration: underline;
+    }
+
+    .home-link {
+        display: inline-block;
+        margin-top: 9px;
+
+        color: var(--olive-dark) !important;
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    footer {
+        padding: 18px 20px;
+
+        border-top: 1px solid var(--border);
+
+        background: white;
+
+        color: var(--muted);
+
+        text-align: center;
+
+        font-size: 11px;
+    }
+
+    footer strong {
+        color: var(--olive-dark);
+    }
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+
+    @media (max-width: 900px) {
+
+        .nav-links {
             display: none;
         }
-        
-        .success {
-            background: #dcfce7;
-            color: #166534;
-        }
-        
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-        
-        .links {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .links a {
-            color: #2563eb;
-            text-decoration: none;
-        }
-        
-        .links a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
 
+        .login-layout {
+            grid-template-columns: 1fr;
+            max-width: 520px;
+            gap: 25px;
+        }
+
+        .intro-panel {
+            text-align: center;
+        }
+
+        .intro-panel h2,
+        .intro-text {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-list {
+            text-align: left;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page {
+            padding: 35px 0;
+        }
+    }
+
+    @media (max-width: 560px) {
+
+        .nav-container {
+            min-height: 68px;
+        }
+
+        .brand-text h1 {
+            font-size: 17px;
+        }
+
+        .brand-text p {
+            display: none;
+        }
+
+        .auth-links .register-link {
+            padding: 8px 10px;
+            font-size: 12px;
+        }
+
+        .page {
+            width: 90%;
+        }
+
+        .intro-panel h2 {
+            font-size: 37px;
+        }
+
+        .intro-text {
+            font-size: 14px;
+        }
+
+        .login-card {
+            padding: 28px 22px;
+            border-radius: 16px;
+        }
+
+        .card-header h1 {
+            font-size: 27px;
+        }
+    }
+</style>
+```
+
+</head>
 
 <body>
 
-    <div class="login-container">
+```
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
 
-        <div class="login-card">
+<header class="navbar">
 
-            <h1>Citizen Login</h1>
+    <div class="nav-container">
 
-            <p class="subtitle">
-                Login to access your Smart Grievance account
+        <a href="index.html" class="brand">
+
+            <img
+                src="logo-symbol.png"
+                alt="Smart Grievance Logo"
+                class="logo-symbol"
+            >
+
+            <div class="brand-text">
+
+                <h1>
+                    SMART <span>GRIEVANCE</span>
+                </h1>
+
+                <p>
+                    A CLEANER, GREENER BENGALURU
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="login.html" class="active">
+                Login
+            </a>
+
+        </nav>
+
+
+        <div class="auth-links">
+
+            <a
+                href="register.html"
+                class="register-link"
+            >
+                Register
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="page">
+
+    <div class="login-layout">
+
+
+        <!-- =================================================
+             INTRO
+             ================================================= -->
+
+        <section class="intro-panel">
+
+            <div class="eyebrow">
+                CITIZEN GRIEVANCE MANAGEMENT
+            </div>
+
+            <h2>
+                Welcome back to
+                <span>Smart Grievance.</span>
+            </h2>
+
+            <p class="intro-text">
+
+                Sign in to manage your grievances, track
+                complaint progress, and stay updated on the
+                civic issues you have reported.
+
             </p>
+
+
+            <div class="feature-list">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Track your grievances
+                        </strong>
+
+                        <span>
+                            Follow the progress of every complaint.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ◉
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Smart complaint analysis
+                        </strong>
+
+                        <span>
+                            View AI-powered category and priority details.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        →
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Stay informed
+                        </strong>
+
+                        <span>
+                            Keep your citizen account connected to your grievances.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             LOGIN CARD
+             ================================================= -->
+
+        <section class="login-card">
+
+
+            <div class="card-header">
+
+                <div class="login-icon">
+                    ♙
+                </div>
+
+                <h1>
+                    Citizen Login
+                </h1>
+
+                <p>
+                    Login to access your Smart Grievance account
+                </p>
+
+            </div>
 
 
             <form id="loginForm">
 
-                <!-- MOBILE NUMBER -->
 
-                <label for="mobile">
-                    Mobile Number
-                </label>
+                <!-- MOBILE -->
 
-                <input type="text" id="mobile" placeholder="Enter mobile number" maxlength="10" required>
+                <div class="form-group">
+
+                    <label for="mobile">
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="mobile"
+                        placeholder="Enter 10-digit mobile number"
+                        maxlength="10"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
 
 
                 <!-- PASSWORD -->
 
-                <label for="password">
-                    Password
-                </label>
+                <div class="form-group">
 
-                <div class="password-wrapper">
+                    <label for="password">
+                        Password
+                    </label>
 
-                    <input type="password" id="password" placeholder="Enter password" required>
+                    <div class="password-wrapper">
 
-                    <button type="button" id="eyeButton" class="eye-button" onclick="togglePassword()">
-                        👁
-                    </button>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="eyeButton"
+                            class="eye-button"
+                            onclick="togglePassword()"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
 
                 </div>
 
 
                 <!-- LOGIN -->
 
-                <button type="submit" class="login-button">
-                    Login
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Login to Smart Grievance
                 </button>
 
             </form>
@@ -206,141 +939,157 @@
 
             <!-- MESSAGE -->
 
-            <div id="message" class="message"></div>
+            <div
+                id="message"
+                class="message"
+            ></div>
 
 
             <!-- LINKS -->
 
             <div class="links">
 
-                <a href="register.html">
-                    New citizen? Register here
-                </a>
+                <div>
+                    New citizen?
+                    <a href="register.html">
+                        Create an account
+                    </a>
+                </div>
 
-                <br><br>
-
-                <a href="index.html">
+                <a
+                    href="index.html"
+                    class="home-link"
+                >
                     ← Back to Home
                 </a>
 
             </div>
 
-        </div>
+        </section>
 
     </div>
 
-
-    <script>
-        /* =========================================
-                           LOGIN
-                           ========================================= */
-
-        const loginForm =
-            document.getElementById("loginForm");
-
-        const message =
-            document.getElementById("message");
+</main>
 
 
-        loginForm.addEventListener(
-            "submit",
-            async function(event) {
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
 
-                event.preventDefault();
+<footer>
 
+    <strong>
+        Smart Grievance
+    </strong>
 
-                const mobile =
-                    document.getElementById("mobile")
-                    .value.trim();
+    &nbsp;•&nbsp;
 
-                const password =
-                    document.getElementById("password")
-                    .value;
+    A citizen-focused grievance management system
 
-
-                message.style.display = "none";
+</footer>
 
 
-                try {
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
 
-                    const response =
-                        await fetch(
-                            `/login?mobile=${encodeURIComponent(mobile)}&password=${encodeURIComponent(password)}`, {
-                                method: "POST"
-                            }
-                        );
+<script>
 
+    /* =========================================
+       LOGIN
+       ========================================= */
 
-                    const data =
-                        await response.json();
+    const loginForm =
+        document.getElementById("loginForm");
 
-
-                    if (data.success) {
-
-                        /*
-                         * Store the actual
-                         * logged-in user's details.
-                         */
-
-                        sessionStorage.setItem(
-                            "userId",
-                            data.userId
-                        );
-
-                        sessionStorage.setItem(
-                            "userName",
-                            data.name
-                        );
-
-                        sessionStorage.setItem(
-                            "userRole",
-                            data.role
-                        );
+    const message =
+        document.getElementById("message");
 
 
-                        message.className =
-                            "message success";
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
 
-                        message.style.display =
-                            "block";
-
-                        message.textContent =
-                            "Login successful!";
+            event.preventDefault();
 
 
-                        /*
-                         * Redirect to
-                         * My Grievances page.
-                         */
+            const mobile =
+                document.getElementById("mobile")
+                .value.trim();
 
-                        setTimeout(
-                            function() {
-
-                                window.location.href =
-                                    "my-grievances.html";
-
-                            },
-                            800
-                        );
+            const password =
+                document.getElementById("password")
+                .value;
 
 
-                    } else {
+            message.style.display = "none";
 
-                        message.className =
-                            "message error";
 
-                        message.style.display =
-                            "block";
+            try {
 
-                        message.textContent =
-                            data.message ||
-                            "Invalid login details.";
+                const response =
+                    await fetch(
+                        `/login?mobile=${encodeURIComponent(mobile)}&password=${encodeURIComponent(password)}`,
+                        {
+                            method: "POST"
+                        }
+                    );
 
-                    }
 
-                } catch (error) {
+                const data =
+                    await response.json();
 
-                    console.error(error);
+
+                if (data.success) {
+
+                    /*
+                     * Store the actual
+                     * logged-in user's details.
+                     */
+
+                    sessionStorage.setItem(
+                        "userId",
+                        data.userId
+                    );
+
+                    sessionStorage.setItem(
+                        "userName",
+                        data.name
+                    );
+
+                    sessionStorage.setItem(
+                        "userRole",
+                        data.role
+                    );
+
+
+                    message.className =
+                        "message success";
+
+                    message.style.display =
+                        "block";
+
+                    message.textContent =
+                        "Login successful!";
+
+
+                    /*
+                     * Redirect to
+                     * My Grievances page.
+                     */
+
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "my-grievances.html";
+
+                        },
+                        800
+                    );
+
+
+                } else {
 
                     message.className =
                         "message error";
@@ -349,43 +1098,70 @@
                         "block";
 
                     message.textContent =
-                        "Unable to connect to the server.";
+                        data.message ||
+                        "Invalid login details.";
 
                 }
 
-            }
-        );
+            } catch (error) {
 
+                console.error(error);
 
-        /* =========================================
-           SHOW / HIDE PASSWORD
-           ========================================= */
+                message.className =
+                    "message error";
 
-        function togglePassword() {
+                message.style.display =
+                    "block";
 
-            const password =
-                document.getElementById("password");
-
-            const eyeButton =
-                document.getElementById("eyeButton");
-
-
-            if (password.type === "password") {
-
-                password.type = "text";
-
-                eyeButton.innerText = "🙈";
-
-            } else {
-
-                password.type = "password";
-
-                eyeButton.innerText = "👁";
+                message.textContent =
+                    "Unable to connect to the server.";
 
             }
 
         }
-    </script>
+    );
+
+
+    /* =========================================
+       SHOW / HIDE PASSWORD
+       ========================================= */
+
+    function togglePassword() {
+
+        const password =
+            document.getElementById("password");
+
+        const eyeButton =
+            document.getElementById("eyeButton");
+
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            eyeButton.innerText = "🙈";
+
+            eyeButton.setAttribute(
+                "aria-label",
+                "Hide password"
+            );
+
+        } else {
+
+            password.type = "password";
+
+            eyeButton.innerText = "👁";
+
+            eyeButton.setAttribute(
+                "aria-label",
+                "Show password"
+            );
+
+        }
+
+    }
+
+</script>
 
 </body>
 
