@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Higher Authority | Smart Grievance</title>
+
+    <style>
+         :root {
+            --terracotta: #B65335;
+            --terracotta-dark: #913F2A;
+            --terracotta-light: #E9C8B8;
+            --olive: #59613D;
+            --olive-dark: #3F472B;
+            --olive-light: #DCE0C9;
+            --beige: #F3E8D7;
+            --beige-light: #FAF4EA;
+            --cream: #FFFDF8;
+            --dark: #20231D;
+            --text: #34362F;
+            --muted: #6E6A60;
+            --border: #D9C8B1;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--beige-light);
+            color: var(--text);
+        }
+        /* HEADER */
+        
+        header {
+            background: var(--cream);
+            padding: 20px 6%;
+            min-height: 105px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 14px rgba(72, 55, 38, .08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+        
+        .brand img {
+            width: 68px;
+            height: 68px;
+            object-fit: contain;
+        }
+        
+        .brand-title {
+            font-family: Georgia, serif;
+            font-size: 31px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .brand-tagline {
+            margin-top: 4px;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            color: var(--muted);
+        }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: var(--terracotta);
+        }
+        /* CONTAINER */
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 35px auto;
+        }
+        /* HERO */
+        
+        .hero {
+            background: linear-gradient( 135deg, var(--beige), #FFF8EE);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 35px 40px;
+            margin-bottom: 25px;
+        }
+        
+        .hero h1 {
+            margin: 0 0 8px;
+            font-family: Georgia, serif;
+            font-size: 38px;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+        
+        .authority-badge {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 9px 15px;
+            background: var(--olive-light);
+            color: var(--olive-dark);
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        /* MESSAGE */
+        
+        #message {
+            display: none;
+            padding: 13px 16px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+        /* STATS */
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .stat {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(72, 55, 38, .06);
+        }
+        
+        .stat-title {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .stat-value {
+            font-size: 34px;
+            font-weight: 800;
+            margin-top: 8px;
+            color: var(--dark);
+        }
+        
+        .stat.escalated .stat-value {
+            color: var(--terracotta);
+        }
+        
+        .stat.report-stat .stat-value {
+            color: var(--olive-dark);
+        }
+        /* SECTION */
+        
+        .section {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            gap: 15px;
+        }
+        
+        .section-header h2 {
+            margin: 0;
+            font-family: Georgia, serif;
+            font-size: 27px;
+        }
+        /* FILTERS */
+        
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .filters input,
+        .filters select {
+            padding: 11px 14px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: white;
+            color: var(--dark);
+            outline: none;
+        }
+        
+        .filters input:focus,
+        .filters select:focus {
+            border-color: var(--terracotta);
+        }
+        /* CARDS */
+        
+        .grievance-card,
+        .report-card {
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 23px;
+            margin-bottom: 18px;
+            background: #FFFDF9;
+            transition: .2s;
+        }
+        
+        .grievance-card:hover,
+        .report-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(72, 55, 38, .08);
+        }
+        /* CARD TOP */
+        
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .grievance-id,
+        .report-id {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--terracotta);
+        }
+        
+        .grievance-title,
+        .report-title {
+            margin: 7px 0;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        
+        .description {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+        /* BADGES */
+        
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .badge {
+            padding: 7px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        
+        .badge-escalated {
+            background: #F7D8CF;
+            color: #8D3927;
+        }
+        
+        .badge-priority {
+            background: var(--olive-light);
+            color: var(--olive-dark);
+        }
+        
+        .badge-department {
+            background: var(--beige);
+            color: var(--text);
+        }
+        
+        .badge-report {
+            background: #F7D8CF;
+            color: #8D3927;
+        }
+        
+        .badge-submitted {
+            background: #FFF0C7;
+            color: #806000;
+        }
+        
+        .badge-review {
+            background: #DCE0C9;
+            color: #3F472B;
+        }
+        /* DETAILS */
+        
+        .details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 18px 0;
+        }
+        
+        .detail {
+            background: var(--beige-light);
+            padding: 12px;
+            border-radius: 10px;
+        }
+        
+        .detail-label {
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        .detail-value {
+            margin-top: 4px;
+            font-weight: 700;
+            word-break: break-word;
+        }
+        /* DESCRIPTION BOX */
+        
+        .report-description {
+            background: #FAF4EA;
+            border-left: 4px solid var(--terracotta);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 18px 0;
+            line-height: 1.6;
+        }
+        /* ACTIONS */
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border);
+            padding-top: 17px;
+        }
+        
+        button {
+            border: none;
+            border-radius: 9px;
+            padding: 11px 17px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--terracotta);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--terracotta-dark);
+        }
+        
+        .btn-secondary {
+            background: var(--olive-light);
+            color: var(--olive-dark);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--olive);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #F4D2C9;
+            color: #8D3927;
+        }
+        
+        .btn-danger:hover {
+            background: #E9B6A8;
+        }
+        /* EMPTY */
+        
+        .empty {
+            text-align: center;
+            padding: 55px 20px;
+            color: var(--muted);
+        }
+        
+        .empty-icon {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+        /* MODAL */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(32, 35, 29, .55);
+            z-index: 5000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-box {
+            width: 100%;
+            max-width: 600px;
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
+        }
+        
+        .modal-box h2 {
+            margin-top: 0;
+            font-family: Georgia, serif;
+        }
+        
+        .modal-box p {
+            color: var(--muted);
+            line-height: 1.5;
+        }
+        
+        .modal-box textarea,
+        .modal-box select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            margin-top: 8px;
+            font-family: Arial, sans-serif;
+            resize: vertical;
+        }
+        
+        .modal-box textarea {
+            min-height: 130px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        /* RESPONSIVE */
+        
+        @media(max-width:1000px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media(max-width:600px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .details {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                width: 94%;
+            }
+            .hero {
+                padding: 25px;
+            }
+            .section {
+                padding: 18px;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <a href="index.html" class="brand">
+
+            <img src="logo-symbol.png" alt="Smart Grievance Logo">
+
+            <div>
+
+                <div class="brand-title">
+                    Smart Grievance
+                </div>
+
+                <div class="brand-tagline">
+                    Your Voice. A Better Tomorrow.
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <nav>
+
+            <a href="index.html">
+            Home
+        </a>
+
+            <a href="admin.html">
+            Admin
+        </a>
+
+            <a href="higher-authority.html" class="active">
+            Higher Authority
+        </a>
+
+            <a href="login.html">
+            Logout
+        </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <h1>
+                Higher Authority Dashboard
+            </h1>
+
+            <p>
+                Review escalated grievances and citizen reports that require higher-level intervention.
+            </p>
+
+            <div class="authority-badge">
+                🛡 HIGHER AUTHORITY ACCESS
+            </div>
+
+        </section>
+
+
+        <div id="message"></div>
+
+
+        <!-- STATS -->
+
+        <section class="stats">
+
+            <div class="stat escalated">
+
+                <div class="stat-title">
+                    Escalated Grievances
+                </div>
+
+                <div class="stat-value" id="totalEscalated">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    Critical / High
+                </div>
+
+                <div class="stat-value" id="highPriority">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat report-stat">
+
+                <div class="stat-title">
+                    Citizen Reports
+                </div>
+
+                <div class="stat-value" id="totalReports">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    Reports Under Review
+                </div>
+
+                <div class="stat-value" id="reportsUnderReview">
+                    0
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+     ESCALATED GRIEVANCES
+===================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2>
+                    Escalated Grievances
+                </h2>
+
+                <div class="filters">
+
+                    <input type="text" id="search" placeholder="Search grievance..." oninput="displayGrievances()">
+
+                    <select id="departmentFilter" onchange="displayGrievances()">
+
+                <option value="">
+                    All Departments
+                </option>
+
+            </select>
+
+                </div>
+
+            </div>
+
+
+            <div id="grievanceList">
+
+                <div class="empty">
+                    Loading escalated grievances...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+     CITIZEN REPORTS
+===================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2>
+                    🚨 Citizen Reports
+                </h2>
+
+                <div class="filters">
+
+                    <input type="text" id="reportSearch" placeholder="Search reports..." oninput="displayReports()">
+
+                    <select id="reportStatusFilter" onchange="displayReports()">
+
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="SUBMITTED">
+                    Submitted
+                </option>
+
+                <option value="UNDER_REVIEW">
+                    Under Review
+                </option>
+
+                <option value="EXPLANATION_REQUESTED">
+                    Explanation Requested
+                </option>
+
+                <option value="INVESTIGATION">
+                    Investigation
+                </option>
+
+                <option value="ACTION_TAKEN">
+                    Action Taken
+                </option>
+
+                <option value="CLOSED">
+                    Closed
+                </option>
+
+            </select>
+
+                </div>
+
+            </div>
+
+
+            <div id="reportList">
+
+                <div class="empty">
+                    Loading citizen reports...
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+     REPORT ACTION MODAL
+===================================================== -->
+
+    <div class="modal" id="reportModal">
+
+        <div class="modal-box">
+
+            <h2 id="modalTitle">
+                Review Citizen Report
+            </h2>
+
+            <p id="modalDescription">
+                Review the report and update its status.
+            </p>
+
+
+            <label>
+            Status
+        </label>
+
+            <select id="modalStatus">
+
+            <option value="UNDER_REVIEW">
+                Under Review
+            </option>
+
+            <option value="EXPLANATION_REQUESTED">
+                Request Department Explanation
+            </option>
+
+            <option value="INVESTIGATION">
+                Investigation
+            </option>
+
+            <option value="ACTION_TAKEN">
+                Action Taken
+            </option>
+
+            <option value="CLOSED">
+                Closed
+            </option>
+
+        </select>
+
+
+            <label style="display:block;margin-top:18px;">
+            Authority Note
+        </label>
+
+            <textarea id="modalResponse" placeholder="Enter an official note or action taken..."></textarea>
+
+
+            <div class="modal-actions">
+
+                <button class="btn-primary" onclick="saveReportAction()">
+                Save Action
+            </button>
+
+                <button class="btn-secondary" onclick="closeModal()">
+                Cancel
+            </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        let escalatedGrievances = [];
+
+        let citizenReports = [];
+
+        let selectedReportId = null;
+
+
+        /* =====================================================
+           LOAD GRIEVANCES
+        ===================================================== */
+
+        async function loadGrievances() {
+
+            try {
+
+                const response =
+                    await fetch("/grievances");
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load grievances"
+                    );
+
+                }
+
+                const grievances =
+                    await response.json();
+
+
+                escalatedGrievances =
+                    grievances.filter(g =>
+                        String(
+                            g.escalationStatus || ""
+                        ).toLowerCase() === "escalated"
+                    );
+
+
+                populateDepartments();
+
+                updateStats();
+
+                displayGrievances();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                document.getElementById(
+                    "grievanceList"
+                ).innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                Unable to load escalated grievances.
+
+            </div>
+
+        `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           LOAD CITIZEN REPORTS
+        ===================================================== */
+
+        async function loadReports() {
+
+            try {
+
+                const response =
+                    await fetch("/authority/reports");
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load reports"
+                    );
+
+                }
+
+
+                citizenReports =
+                    await response.json();
+
+
+                updateReportStats();
+
+                displayReports();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                document.getElementById(
+                    "reportList"
+                ).innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                Unable to load citizen reports.
+
+            </div>
+
+        `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DEPARTMENTS
+        ===================================================== */
+
+        function populateDepartments() {
+
+            const select =
+                document.getElementById(
+                    "departmentFilter"
+                );
+
+
+            const departments = [
+                ...new Set(
+                    escalatedGrievances
+                    .map(g => g.department)
+                    .filter(Boolean)
+                )
+            ].sort();
+
+
+            select.innerHTML =
+                `<option value="">
+            All Departments
+        </option>`;
+
+
+            departments.forEach(
+                department => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        department;
+
+                    option.textContent =
+                        department;
+
+                    select.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        function updateStats() {
+
+            document.getElementById(
+                    "totalEscalated"
+                ).textContent =
+                escalatedGrievances.length;
+
+
+            const high =
+                escalatedGrievances.filter(
+                    g => ["HIGH", "CRITICAL"]
+                    .includes(
+                        String(
+                            g.priority || ""
+                        ).toUpperCase()
+                    )
+                ).length;
+
+
+            document.getElementById(
+                    "highPriority"
+                ).textContent =
+                high;
+
+        }
+
+
+        /* =====================================================
+           REPORT STATS
+        ===================================================== */
+
+        function updateReportStats() {
+
+            document.getElementById(
+                    "totalReports"
+                ).textContent =
+                citizenReports.length;
+
+
+            const reviewStatuses = [
+
+                "UNDER_REVIEW",
+
+                "EXPLANATION_REQUESTED",
+
+                "INVESTIGATION"
+
+            ];
+
+
+            const underReview =
+                citizenReports.filter(
+                    r =>
+                    reviewStatuses.includes(
+                        String(
+                            r.status || ""
+                        ).toUpperCase()
+                    )
+                ).length;
+
+
+            document.getElementById(
+                    "reportsUnderReview"
+                ).textContent =
+                underReview;
+
+        }
+
+
+        /* =====================================================
+           DISPLAY GRIEVANCES
+        ===================================================== */
+
+        function displayGrievances() {
+
+            const search =
+                document.getElementById(
+                    "search"
+                ).value.toLowerCase();
+
+
+            const department =
+                document.getElementById(
+                    "departmentFilter"
+                ).value;
+
+
+            const filtered =
+                escalatedGrievances.filter(
+                    g => {
+
+                        const text =
+                            `
+                    ${g.grievance || ""}
+                    ${g.location || ""}
+                    ${g.category || ""}
+                    ${g.department || ""}
+                    `
+                            .toLowerCase();
+
+
+                        return (
+
+                            text.includes(search)
+
+                            &&
+
+                            (!department ||
+                                g.department === department
+                            )
+
+                        );
+
+                    }
+                );
+
+
+            const container =
+                document.getElementById(
+                    "grievanceList"
+                );
+
+
+            if (filtered.length === 0) {
+
+                container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ✅
+                </div>
+
+                No escalated grievances found.
+
+            </div>
+
+        `;
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                filtered.map(
+                    g => {
+
+                        const priority =
+                            String(
+                                g.priority ||
+                                "MEDIUM"
+                            ).toUpperCase();
+
+
+                        return `
+
+                    <div class="grievance-card">
+
+                        <div class="card-top">
+
+                            <div>
+
+                                <div class="grievance-id">
+
+                                    GRIEVANCE #${g.id}
+
+                                </div>
+
+
+                                <div class="grievance-title">
+
+                                    ${escapeHtml(
+                                        g.grievance ||
+                                        "Grievance"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="badges">
+
+                            <span class="badge badge-escalated">
+
+                                ⚠ ESCALATED
+
+                            </span>
+
+
+                            <span class="badge badge-priority">
+
+                                ${escapeHtml(
+                                    priority
+                                )}
+
+                            </span>
+
+
+                            <span class="badge badge-department">
+
+                                🏢 ${escapeHtml(
+                                    g.department ||
+                                    "Unassigned"
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="details">
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    Citizen
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        g.name || "-"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    Location
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        g.location || "-"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    Category
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        g.category || "-"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    SLA Deadline
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${formatDate(
+                                        g.slaDeadline ||
+                                        g.deadline
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                       <div class="actions">
+
+    <button
+        class="btn-primary"
+        onclick="updateStatus(
+            ${g.id},
+            'In Progress'
+        )"
+    >
+        Take Action
+    </button>
+
+    <button
+        class="btn-secondary"
+        onclick="requestGrievanceExplanation(
+            ${g.id}
+        )"
+    >
+        📝 Request Department Explanation
+    </button>
+
+    <button
+        class="btn-secondary"
+        onclick="updateStatus(
+            ${g.id},
+            'Resolved'
+        )"
+    >
+        Mark Resolved
+    </button>
+
+</div>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+                    }
+                ).join("");
+
+        }
+
+
+        /* =====================================================
+           DISPLAY REPORTS
+        ===================================================== */
+
+        function displayReports() {
+
+            const search =
+                document.getElementById(
+                    "reportSearch"
+                ).value.toLowerCase();
+
+
+            const status =
+                document.getElementById(
+                    "reportStatusFilter"
+                ).value;
+
+
+            const filtered =
+                citizenReports.filter(
+                    report => {
+
+                        const text =
+                            `
+                    ${report.id || ""}
+                    ${report.reportType || ""}
+                    ${report.department || ""}
+                    ${report.location || ""}
+                    ${report.description || ""}
+                    ${report.officialName || ""}
+                    `
+                            .toLowerCase();
+
+
+                        return (
+
+                            text.includes(search)
+
+                            &&
+
+                            (!status ||
+                                report.status === status
+                            )
+
+                        );
+
+                    }
+                );
+
+
+            const container =
+                document.getElementById(
+                    "reportList"
+                );
+
+
+            if (filtered.length === 0) {
+
+                container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                No citizen reports found.
+
+            </div>
+
+        `;
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                filtered.map(
+                    report => {
+
+                        const reportStatus =
+                            String(
+                                report.status ||
+                                "SUBMITTED"
+                            ).toUpperCase();
+
+
+                        let statusClass =
+                            "badge-submitted";
+
+
+                        if (
+                            reportStatus ===
+                            "UNDER_REVIEW"
+                        ) {
+
+                            statusClass =
+                                "badge-review";
+
+                        }
+
+
+                        return `
+
+                    <div class="report-card">
+
+                        <div class="card-top">
+
+                            <div>
+
+                                <div class="report-id">
+
+                                    REPORT #R${report.id}
+
+                                </div>
+
+
+                                <div class="report-title">
+
+                                    ${formatReportType(
+                                        report.reportType
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="badges">
+
+                            <span class="badge badge-report">
+
+                                🚨 CITIZEN REPORT
+
+                            </span>
+
+
+                            <span class="badge ${statusClass}">
+
+                                ${formatStatus(
+                                    reportStatus
+                                )}
+
+                            </span>
+
+
+                            <span class="badge badge-department">
+
+                                🏢 ${escapeHtml(
+                                    report.department ||
+                                    "Not specified"
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="details">
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    Related Grievance
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${
+                                        report.grievanceId
+                                        ? "#" +
+                                          report.grievanceId
+                                        : "None"
+                                    }
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    Location
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        report.location ||
+                                        "-"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    Amount
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${
+                                        report.amount
+                                        ? "₹" +
+                                          escapeHtml(
+                                              report.amount
+                                          )
+                                        : "-"
+                                    }
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    Submitted
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${formatDate(
+                                        report.createdAt
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="report-description">
+
+                            <strong>
+                                Citizen's Report:
+                            </strong>
+
+                            <br><br>
+
+                            ${escapeHtml(
+                                report.description ||
+                                "No description provided."
+                            )}
+
+                        </div>
+
+
+                        ${
+                            report.officialName
+                            ? `
+
+                                <div class="detail"
+                                     style="margin-bottom:15px;">
+
+                                    <div class="detail-label">
+
+                                        Official / Person Mentioned
+
+                                    </div>
+
+                                    <div class="detail-value">
+
+                                        ${escapeHtml(
+                                            report.officialName
+                                        )}
+
+                                    </div>
+
+                                </div>
+
+                            `
+                            : ""
+                        }
+
+
+                        ${
+                            report.authorityResponse
+                            ? `
+
+                                <div class="report-description">
+
+                                    <strong>
+                                        Authority Note:
+                                    </strong>
+
+                                    <br><br>
+
+                                    ${escapeHtml(
+                                        report.authorityResponse
+                                    )}
+
+                                </div>
+
+                            `
+                            : ""
+                        }
+
+
+                        <div class="actions">
+
+
+                            <button
+                                class="btn-primary"
+                                onclick="openReportModal(
+                                    ${report.id}
+                                )"
+                            >
+
+                                🔎 Review Report
+
+                            </button>
+
+
+                            <button
+                                class="btn-secondary"
+                                onclick="requestExplanation(
+                                    ${report.id}
+                                )"
+                            >
+
+                                📝 Request Department Explanation
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+/* =====================================================
+   REQUEST EXPLANATION
+===================================================== */
+
+async function requestExplanation(id) {
+
+    const report =
+        citizenReports.find(
+            r => r.id === id
+        );
+
+
+    if (!report) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            `Request an explanation from ${report.department || "the concerned department"} for Report #R${id}?`
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `/authority/reports/${id}/status`
+                +
+                `?status=EXPLANATION_REQUESTED`
+                +
+                `&response=Department explanation requested by Higher Authority.`,
+                {
+                    method: "PUT"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to request explanation"
+            );
+
+        }
+
+
+        showMessage(
+            `Explanation requested for Report #R${id}.`,
+            true
+        );
+
+
+        await loadReports();
+
+
+    } catch(error) {
+
+        console.error(error);
+
+
+        showMessage(
+            "Unable to request department explanation.",
+            false
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN REPORT MODAL
+===================================================== */
+
+function openReportModal(id) {
+
+    const report =
+        citizenReports.find(
+            r => r.id === id
+        );
+
+
+    if (!report) {
+        return;
+    }
+
+
+    selectedReportId = id;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        `Review Report #R${id}`;
+
+
+    document.getElementById(
+        "modalDescription"
+    ).textContent =
+        `Report regarding ${report.department || "the concerned department"}. Review the citizen's report and record the authority's action.`;
+
+
+    document.getElementById(
+        "modalStatus"
+    ).value =
+        report.status === "SUBMITTED"
+        ? "UNDER_REVIEW"
+        : report.status;
+
+
+    document.getElementById(
+        "modalResponse"
+    ).value =
+        report.authorityResponse || "";
+
+
+    document.getElementById(
+        "reportModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeModal() {
+
+    selectedReportId = null;
+
+    document.getElementById(
+        "reportModal"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   SAVE REPORT ACTION
+===================================================== */
+
+async function saveReportAction() {
+
+    if (!selectedReportId) {
+        return;
+    }
+
+
+    const status =
+        document.getElementById(
+            "modalStatus"
+        ).value;
+
+
+    const responseText =
+        document.getElementById(
+            "modalResponse"
+        ).value.trim();
+
+
+    try {
+
+        const params =
+            new URLSearchParams();
+
+
+        params.append(
+            "status",
+            status
+        );
+
+
+        if (responseText) {
+
+            params.append(
+                "response",
+                responseText
+            );
+
+        }
+
+
+        const response =
+            await fetch(
+                `/authority/reports/${selectedReportId}/status`,
+                {
+                    method: "PUT",
+
+                    headers: {
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+                    },
+
+                    body: params
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to update report"
+            );
+
+        }
+
+
+        showMessage(
+            `Report #R${selectedReportId} updated successfully.`,
+            true
+        );
+
+
+        closeModal();
+
+
+        await loadReports();
+
+
+    } catch(error) {
+
+        console.error(error);
+
+
+        showMessage(
+            "Unable to update the report.",
+            false
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE GRIEVANCE STATUS
+===================================================== */
+async function requestGrievanceExplanation(id) {
+
+    const requestedBy =
+        sessionStorage.getItem("userName")
+        || "Higher Authority";
+
+    if (!confirm(
+        `Request an explanation from the department for Grievance #${id}?`
+    )) {
+        return;
+    }
+
+    try {
+
+        const params = new URLSearchParams();
+
+        params.append("grievanceId", id);
+        params.append("requestedBy", requestedBy);
+
+        const response = await fetch(
+            "/authority/requests",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded"
+                },
+
+                body: params
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Unable to request explanation");
+        }
+
+        showMessage(
+            `Explanation requested for Grievance #${id}.`,
+            true
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Unable to request department explanation.",
+            false
+        );
+    }
+}
+async function updateStatus(
+    id,
+    status
+) {
+
+    if (
+        !confirm(
+            `Change grievance #${id} status to "${status}"?`
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `/grievances/${id}/status?status=`
+                +
+                encodeURIComponent(status),
+                {
+                    method: "PUT"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to update status"
+            );
+
+        }
+
+
+        showMessage(
+            `Grievance #${id} updated to ${status}.`,
+            true
+        );
+
+
+        await loadGrievances();
+
+
+    } catch(error) {
+
+        console.error(error);
+
+
+        showMessage(
+            "Unable to update grievance.",
+            false
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    success
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.style.display =
+        "block";
+
+
+    message.textContent =
+        text;
+
+
+    message.style.background =
+        success
+        ? "#E8F1DF"
+        : "#FBE8E3";
+
+
+    message.style.color =
+        success
+        ? "#3F472B"
+        : "#8F3927";
+
+
+    setTimeout(
+        () => {
+
+            message.style.display =
+                "none";
+
+        },
+        4000
+    );
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function formatDate(value) {
+
+    if (!value) {
+        return "-";
+    }
+
+
+    try {
+
+        return new Date(value)
+            .toLocaleString();
+
+    } catch {
+
+        return value;
+
+    }
+
+}
+
+
+function formatStatus(status) {
+
+    return String(status)
+        .replaceAll("_", " ")
+        .replace(
+            /\b\w/g,
+            letter =>
+                letter.toUpperCase()
+        );
+
+}
+
+
+function formatReportType(type) {
+
+    const map = {
+
+        "BRIBERY":
+            "Bribery / Improper Demand",
+
+        "GRIEVANCE_NOT_RESOLVED":
+            "Grievance Not Resolved",
+
+        "EXCESSIVE_DELAY":
+            "Unreasonable Delay",
+
+        "MISCONDUCT":
+            "Department / Official Misconduct",
+
+        "OTHER":
+            "Other Issue"
+
+    };
+
+
+    return map[type] ||
+        formatStatus(
+            type || "Citizen Report"
+        );
+
+}
+
+
+function escapeHtml(value) {
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadGrievances();
+
+loadReports();
+    </script>
+
+</body>
+
+</html>

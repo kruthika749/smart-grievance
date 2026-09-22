@@ -251,6 +251,29 @@
         .reject-btn:hover {
             opacity: 0.9;
         }
+        /* =========================
+   REPORT AN ISSUE
+   ========================= */
+        
+        .report-section {
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .report-btn {
+            background: #b65335;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .report-btn:hover {
+            background: #913f2a;
+        }
         
         .verified-message {
             margin-top: 22px;
@@ -904,12 +927,25 @@
                                         ↻ Grievance reopened.
                                         The issue has been sent
                                         back to the department.
-
+                                       
                                     </div>
 
                                 `
                                 : ""
                             }
+                                                            <!-- REPORT AN ISSUE -->
+
+                            <div class="report-section">
+
+                                <button
+                                    class="report-btn"
+                                    onclick="reportIssue(${g.id})">
+
+                                    🚨 Report an Issue
+
+                                </button>
+
+                            </div>
 
 
                         </div>
@@ -943,7 +979,17 @@
         /* =====================================================
            CITIZEN VERIFICATION
            ===================================================== */
+        
+        /* =====================================================
+       REPORT AN ISSUE
+   ===================================================== */
 
+          function reportIssue(grievanceId) {
+
+              window.location.href =
+        "report-issue.html?grievanceId=" + grievanceId;
+
+}
         async function verifyGrievance(
             id,
             verificationStatus
