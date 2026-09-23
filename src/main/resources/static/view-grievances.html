@@ -2,394 +2,2508 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>View Grievances - Smart Grievance</title>
+    <title>View Grievances | Smart Grievance</title>
 
     <style>
+
+        /* =========================================================
+           SMART GRIEVANCE - VIEW GRIEVANCES
+           Theme: Terracotta + Olive + Beige + Cream
+           Matches Submit Grievance page
+           ========================================================= */
+
+        :root {
+
+            --terracotta: #B65335;
+            --terracotta-dark: #913F2A;
+            --terracotta-light: #E9C8B8;
+
+            --olive: #59613D;
+            --olive-dark: #3F472B;
+            --olive-light: #DCE0C9;
+
+            --beige: #F3E8D7;
+            --beige-light: #FAF4EA;
+            --cream: #FFFDF8;
+
+            --dark: #20231D;
+            --text: #34362F;
+            --muted: #6E6A60;
+            --border: #D9C8B1;
+
+            --green: #4D6B45;
+            --green-light: #E5F0E2;
+
+            --yellow: #9A741C;
+            --yellow-light: #FFF4D6;
+
+            --blue-light: #E4EDF4;
+            --blue-dark: #385B72;
+
+            --shadow: 0 12px 35px rgba(63, 71, 43, 0.10);
+        }
+
+
+        /* =========================================================
+           RESET
+           ========================================================= */
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
+
+        /* =========================================================
+           BODY
+           ========================================================= */
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #333;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(233, 200, 184, 0.25),
+                    transparent 28%
+                ),
+                var(--beige-light);
+
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
         }
 
-        header {
-            background: #1f4e79;
-            color: white;
-            padding: 20px 50px;
+
+        /* =========================================================
+           NAVIGATION BAR
+           ========================================================= */
+
+        .navbar {
+
+            width: 100%;
+
+            background: rgba(255, 253, 248, 0.98);
+
+            border-bottom: 1px solid var(--border);
+
+            position: relative;
+
+            z-index: 100;
+        }
+
+
+        .nav-container {
+
+            width: 100%;
+
+            max-width: 1500px;
+
+            min-height: 92px;
+
+            margin: 0 auto;
+
+            padding: 10px 45px;
+
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
+
+            justify-content: center;
+
+            gap: 22px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 22px;
-        }
 
-        nav a {
-            color: white;
+        /* =========================================================
+           BRAND / LOGO
+           ========================================================= */
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex: 0 0 auto;
+
+            min-width: 270px;
+
             text-decoration: none;
-            margin-left: 25px;
-            font-weight: bold;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+
+        .logo-symbol {
+
+            width: 58px;
+
+            height: 58px;
+
+            object-fit: contain;
+
+            display: block;
         }
 
-        .page {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
+
+        .brand-text {
+
+            display: flex;
+
+            flex-direction: column;
         }
 
-        .page-title {
-            text-align: center;
-            color: #1f4e79;
+
+        .brand-text h1 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 25px;
+
+            line-height: 1;
+
+            font-weight: 700;
+
+            color: var(--terracotta);
+        }
+
+
+        .brand-text h1 span {
+
+            color: var(--olive-dark);
+        }
+
+
+        .brand-text p {
+
+            margin-top: 5px;
+
+            font-size: 11px;
+
+            color: var(--olive-dark);
+
+            letter-spacing: .3px;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================================================
+           NAVIGATION LINKS
+           ========================================================= */
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 4px;
+
+            flex: 1;
+
+            margin: 0 auto;
+        }
+
+
+        .nav-links a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            color: var(--dark);
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                transform .2s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            background: var(--beige);
+
+            color: var(--terracotta-dark);
+        }
+
+
+        /* ACTIVE PAGE */
+
+        .nav-links a.active {
+
+            background: var(--terracotta);
+
+            color: white;
+
+            box-shadow:
+                0 5px 14px rgba(182, 83, 53, .22);
+        }
+
+
+        .nav-icon {
+
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           LOGIN / REGISTER
+           ========================================================= */
+
+        .auth-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            flex: 0 0 auto;
+        }
+
+
+        .auth-links a {
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            padding: 9px 12px;
+
+            border-radius: 8px;
+        }
+
+
+        .login-link {
+
+            color: var(--olive-dark);
+        }
+
+
+        .login-link:hover {
+
+            background: var(--beige);
+        }
+
+
+        .register-link {
+
+            color: white;
+
+            background: var(--terracotta);
+        }
+
+
+        .register-link:hover {
+
+            background: var(--terracotta-dark);
+        }
+
+
+        /* =========================================================
+           PAGE INTRO
+           ========================================================= */
+
+        .page-intro {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 52px 25px 44px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #F8EDE1 0%,
+                    #F3E8D7 48%,
+                    #E8E6D5 100%
+                );
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .page-intro::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(182, 83, 53, .07);
+
+            right: -90px;
+
+            top: -130px;
+        }
+
+
+        .intro-inner {
+
+            width: 92%;
+
+            max-width: 1120px;
+
+            margin: auto;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .eyebrow {
+
+            color: var(--terracotta);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
             margin-bottom: 10px;
         }
 
-        .description {
-            text-align: center;
-            color: #555;
-            margin-bottom: 25px;
+
+        .page-intro h2 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: var(--dark);
+
+            font-size: clamp(34px, 5vw, 54px);
+
+            line-height: 1.08;
+
+            margin-bottom: 14px;
         }
 
-        .search-box {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 25px;
+
+        .page-intro h2 span {
+
+            color: var(--terracotta);
         }
 
-        .search-box input,
-        .search-box select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
+
+        .intro-text {
+
+            max-width: 720px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.7;
         }
 
-        .search-box button {
-            padding: 11px 20px;
-            border: none;
-            border-radius: 5px;
-            background: #1f4e79;
+
+        /* =========================================================
+           SMART PROCESS STRIP
+           ========================================================= */
+
+        .smart-strip {
+
+            width: 92%;
+
+            max-width: 1120px;
+
+            margin: -25px auto 35px;
+
+            position: relative;
+
+            z-index: 5;
+
+            background: var(--cream);
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            box-shadow: var(--shadow);
+
+            padding: 20px 22px;
+        }
+
+
+        .smart-strip-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .smart-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 34px;
+
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: var(--olive);
+
             color: white;
-            cursor: pointer;
-            font-weight: bold;
+
+            font-size: 17px;
         }
 
-        .search-box button:hover {
-            background: #163a5c;
+
+        .smart-strip-title h3 {
+
+            color: var(--olive-dark);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 20px;
         }
+
+
+        .smart-strip-title p {
+
+            margin-left: auto;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        .smart-flow {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 8px;
+        }
+
+
+        .smart-step {
+
+            min-height: 72px;
+
+            padding: 12px 10px;
+
+            background: var(--beige-light);
+
+            border: 1px solid #E6D9C7;
+
+            border-radius: 11px;
+
+            text-align: center;
+
+            position: relative;
+        }
+
+
+        .smart-step:not(:last-child)::after {
+
+            content: "→";
+
+            position: absolute;
+
+            right: -13px;
+
+            top: 25px;
+
+            color: var(--terracotta);
+
+            font-weight: bold;
+
+            z-index: 2;
+        }
+
+
+        .step-number {
+
+            display: inline-flex;
+
+            width: 23px;
+
+            height: 23px;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--terracotta);
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            margin-bottom: 6px;
+        }
+
+
+        .smart-step strong {
+
+            display: block;
+
+            color: var(--dark);
+
+            font-size: 12px;
+        }
+
+
+        .smart-step small {
+
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            margin-top: 3px;
+        }
+
+
+        /* =========================================================
+           MAIN CONTENT
+           ========================================================= */
+
+        .main-content {
+
+            width: 92%;
+
+            max-width: 1120px;
+
+            margin: 0 auto 60px;
+        }
+
+
+        /* =========================================================
+           SEARCH CARD
+           ========================================================= */
+
+        .search-card {
+
+            background: var(--cream);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+
+            padding: 28px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 13px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .section-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            flex: 0 0 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: var(--terracotta-light);
+
+            color: var(--terracotta-dark);
+
+            font-size: 18px;
+        }
+
+
+        .section-heading h3 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: var(--dark);
+
+            font-size: 22px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .section-heading p {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           SEARCH AREA
+           ========================================================= */
+
+        .search-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.6fr)
+                minmax(180px, .8fr);
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .search-input-wrapper {
+
+            position: relative;
+        }
+
+
+        .search-icon {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 13px;
+
+            color: var(--terracotta);
+
+            font-size: 16px;
+
+            pointer-events: none;
+        }
+
+
+        .search-input-wrapper input {
+
+            padding-left: 42px;
+        }
+
+
+        .search-card input,
+        .search-card select {
+
+            width: 100%;
+
+            border: 1px solid #D8CCBC;
+
+            background: #FFFEFB;
+
+            color: var(--dark);
+
+            border-radius: 10px;
+
+            padding: 13px 14px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition:
+                border .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+
+        .search-card input:focus,
+        .search-card select:focus {
+
+            border-color: var(--terracotta);
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px rgba(182, 83, 53, .10);
+        }
+
+
+        .search-card input::placeholder {
+
+            color: #AAA397;
+        }
+
+
+        .button-row {
+
+            display: flex;
+
+            gap: 12px;
+        }
+
+
+        .search-btn,
+        .show-all-btn {
+
+            min-height: 46px;
+
+            padding: 0 22px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+
+        .search-btn {
+
+            border: none;
+
+            background: var(--terracotta);
+
+            color: white;
+
+            box-shadow:
+                0 7px 18px rgba(182, 83, 53, .18);
+        }
+
+
+        .search-btn:hover {
+
+            background: var(--terracotta-dark);
+
+            transform: translateY(-1px);
+        }
+
+
+        .show-all-btn {
+
+            border: 1px solid var(--border);
+
+            background: white;
+
+            color: var(--olive-dark);
+        }
+
+
+        .show-all-btn:hover {
+
+            background: var(--beige);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================================
+           MESSAGE
+           ========================================================= */
 
         #message {
+
             text-align: center;
-            margin: 20px 0;
-            font-weight: bold;
+
+            margin: 18px 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            font-weight: 600;
         }
+
+
+        /* =========================================================
+           RESULTS HEADER
+           ========================================================= */
+
+        .results-heading {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 28px 0 15px;
+        }
+
+
+        .results-heading h3 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: var(--olive-dark);
+
+            font-size: 22px;
+        }
+
+
+        .results-label {
+
+            padding: 7px 12px;
+
+            background: var(--olive-light);
+
+            color: var(--olive-dark);
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           GRIEVANCE CARD
+           ========================================================= */
 
         .grievance-card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+            background: var(--cream);
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            box-shadow: var(--shadow);
+
+            padding: 25px;
+
+            margin-bottom: 18px;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
         }
 
-        .grievance-card h3 {
-            color: #1f4e79;
-            margin-top: 0;
+
+        .grievance-card:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 15px 35px rgba(63, 71, 43, 0.13);
         }
 
-        .grievance-card p {
-            margin: 8px 0;
+
+        /* =========================================================
+           GRIEVANCE CARD HEADER
+           ========================================================= */
+
+        .grievance-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding-bottom: 16px;
+
+            margin-bottom: 18px;
+
+            border-bottom: 1px solid #E5D8C7;
         }
+
+
+        .grievance-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .grievance-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            flex: 0 0 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: var(--terracotta-light);
+
+            color: var(--terracotta-dark);
+
+            font-size: 18px;
+        }
+
+
+        .grievance-header h3 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: var(--dark);
+
+            font-size: 20px;
+        }
+
+
+        .grievance-header small {
+
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: 3px;
+        }
+
+
+        /* =========================================================
+           STATUS BADGES
+           ========================================================= */
 
         .status {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: bold;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
         }
+
+
+        .status::before {
+
+            content: "";
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            display: inline-block;
+        }
+
 
         .pending {
-            background: #fff3cd;
-            color: #856404;
+
+            background: var(--yellow-light);
+
+            color: var(--yellow);
         }
+
+
+        .pending::before {
+
+            background: var(--yellow);
+        }
+
 
         .progress {
-            background: #cfe2ff;
-            color: #084298;
+
+            background: var(--blue-light);
+
+            color: var(--blue-dark);
         }
+
+
+        .progress::before {
+
+            background: var(--blue-dark);
+        }
+
 
         .resolved {
-            background: #d1e7dd;
-            color: #0f5132;
+
+            background: var(--green-light);
+
+            color: var(--green);
         }
+
+
+        .resolved::before {
+
+            background: var(--green);
+        }
+
+
+        /* =========================================================
+           GRIEVANCE INFORMATION GRID
+           ========================================================= */
+
+        .grievance-info {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+
+        .info-item {
+
+            background: var(--beige-light);
+
+            border: 1px solid #E6D9C7;
+
+            border-radius: 10px;
+
+            padding: 13px 14px;
+        }
+
+
+        .info-item.full {
+
+            grid-column: 1 / -1;
+        }
+
+
+        .info-label {
+
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .info-value {
+
+            color: var(--dark);
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================================================
+           PRIORITY
+           ========================================================= */
+
+        .priority-badge {
+
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: var(--terracotta-light);
+
+            color: var(--terracotta-dark);
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           VERIFICATION
+           ========================================================= */
+
+        .verification-box {
+
+            margin-top: 16px;
+
+            padding: 14px 16px;
+
+            background: var(--olive-light);
+
+            border: 1px solid #C7CFAD;
+
+            border-radius: 11px;
+        }
+
+
+        .verification-box strong {
+
+            display: block;
+
+            color: var(--olive-dark);
+
+            font-size: 12px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .verification-box p {
+
+            color: #626951;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           NO RESULTS
+           ========================================================= */
 
         .no-results {
-            background: white;
-            padding: 25px;
+
+            background: var(--cream);
+
+            border: 1px solid var(--border);
+
+            border-radius: 17px;
+
+            padding: 45px 25px;
+
             text-align: center;
-            border-radius: 10px;
+
+            box-shadow: var(--shadow);
         }
 
-        .back-button {
-            display: block;
-            width: fit-content;
-            margin: 30px auto;
-            padding: 11px 25px;
-            background: #1f4e79;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+
+        .no-results-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--beige);
+
+            color: var(--terracotta);
+
+            font-size: 22px;
         }
+
+
+        .no-results h3 {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: var(--olive-dark);
+
+            font-size: 21px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .no-results p {
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           BACK TO HOME
+           ========================================================= */
+
+        .back-button {
+
+            display: flex;
+
+            width: fit-content;
+
+            margin: 30px auto 0;
+
+            min-height: 46px;
+
+            padding: 0 22px;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: white;
+
+            color: var(--olive-dark);
+
+            border: 1px solid var(--border);
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            transition:
+                background .2s ease,
+                transform .2s ease;
+        }
+
+
+        .back-button:hover {
+
+            background: var(--beige);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE DESIGN
+           ========================================================= */
+
+        @media (max-width: 1100px) {
+
+            .nav-container {
+
+                padding: 10px 25px;
+
+                gap: 12px;
+            }
+
+            .brand {
+
+                min-width: 230px;
+            }
+
+            .nav-links a {
+
+                padding: 11px 9px;
+
+                font-size: 13px;
+            }
+        }
+
+
+        @media (max-width: 900px) {
+
+            .nav-container {
+
+                flex-wrap: wrap;
+
+                padding: 15px 20px;
+            }
+
+            .brand {
+
+                width: 100%;
+
+                justify-content: center;
+            }
+
+            .nav-links {
+
+                order: 2;
+
+                width: 100%;
+
+                overflow-x: auto;
+
+                padding-bottom: 3px;
+            }
+
+            .auth-links {
+
+                position: absolute;
+
+                right: 20px;
+
+                top: 18px;
+            }
+
+            .smart-flow {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .smart-step:nth-child(3)::after {
+
+                display: none;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .page-intro {
+
+                padding: 40px 20px 38px;
+            }
+
+            .main-content,
+            .smart-strip,
+            .intro-inner {
+
+                width: 94%;
+            }
+
+            .search-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .grievance-info {
+
+                grid-template-columns: 1fr;
+            }
+
+            .info-item.full {
+
+                grid-column: auto;
+            }
+
+            .grievance-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .smart-flow {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .smart-step::after {
+
+                display: none !important;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .nav-container {
+
+                padding: 12px;
+            }
+
+            .brand-text h1 {
+
+                font-size: 21px;
+            }
+
+            .brand-text p {
+
+                font-size: 9px;
+            }
+
+            .auth-links {
+
+                display: none;
+            }
+
+            .nav-links a {
+
+                padding: 9px 10px;
+
+                font-size: 12px;
+            }
+
+            .nav-icon {
+
+                display: none;
+            }
+
+            .page-intro h2 {
+
+                font-size: 35px;
+            }
+
+            .smart-flow {
+
+                grid-template-columns: 1fr;
+            }
+
+            .search-card,
+            .grievance-card {
+
+                padding: 20px;
+            }
+
+            .button-row {
+
+                flex-direction: column;
+            }
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <header>
-        <h1>Smart Grievance</h1>
+    <!-- =========================================================
+         NAVIGATION
+         ========================================================= -->
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="submit.html">Submit Grievance</a>
-            <a href="view-grievances.html">View Grievances</a>
-        </nav>
-    </header>
+    <header class="navbar">
 
-    <main class="page">
+        <div class="nav-container">
 
-        <h2 class="page-title">View Grievances</h2>
 
-        <p class="description">
-            Search and view submitted grievances and their current status.
-        </p>
+            <!-- BRAND -->
 
-        <div class="search-box">
+            <a href="index.html" class="brand">
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search by name, location or grievance..."
-            >
+                <img
+                    src="logo-symbol.png"
+                    alt="Smart Grievance Logo"
+                    class="logo-symbol"
+                >
 
-            <select id="statusFilter">
-                <option value="">All Statuses</option>
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Resolved">Resolved</option>
-            </select>
+                <div class="brand-text">
 
-            <button onclick="filterGrievances()">
-                Search
-            </button>
+                    <h1>
+                        SMART <span>GRIEVANCE</span>
+                    </h1>
 
-            <button onclick="loadGrievances()">
-                Show All
-            </button>
+                    <p>
+                        A CLEANER, GREENER BENGALURU
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <!-- NAV LINKS -->
+
+            <nav class="nav-links">
+
+                <a href="index.html">
+
+                    <span class="nav-icon">⌂</span>
+
+                    Home
+
+                </a>
+
+
+                <a href="submit.html">
+
+                    <span class="nav-icon">▤</span>
+
+                    Submit Grievance
+
+                </a>
+
+
+                <!-- ACTIVE PAGE -->
+
+                <a
+                    href="view-grievances.html"
+                    class="active"
+                >
+
+                    <span class="nav-icon">☷</span>
+
+                    View Grievances
+
+                </a>
+
+
+                <a href="my-grievances.html">
+
+                    <span class="nav-icon">◉</span>
+
+                    My Grievances
+
+                </a>
+
+
+                <a href="admin.html">
+
+                    <span class="nav-icon">⚙</span>
+
+                    Admin
+
+                </a>
+
+            </nav>
+
+
+            <!-- LOGIN / REGISTER -->
+
+            <div class="auth-links">
+
+                <a
+                    href="login.html"
+                    class="login-link"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="register.html"
+                    class="register-link"
+                >
+                    Register
+                </a>
+
+            </div>
 
         </div>
 
+    </header>
+
+
+
+    <!-- =========================================================
+         PAGE INTRO
+         ========================================================= -->
+
+    <section class="page-intro">
+
+        <div class="intro-inner">
+
+            <div class="eyebrow">
+                CITIZEN GRIEVANCE MANAGEMENT
+            </div>
+
+
+            <h2>
+                See what needs to
+                <span>change.</span>
+            </h2>
+
+
+            <p class="intro-text">
+
+                View submitted civic grievances, search for specific
+                complaints, track their current status, and see how
+                Smart Grievance manages each issue from submission
+                to resolution.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SMART PROCESS
+         ========================================================= -->
+
+    <section class="smart-strip">
+
+
+        <div class="smart-strip-title">
+
+            <div class="smart-badge">
+                ✦
+            </div>
+
+
+            <div>
+
+                <h3>
+                    How are grievances managed?
+                </h3>
+
+            </div>
+
+
+            <p>
+                Powered by your Smart Grievance workflow
+            </p>
+
+        </div>
+
+
+
+        <div class="smart-flow">
+
+
+            <div class="smart-step">
+
+                <span class="step-number">
+                    1
+                </span>
+
+                <strong>
+                    Submitted
+                </strong>
+
+                <small>
+                    Complaint received
+                </small>
+
+            </div>
+
+
+
+            <div class="smart-step">
+
+                <span class="step-number">
+                    2
+                </span>
+
+                <strong>
+                    Classified
+                </strong>
+
+                <small>
+                    Issue categorized
+                </small>
+
+            </div>
+
+
+
+            <div class="smart-step">
+
+                <span class="step-number">
+                    3
+                </span>
+
+                <strong>
+                    Prioritized
+                </strong>
+
+                <small>
+                    Urgency assessed
+                </small>
+
+            </div>
+
+
+
+            <div class="smart-step">
+
+                <span class="step-number">
+                    4
+                </span>
+
+                <strong>
+                    Assigned
+                </strong>
+
+                <small>
+                    Department routed
+                </small>
+
+            </div>
+
+
+
+            <div class="smart-step">
+
+                <span class="step-number">
+                    5
+                </span>
+
+                <strong>
+                    Resolved
+                </strong>
+
+                <small>
+                    Issue completed
+                </small>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+         ========================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- =====================================================
+             SEARCH CARD
+             ===================================================== -->
+
+        <section class="search-card">
+
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    ⌕
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Find a grievance
+                    </h3>
+
+                    <p>
+                        Search submitted complaints by citizen name,
+                        location, grievance description or status.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="search-grid">
+
+
+                <!-- SEARCH INPUT -->
+
+                <div class="search-input-wrapper">
+
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search by name, location or grievance..."
+                    >
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <select id="statusFilter">
+
+                    <option value="">
+                        All Statuses
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Resolved">
+                        Resolved
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="button-row">
+
+                <button
+                    class="search-btn"
+                    onclick="filterGrievances()"
+                >
+                    Search Grievances
+                </button>
+
+
+                <button
+                    class="show-all-btn"
+                    onclick="loadGrievances()"
+                >
+                    Show All
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             MESSAGE
+             ===================================================== -->
+
         <div id="message"></div>
+
+
+
+        <!-- =====================================================
+             RESULTS HEADING
+             ===================================================== -->
+
+        <div class="results-heading">
+
+            <h3>
+                Submitted Grievances
+            </h3>
+
+            <span
+                class="results-label"
+                id="resultsCount"
+            >
+                Loading...
+            </span>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             GRIEVANCE LIST
+             ===================================================== -->
 
         <div id="grievanceList"></div>
 
-        <a href="index.html" class="back-button">
-            Back to Home
+
+
+        <!-- =====================================================
+             BACK BUTTON
+             ===================================================== -->
+
+        <a
+            href="index.html"
+            class="back-button"
+        >
+            ← Back to Home
         </a>
+
 
     </main>
 
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
     <script>
+
 
         let allGrievances = [];
 
-        // Load all grievances from backend
+
+        /* =========================================================
+           LOAD ALL GRIEVANCES
+           ========================================================= */
+
         function loadGrievances() {
 
-            document.getElementById("message").textContent = "Loading grievances...";
+            document.getElementById("message").textContent =
+                "Loading grievances...";
+
+
+            document.getElementById("resultsCount").textContent =
+                "Loading...";
+
 
             fetch("/grievances")
+
                 .then(response => {
 
                     if (!response.ok) {
-                        throw new Error("Failed to load grievances");
+
+                        throw new Error(
+                            "Failed to load grievances"
+                        );
+
                     }
 
                     return response.json();
+
                 })
+
 
                 .then(data => {
 
                     allGrievances = data;
 
-                    document.getElementById("message").textContent = "";
 
-                    displayGrievances(allGrievances);
+                    document.getElementById("message").textContent =
+                        "";
+
+
+                    displayGrievances(
+                        allGrievances
+                    );
+
                 })
+
 
                 .catch(error => {
 
-                    console.error("Error:", error);
+                    console.error(
+                        "Error:",
+                        error
+                    );
+
 
                     document.getElementById("message").textContent =
                         "Unable to load grievances. Please check that the backend is running.";
 
-                    document.getElementById("grievanceList").innerHTML = "";
+
+                    document.getElementById("resultsCount").textContent =
+                        "Error";
+
+
+                    document.getElementById(
+                        "grievanceList"
+                    ).innerHTML = "";
+
                 });
+
         }
 
 
-        // Filter grievances on the frontend
+
+        /* =========================================================
+           FILTER GRIEVANCES
+           ========================================================= */
+
         function filterGrievances() {
 
+
             const searchText =
-                document.getElementById("searchInput").value
-                    .trim()
-                    .toLowerCase();
+                document.getElementById(
+                    "searchInput"
+                )
+                .value
+                .trim()
+                .toLowerCase();
+
 
             const selectedStatus =
-                document.getElementById("statusFilter").value;
+                document.getElementById(
+                    "statusFilter"
+                ).value;
 
-            const filtered = allGrievances.filter(g => {
 
-                const matchesSearch =
-                    !searchText ||
-                    (g.name && g.name.toLowerCase().includes(searchText)) ||
-                    (g.location && g.location.toLowerCase().includes(searchText)) ||
-                    (g.grievance && g.grievance.toLowerCase().includes(searchText));
+            const filtered =
+                allGrievances.filter(g => {
 
-                const matchesStatus =
-                    !selectedStatus ||
-                    g.status === selectedStatus;
 
-                return matchesSearch && matchesStatus;
-            });
+                    const matchesSearch =
+
+                        !searchText ||
+
+                        (
+                            g.name &&
+                            g.name
+                                .toLowerCase()
+                                .includes(searchText)
+                        ) ||
+
+                        (
+                            g.location &&
+                            g.location
+                                .toLowerCase()
+                                .includes(searchText)
+                        ) ||
+
+                        (
+                            g.grievance &&
+                            g.grievance
+                                .toLowerCase()
+                                .includes(searchText)
+                        );
+
+
+                    const matchesStatus =
+
+                        !selectedStatus ||
+
+                        g.status === selectedStatus;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesStatus
+                    );
+
+                });
+
 
             displayGrievances(filtered);
+
         }
 
 
-        // Display grievances
+
+        /* =========================================================
+           DISPLAY GRIEVANCES
+           ========================================================= */
+
         function displayGrievances(grievances) {
 
-            const list = document.getElementById("grievanceList");
+
+            const list =
+                document.getElementById(
+                    "grievanceList"
+                );
+
+
+            const resultsCount =
+                document.getElementById(
+                    "resultsCount"
+                );
+
 
             list.innerHTML = "";
+
+
+            /* RESULT COUNT */
+
+            resultsCount.textContent =
+                grievances.length +
+                (
+                    grievances.length === 1
+                        ? " grievance"
+                        : " grievances"
+                );
+
+
+
+            /* NO RESULTS */
 
             if (grievances.length === 0) {
 
                 list.innerHTML = `
+
                     <div class="no-results">
-                        No grievances found.
+
+                        <div class="no-results-icon">
+                            ⌕
+                        </div>
+
+                        <h3>
+                            No grievances found
+                        </h3>
+
+                        <p>
+                            Try changing your search term or status filter.
+                        </p>
+
                     </div>
+
                 `;
 
                 return;
             }
 
+
+
+            /* DISPLAY EACH GRIEVANCE */
+
             grievances.forEach(g => {
+
 
                 let statusClass = "";
 
+
                 if (g.status === "Pending") {
+
                     statusClass = "pending";
-                } else if (g.status === "In Progress") {
-                    statusClass = "progress";
-                } else if (g.status === "Resolved") {
-                    statusClass = "resolved";
+
                 }
 
-                const card = document.createElement("div");
+                else if (g.status === "In Progress") {
 
-                card.className = "grievance-card";
+                    statusClass = "progress";
+
+                }
+
+                else if (g.status === "Resolved") {
+
+                    statusClass = "resolved";
+
+                }
+
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "grievance-card";
+
+
 
                 card.innerHTML = `
-                    <h3>Grievance #${g.id}</h3>
 
-                    <p>
-                        <strong>Name:</strong>
-                        ${g.name || "N/A"}
-                    </p>
+                    <!-- CARD HEADER -->
 
-                    <p>
-                        <strong>Email:</strong>
-                        ${g.email || "N/A"}
-                    </p>
+                    <div class="grievance-header">
 
-                    <p>
-                        <strong>Location:</strong>
-                        ${g.location || "N/A"}
-                    </p>
 
-                    <p>
-                        <strong>Grievance:</strong>
-                        ${g.grievance || "N/A"}
-                    </p>
+                        <div class="grievance-title">
 
-                    <p>
-                        <strong>Priority:</strong>
-                        ${g.priority || "N/A"}
-                    </p>
+                            <div class="grievance-icon">
+                                ☷
+                            </div>
 
-                    <p>
-                        <strong>Deadline:</strong>
-                        ${g.deadline || "N/A"}
-                    </p>
 
-                    <p>
-                        <strong>Status:</strong>
+                            <div>
+
+                                <h3>
+                                    Grievance #${g.id}
+                                </h3>
+
+                                <small>
+                                    Citizen grievance record
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+
                         <span class="status ${statusClass}">
+
                             ${g.status || "N/A"}
+
                         </span>
-                    </p>
 
-                    <p>
-                        <strong>Created At:</strong>
-                        ${g.createdAt || "N/A"}
-                    </p>
 
-                    <p>
-                        <strong>Resolved At:</strong>
-                        ${g.resolvedAt || "Not resolved"}
-                    </p>
+                    </div>
 
-                    <p>
-                        <strong>Verification:</strong>
-                        ${g.verificationStatus || "Not verified"}
-                    </p>
 
-                    <p>
-                        <strong>Verification Comment:</strong>
-                        ${g.verificationComment || "None"}
-                    </p>
+
+                    <!-- INFORMATION -->
+
+                    <div class="grievance-info">
+
+
+                        <!-- NAME -->
+
+                        <div class="info-item">
+
+                            <span class="info-label">
+                                Citizen Name
+                            </span>
+
+                            <div class="info-value">
+                                ${g.name || "N/A"}
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="info-item">
+
+                            <span class="info-label">
+                                Email
+                            </span>
+
+                            <div class="info-value">
+                                ${g.email || "N/A"}
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- LOCATION -->
+
+                        <div class="info-item">
+
+                            <span class="info-label">
+                                Location
+                            </span>
+
+                            <div class="info-value">
+                                ${g.location || "N/A"}
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PRIORITY -->
+
+                        <div class="info-item">
+
+                            <span class="info-label">
+                                Priority
+                            </span>
+
+                            <div class="info-value">
+
+                                <span class="priority-badge">
+
+                                    ${g.priority || "N/A"}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- GRIEVANCE -->
+
+                        <div class="info-item full">
+
+                            <span class="info-label">
+                                Grievance
+                            </span>
+
+                            <div class="info-value">
+                                ${g.grievance || "N/A"}
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DEADLINE -->
+
+                        <div class="info-item">
+
+                            <span class="info-label">
+                                Response Deadline
+                            </span>
+
+                            <div class="info-value">
+                                ${g.deadline || "N/A"}
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- CREATED -->
+
+                        <div class="info-item">
+
+                            <span class="info-label">
+                                Created At
+                            </span>
+
+                            <div class="info-value">
+                                ${g.createdAt || "N/A"}
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RESOLVED -->
+
+                        <div class="info-item">
+
+                            <span class="info-label">
+                                Resolved At
+                            </span>
+
+                            <div class="info-value">
+                                ${g.resolvedAt || "Not resolved"}
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- VERIFICATION -->
+
+                    <div class="verification-box">
+
+                        <strong>
+                            Verification
+                        </strong>
+
+                        <p>
+
+                            <b>Status:</b>
+                            ${g.verificationStatus || "Not verified"}
+
+                            <br>
+
+                            <b>Comment:</b>
+                            ${g.verificationComment || "None"}
+
+                        </p>
+
+                    </div>
+
                 `;
 
+
                 list.appendChild(card);
+
             });
+
         }
 
 
-        // Automatically load grievances when page opens
-        window.onload = loadGrievances;
+
+        /* =========================================================
+           SEARCH WHEN ENTER IS PRESSED
+           ========================================================= */
+
+        document
+            .getElementById("searchInput")
+            .addEventListener(
+                "keypress",
+                function(event) {
+
+                    if (event.key === "Enter") {
+
+                        filterGrievances();
+
+                    }
+
+                }
+            );
+
+
+
+        /* =========================================================
+           LOAD AUTOMATICALLY
+           ========================================================= */
+
+        window.onload =
+            loadGrievances;
+
 
     </script>
+
 
 </body>
 
