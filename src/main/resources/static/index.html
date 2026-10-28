@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <link rel="stylesheet" href="chatbot.css">
+
     <style>
         /* ================= LOCATION SEARCH ================= */
         
@@ -476,36 +478,6 @@
         </section>
 
 
-        <!-- ================= LOCATION SEARCH ================= -->
-
-        <section class="location-search-section">
-
-            <h2>
-                🔎 Find Grievances by Location
-            </h2>
-
-            <p>
-                Search for reported grievances in your area.
-            </p>
-
-
-            <div class="location-search-box">
-
-                <input type="text" id="locationInput" placeholder="Enter location e.g. Kumbalgudu">
-
-
-                <button onclick="searchLocation()">
-                    Search
-                </button>
-
-            </div>
-
-
-            <div id="locationResults"></div>
-
-        </section>
-
-
         <!-- ================= FEATURE CARDS ================= -->
 
         <section class="features">
@@ -677,6 +649,51 @@
 
     </footer>
 
+    
+<!-- SmartGrievance Chatbot -->
+<button id="chatbot-toggle"
+        type="button"
+        aria-label="Open SmartGrievance chatbot"
+        aria-expanded="false">
+    💬
+</button>
+
+<section id="chatbot-window"
+         role="dialog"
+         aria-label="SmartGrievance chatbot"
+         aria-hidden="true">
+
+    <div class="chatbot-header">
+        <div>
+            <h3>SmartGrievance Assistant</h3>
+            <small>How can we help you?</small>
+        </div>
+        <button id="chatbot-close"
+                type="button"
+                aria-label="Close chatbot">×</button>
+    </div>
+
+    <div id="chatbot-messages"
+         role="log"
+         aria-live="polite">
+        <div class="chatbot-message bot">
+            Hello! Welcome to SmartGrievance.
+            Ask me about submitting grievances,
+            categories, or tracking complaints.
+        </div>
+    </div>
+
+    <form id="chatbot-form">
+        <input id="chatbot-input"
+               type="text"
+               placeholder="Type your message..."
+               aria-label="Your message"
+               autocomplete="off"
+               required>
+        <button id="chatbot-send" type="submit">Send</button>
+    </form>
+</section>
+
 
     <!-- ================= LOCATION SEARCH JAVASCRIPT ================= -->
 
@@ -839,8 +856,9 @@
                 }
             );
     </script>
-
+<script src="chatbot.js"></script>
 
 </body>
+
 
 </html>
