@@ -214,21 +214,310 @@
                 width: 100%;
             }
         }
+        /* Smart Grievance shared cream / terracotta / olive theme */
+        
+         :root {
+            --sg-cream: #fffaf2;
+            --sg-cream-deep: #f7efe2;
+            --sg-terracotta: #b94f31;
+            --sg-terracotta-dark: #9e3f27;
+            --sg-olive: #59643b;
+            --sg-ink: #202018;
+            --sg-muted: #716e63;
+            --sg-border: #e5d2bb;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, var(--sg-cream) 0%, #f7f0e5 100%);
+            color: var(--sg-ink);
+        }
+        
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            width: 100%;
+            min-height: 94px;
+            padding: 14px clamp(18px, 4vw, 58px);
+            background: rgba(255, 252, 246, .98);
+            border-bottom: 1px solid rgba(185, 79, 49, .12);
+            box-shadow: 0 5px 18px rgba(65, 47, 29, .06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            color: var(--sg-ink);
+        }
+        
+        .site-nav .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            color: inherit;
+            text-decoration: none;
+            margin: 0;
+        }
+        
+        .site-nav .brand-logo {
+            display: block;
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        
+        .site-nav .brand-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
+        .site-nav .brand-copy strong {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(20px, 2vw, 27px);
+            line-height: 1.05;
+            color: var(--sg-terracotta);
+            white-space: nowrap;
+        }
+        
+        .site-nav .brand-copy strong span {
+            color: var(--sg-olive);
+        }
+        
+        .site-nav .brand-copy small {
+            color: var(--sg-muted);
+            font-size: 11px;
+        }
+        
+        .site-nav .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .site-nav .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin: 0;
+            padding: 11px 14px;
+            border-radius: 10px;
+            color: var(--sg-ink);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background .18s ease, color .18s ease;
+        }
+        
+        .site-nav .nav-links a:hover,
+        .site-nav .nav-links a:focus-visible {
+            background: var(--sg-cream-deep);
+            color: var(--sg-terracotta-dark);
+            outline: none;
+        }
+        
+        .site-nav .nav-links a span {
+            font-size: 17px;
+            line-height: 1;
+        }
+        
+        .container {
+            max-width: 1320px;
+            margin: 34px auto;
+            padding: 0 clamp(16px, 3vw, 32px);
+        }
+        
+        .header {
+            padding: clamp(24px, 4vw, 42px);
+            margin-bottom: 26px;
+            border: 1px solid var(--sg-border);
+            border-radius: 22px;
+            background: linear-gradient(120deg, #fffdf8 0%, #f4e7d4 100%);
+            box-shadow: 0 10px 28px rgba(75, 53, 31, .06);
+        }
+        
+        .header h1 {
+            margin-top: 0;
+            color: var(--sg-ink);
+            font-size: clamp(27px, 3vw, 36px);
+        }
+        
+        .header p {
+            margin-bottom: 0;
+            color: var(--sg-muted);
+            line-height: 1.6;
+        }
+        
+        .department-selector,
+        .grievance-card,
+        .empty,
+        .loading {
+            border: 1px solid var(--sg-border);
+            border-radius: 18px;
+            background: rgba(255, 253, 248, .96);
+            box-shadow: 0 8px 24px rgba(75, 53, 31, .06);
+        }
+        
+        .department-selector {
+            padding: clamp(20px, 3vw, 28px);
+        }
+        
+        .department-selector label {
+            color: var(--sg-ink);
+        }
+        
+        select {
+            width: min(480px, 100%);
+            border: 1px solid #d8c5ad;
+            border-radius: 10px;
+            color: var(--sg-ink);
+            background: #fffdf8;
+            outline-color: var(--sg-terracotta);
+        }
+        
+        .grievance-card {
+            padding: clamp(20px, 3vw, 28px);
+            transition: box-shadow .2s ease;
+        }
+        
+        .grievance-card:hover {
+            box-shadow: 0 12px 30px rgba(75, 53, 31, .09);
+        }
+        
+        .grievance-id {
+            color: var(--sg-ink);
+        }
+        
+        .status {
+            background: #e1e4cf;
+            color: #4d5931;
+        }
+        
+        .detail {
+            background: #f8f3ea;
+            border: 1px solid rgba(229, 210, 187, .55);
+        }
+        
+        .label {
+            color: var(--sg-muted);
+        }
+        
+        .progress-btn,
+        .resolve-btn {
+            border-radius: 10px;
+            transition: background .18s ease, transform .18s ease;
+        }
+        
+        .progress-btn {
+            background: var(--sg-olive);
+        }
+        
+        .resolve-btn {
+            background: var(--sg-terracotta);
+        }
+        
+        .progress-btn:hover,
+        .resolve-btn:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+        
+        .progress-btn:hover {
+            background: #485331;
+        }
+        
+        .resolve-btn:hover {
+            background: var(--sg-terracotta-dark);
+        }
+        
+        button:disabled {
+            background: #d7d1c6;
+            color: #6f6a60;
+        }
+        
+        .empty {
+            color: var(--sg-muted);
+        }
+        
+        .error {
+            border: 1px solid #efb7aa;
+            background: #fff0eb;
+            color: #8e3324;
+        }
+        
+        @media (max-width: 850px) {
+            .site-nav {
+                flex-direction: column;
+                justify-content: center;
+                gap: 12px;
+                padding: 15px 18px;
+            }
+            .site-nav .brand {
+                justify-content: center;
+            }
+            .site-nav .nav-links {
+                justify-content: center;
+                width: 100%;
+            }
+            .site-nav .nav-links a {
+                padding: 10px 11px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 700px) {
+            .container {
+                margin: 22px auto;
+            }
+            .department-selector {
+                padding: 18px;
+            }
+            .grievance-card {
+                padding: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .site-nav .brand-logo {
+                width: 42px;
+                height: 42px;
+            }
+            .site-nav .brand-copy strong {
+                font-size: 21px;
+            }
+            .site-nav .brand-copy small {
+                font-size: 10px;
+            }
+            .site-nav .nav-links {
+                gap: 4px;
+            }
+            .site-nav .nav-links a {
+                padding: 9px 8px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <nav>
-
-        <h2>Smart Grievance</h2>
-
-        <div>
-            <a href="index.html">Home</a>
-            <a href="submit.html">Submit</a>
-            <a href="my-grievances.html">My Grievances</a>
+    <nav class="site-nav">
+        <a class="brand" href="index.html" aria-label="Smart Grievance home">
+            <img src="logo-symbol.png" alt="" class="brand-logo">
+            <span class="brand-copy">
+                <strong>Smart <span>Grievance</span></strong>
+            <small>Your Voice. A Better Tomorrow.</small>
+            </span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html"><span aria-hidden="true">⌂</span> Home</a>
+            <a href="submit.html"><span aria-hidden="true">▤</span> Submit Grievance</a>
+            <a href="my-grievances.html"><span aria-hidden="true">◉</span> My Grievances</a>
         </div>
-
     </nav>
 
 
